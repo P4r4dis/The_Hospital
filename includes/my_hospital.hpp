@@ -12,8 +12,12 @@ class SickKoala {
         SickKoala(std::string name);
         //DTOR
         ~SickKoala();
+        //Member Function
+        void            poke(void);
+        bool            takeDrug(std::string str);
+        //Getter
         std::string     get_name(void);
-        void            poke(void);        
+
 
     private:
         std::string     _name;

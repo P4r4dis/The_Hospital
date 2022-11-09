@@ -57,6 +57,8 @@ Test(takeDrug, strParameter_eq_MarsStrings_and_stdcout_caught,
                 cr_assert_stdout_eq_str("Mr.SickKoala: Mars, and it kreogs!\n");
 
         }
+
+
 }
 
 Test(takeDrug, strParameter_notEq_MarsStrings_and_stdcout_caught,
@@ -97,8 +99,8 @@ Test(takeDrug, strParameter_eq_BuronzandStrings_and_stdcout_caught,
         {
                 return_value = true;
                 cr_assert(return_value == true);
-                std::cout << "Mr." << _name << ": And you 'll sleep right away!" << std::endl;
-                cr_assert_stdout_eq_str("Mr.SickKoala: And you 'll sleep right away!\n");
+                std::cout << "Mr." << _name << ": And you'll sleep right away!" << std::endl;
+                cr_assert_stdout_eq_str("Mr.SickKoala: And you'll sleep right away!\n");
 
         } else {
                 cr_log_error("FAIL");
@@ -120,14 +122,14 @@ Test(takeDrug, strParameter_notEq_BuronzandStrings_and_stdcout_caught,
         {
                 return_value = true;
                 cr_assert(return_value == true);
-                std::cout << "Mr." << _name << ": And you 'll sleep right away!" << std::endl;
-                cr_assert_stdout_eq_str("Mr.SickKoala: : And you 'll sleep right away!\n");
+                std::cout << "Mr." << _name << ": And you'll sleep right away!" << std::endl;
+                cr_assert_stdout_eq_str("Mr.SickKoala: : And you'll sleep right away!\n");
 
         } else {
                 return_value = false;
                 cr_assert(return_value == false);
-                std::cout << "Mr." << _name << ": Goerkreog !" << std::endl;
-                cr_assert_stdout_eq_str("Mr.SickKoala: Goerkreog !\n");
+                std::cout << "Mr." << _name << ": Goerkreog!" << std::endl;
+                cr_assert_stdout_eq_str("Mr.SickKoala: Goerkreog!\n");
         }
 }
 
@@ -146,8 +148,8 @@ Test(takeDrug, strParameter_notEq_strings_and_stdcout_caught2,
         {
                 return_value = true;
                 cr_assert(return_value == true);
-                std::cout << "Mr." << _name << ": And you 'll sleep right away!" << std::endl;
-                cr_assert_stdout_eq_str("Mr.SickKoala: : And you 'll sleep right away!\n");
+                std::cout << "Mr." << _name << ": And you'll sleep right away!" << std::endl;
+                cr_assert_stdout_eq_str("Mr.SickKoala: And you'll sleep right away!\n");
         } else if (string == s_mars)
         {
                 return_value = true;
@@ -158,11 +160,37 @@ Test(takeDrug, strParameter_notEq_strings_and_stdcout_caught2,
         {
                 return_value = false;
                 cr_assert(return_value == false);
-                std::cout << "Mr." << _name << ": Goerkreog !" << std::endl;
-                cr_assert_stdout_eq_str("Mr.SickKoala: Goerkreog !\n");
+                std::cout << "Mr." << _name << ": Goerkreog!" << std::endl;
+                cr_assert_stdout_eq_str("Mr.SickKoala: Goerkreog!\n");
         }
 }
 
+Test(takeDrug, takeDrug_randomString, .signal=SIGPIPE,
+        .init=redirect_all_stdout)
+{
+        SickKoala sickKoala;
+
+        cr_assert(sickKoala.takeDrug("random") == false);
+        cr_assert_stdout_eq_str("Mr.SickKoala: Goerkreog!\n");
+}
+
+Test(takeDrug, takeDrug_marsString, .signal=SIGPIPE,
+        .init=redirect_all_stdout)
+{
+        SickKoala sickKoala;
+
+        cr_assert(sickKoala.takeDrug("Mars") == true);
+        cr_assert_stdout_eq_str("Mr.SickKoala: Mars, and it kreogs!\n");
+}
+
+Test(takeDrug, takeDrug_buronzandString, .signal=SIGPIPE,
+        .init=redirect_all_stdout)
+{
+        SickKoala sickKoala;
+
+        cr_assert(sickKoala.takeDrug("Buronzand") == true);
+        cr_assert_stdout_eq_str("Mr.SickKoala: And you'll sleep right away!\n");
+}
 // Test(overDrive, strParameter_test)
 // {
 //         SickKoala sickKoala;
