@@ -13,6 +13,8 @@ int     main(int ac, char **av)
         cancer.takeDrug("Buronzand") << std::endl;
         std::cout << std::boolalpha << "return value : " << 
         cancer.takeDrug("random") << std::endl;
+        cancer.overDrive("Kreog! How's it going?");
+
         SickKoala   gangrene("Scarface");
         std::cout << gangrene.get_name() << std::endl;
         gangrene.poke();
@@ -22,6 +24,8 @@ int     main(int ac, char **av)
         gangrene.takeDrug("Buronzand") << std::endl;
         std::cout << std::boolalpha << "return value : " << 
         gangrene.takeDrug("random") << std::endl;
+        gangrene.overDrive("Kreog! How's it going?");
+
         SickKoala   measles("RedFace");
         std::cout << measles.get_name() << std::endl;
         measles.poke();
@@ -31,6 +35,8 @@ int     main(int ac, char **av)
         measles.takeDrug("Buronzand") << std::endl;
         std::cout << std::boolalpha << "return value : " << 
         measles.takeDrug("random") << std::endl;
+        measles.overDrive("Kreog! How's it going?");
+
         SickKoala   smallpox("Varia");
         std::cout << smallpox.get_name() << std::endl;
         smallpox.poke();
@@ -40,6 +46,8 @@ int     main(int ac, char **av)
         smallpox.takeDrug("Buronzand") << std::endl;
         std::cout << std::boolalpha << "return value : " << 
         smallpox.takeDrug("random") << std::endl;
+        smallpox.overDrive("Kreog! How's it going?");
+
         SickKoala   fracture("Falter");
         std::cout << fracture.get_name() << std::endl;
         fracture.poke();
@@ -49,6 +57,8 @@ int     main(int ac, char **av)
         fracture.takeDrug("Buronzand") << std::endl;
         std::cout << std::boolalpha << "return value : " << 
         fracture.takeDrug("random") << std::endl;
+        fracture.overDrive("Kreog! How's it going?");
+
         /////////////////////////////
         SickKoala   sickKoala("SickKoala");
         std::cout << sickKoala.get_name() << std::endl;
@@ -59,6 +69,7 @@ int     main(int ac, char **av)
         sickKoala.takeDrug("Buronzand") << std::endl;
         std::cout << std::boolalpha << "return value : " << 
         sickKoala.takeDrug("random") << std::endl;
+        sickKoala.overDrive("Kreog! How's it going?");
     }
     return 0;
 }

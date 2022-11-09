@@ -15,6 +15,7 @@ class SickKoala {
         //Member Function
         void            poke(void);
         bool            takeDrug(std::string str);
+        void            overDrive(std::string str);
         //Getter
         std::string     get_name(void);
 

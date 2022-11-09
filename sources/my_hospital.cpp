@@ -39,6 +39,12 @@ bool            SickKoala::takeDrug(std::string     str)
         }
 }
 
+void            SickKoala::overDrive(std::string    str)
+{
+    str.replace(str.find("Kreog!"), sizeof(str.find("Kreog!")) - 2, "1337!");
+    std::cout << "Mr." << get_name() << ": " << str << std::endl;
+}
+
 //Getter
 std::string     SickKoala::get_name(void)
 {
