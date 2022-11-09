@@ -15,6 +15,12 @@ SickKoala::~SickKoala()
 }
 
 //MEMBER FUNCTION
+void            SickKoala::poke(void)
+{
+        std::cout << "Mr." << _name << ": Gooeeeeerrk!!" << std::endl;
+}
+
+//Getter
 std::string     SickKoala::get_name(void)
 {
         return _name;

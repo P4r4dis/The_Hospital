@@ -1,13 +1,5 @@
 #include "../includes/my_hospital.hpp"
 #include "./tests_includes/test_my_hospital.hpp"
-#include <signal.h>
-
-void            SickKoala::poke(void)
-{
-        std::cout << "Mr." << _name << ": Gooeeeeerrk!!" << std::endl;
-}
-
-
 
 Test(SickKoala, ctorDefault) {
 
