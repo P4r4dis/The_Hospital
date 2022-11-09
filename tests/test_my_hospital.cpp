@@ -2,46 +2,10 @@
 #include "./tests_includes/test_my_hospital.hpp"
 #include <signal.h>
 
-class SickKoala {
-    public:
-        //CTOR
-        SickKoala();
-        //CTOR CUSTOM
-        SickKoala(std::string name);
-        //DTOR
-        ~SickKoala();
-        std::string     get_name(void);
-        void            poke(void);        
-
-    private:
-            std::string         _name;
-
-};
-
-//CTOR
-SickKoala::SickKoala() : _name("SickKoala")
-{}
-
-//CUSTOM CTOR
-SickKoala::SickKoala(std::string name) : _name(name) 
-{}
-
-//DTOR
-SickKoala::~SickKoala()
-{
-        std::cout << "Mr." << _name << ": Kreooogg!! I'm cuuuured!" << std::endl;
-}
-
-//MEMBER FUNCTION
-std::string     SickKoala::get_name(void)
-{
-        return _name;
-}
-
-void            SickKoala::poke(void)
-{
-        std::cout << "Mr." << _name << ": Gooeeeeerrk!!" << std::endl;
-}
+// void            SickKoala::poke(void)
+// {
+//         std::cout << "Mr." << _name << ": Gooeeeeerrk!!" << std::endl;
+// }
 
 
 
