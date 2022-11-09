@@ -1,393 +1,260 @@
 #include "../includes/my_hospital.hpp"
 #include "./tests_includes/test_my_hospital.hpp"
+#include <signal.h>
 
-// ParameterizedTestParameters(temp_fahrenheit, temp_celsius) {
-//     static struct parameter_tuple temperatures[] = {
-// 		{-459.670, -273.150},
-// 		{-50, -45.556},
-// 		{-40, -40.000},
-// 		{-30, -34.444},
-// 		{-20, -28.889},
-// 		{-10, -23.333},
-// 		{0, -17.778},
-// 		{10, -12.222},
-// 		{20, -6.667},
-// 		{30, -1.111},
-// 		{32, 0},
-// 		{40, 4.444},
-//         { 46.400, 8},
-// 		{50, 10},
-// 		{60, 15.556},
-// 		{70, 21.111},
-// 		{80, 26.667},
-// 		{90, 32.222},
-// 		{95, 35},
-//         {100, 37.778},
-//     };
+class SickKoala {
+    public:
+        //CTOR
+        SickKoala();
+        //CTOR CUSTOM
+        SickKoala(std::string name);
+        //DTOR
+        ~SickKoala();
+        std::string     get_name(void);
+        void            poke(void);        
 
-//     return cr_make_param_array(struct parameter_tuple, temperatures, sizeof (temperatures) / sizeof (struct parameter_tuple));
+    private:
+            std::string         _name;
+
+};
+
+//CTOR
+SickKoala::SickKoala() : _name("SickKoala")
+{}
+
+//CUSTOM CTOR
+SickKoala::SickKoala(std::string name) : _name(name) 
+{}
+
+//DTOR
+SickKoala::~SickKoala()
+{
+        std::cout << "Mr." << _name << ": Kreooogg!! I'm cuuuured!" << std::endl;
+}
+
+//MEMBER FUNCTION
+std::string     SickKoala::get_name(void)
+{
+        return _name;
+}
+
+void            SickKoala::poke(void)
+{
+        std::cout << "Mr." << _name << ": Gooeeeeerrk!!" << std::endl;
+}
+
+
+
+Test(SickKoala, ctorDefault) {
+
+        std::string     name;
+        SickKoala       sickKoala;
+
+        cr_assert(zero(str, name));
+        cr_assert(eq(str, name, ""));
+        cr_assert_str_empty(name.data());
+        cr_assert(ne(str, sickKoala.get_name().data(), ""));
+        cr_assert(eq(str, sickKoala.get_name().data(), "SickKoala"));
+}
+
+Test(SickKoala, ctorCustom) {
+
+        SickKoala       sickKoala("SickKoala");
+
+        cr_assert(ne(str, sickKoala.get_name().data(), ""));
+        cr_assert(eq(str, sickKoala.get_name().data(), "SickKoala"));
+}
+
+Test(SickKoala, ctorDefault_and_dtor,  .signal=SIGPIPE, .init=redirect_all_stdout) {
+        SickKoala sickKoala;
+        sickKoala.~SickKoala();
+        cr_assert_stdout_eq_str("Mr.SickKoala: Kreooogg!! I'm cuuuured!\n");
+}
+
+Test(SickKoala, ctorCustom_and_dtor,  .signal=SIGPIPE, .init=redirect_all_stdout) {
+        SickKoala sickKoala("SickKoala");
+        sickKoala.~SickKoala();
+        cr_assert_stdout_eq_str("Mr.SickKoala: Kreooogg!! I'm cuuuured!\n");
+}
+
+// Test(poke, stdcout_poke_function, .signal=SIGPIPE, .init=redirect_all_stdout) {
+//         SickKoala sickKoala("SickKoala");
+
+//         sickKoala.poke();
+//         cr_assert_stdout_eq_str("Mr.SickKoala: Gooeeeeerrk!!\n");
 // }
 
-// Test(my_convert_fahrenheit_to_celsius, simple, .init=redirect_all_stdout) {
-//     my_convert_fahrenheit_to_celsius(-459.670);
-// 	cr_assert_stdout_eq_str("        -273.150         Celsius\n");
-// 	// cr_assert_stdout_eq_str("        8.000         Celsius\n");
+// Test(takeDrug, strParameter_eq_MarsStrings_and_stdcout_caught,
+//         .init=redirect_all_stdout)
+// {
+//         std::string     _name("SickKoala");
+//         std::string     string = "Mars";
+//         std::string     s_mars("Mars");
+//         bool            return_value;
+
+//         cr_assert(eq(str,string, s_mars));
+//         if (string == s_mars)
+//         {
+//                 return_value = true;
+//                 cr_assert(return_value == true);
+//                 std::cout << "Mr." << _name << ": Mars, and it kreogs!" << std::endl;
+//                 cr_assert_stdout_eq_str("Mr.SickKoala: Mars, and it kreogs!\n");
+
+//         }
 // }
 
-// ParameterizedTest(struct parameter_tuple *tup, temp_fahrenheit, temp_celsius, .init=redirect_all_stdout) {
-// 	const double 		melting_point_of_ice = 32;
-// 	const double		constant = 5.0 / 9.0;
-// 	double				result = 0.0;
-// 	std::ostringstream 	a;
+// Test(takeDrug, strParameter_notEq_MarsStrings_and_stdcout_caught,
+//         .init=redirect_all_stdout)
+// {
+//         std::string     _name("SickKoala");
+//         std::string     string = "Buronzand";
+//         std::string     s_mars("Mars");
+//         bool            return_value;
 
-// 	result = (constant) * (tup->temp_fahrenheit - melting_point_of_ice);
-// 	std::cout.precision(3);
-// 	std::cout.setf(std::ios::fixed, std::ios::floatfield);
-//     a << std::setw(16) << floor((result * pow(10, 3) + 0.5)) / pow(10, 3) << std::setw(16) 
-//     << "Celsius" << std::endl;
-// 	std::cout << a.str().c_str() << std::flush;
-// 	cr_assert_stdout_eq_str(a.str().c_str(),"        %f         Celsius\n", tup->temp_celsius);//"        -273.150         Celsius\n"
+//         cr_assert(not(eq(str,string, s_mars)));
+//         if (string == s_mars)
+//         {
+//                 return_value = true;
+//                 cr_assert(return_value == true);
+//                 std::cout << "Mr." << _name << ": Mars, and it kreogs!" << std::endl;
+//                 cr_assert_stdout_eq_str("Mr.SickKoala: Mars, and it kreogs!\n");
+
+//         } else
+//         {
+//                 return_value = false;
+//                 cr_assert(return_value == false);
+//                 std::cout << "Mr." << _name << ": Goerkreog!" << std::endl;
+//                 cr_assert_stdout_eq_str("Mr.SickKoala: Goerkreog!\n");                
+//         }
 // }
 
-// ParameterizedTestParameters(temp_fahrenheit_eq, temp_celsius_eq) {
-//     static struct parameter_tuple temperatures[] = {
-// 		{-459.670, -273.150},
-// 		{-50, -45.556},
-// 		{-40, -40.000},
-// 		{-30, -34.444},
-// 		{-20, -28.889},
-// 		{-10, -23.333},
-// 		{0, -17.778},
-// 		{10, -12.222},
-// 		{20, -6.667},
-// 		{30, -1.111},
-// 		{32, 0},
-// 		{40, 4.444},
-//         { 46.400, 8},
-// 		{50, 10},
-// 		{60, 15.556},
-// 		{70, 21.111},
-// 		{80, 26.667},
-// 		{90, 32.222},
-// 		{95, 35},
-//         {100, 37.778},
-//     };
+// Test(takeDrug, strParameter_eq_BuronzandStrings_and_stdcout_caught,
+//         .init=redirect_all_stdout)
+// {
+//         std::string     _name("SickKoala");
+//         std::string     string = "Buronzand";
+//         std::string     s_buronzand("Buronzand");
+//         bool            return_value;
 
-//     return cr_make_param_array(struct parameter_tuple, temperatures,
-// 	sizeof (temperatures) / sizeof (struct parameter_tuple));
+//         cr_assert(eq(str,string, s_buronzand));
+//         if (string == s_buronzand)
+//         {
+//                 return_value = true;
+//                 cr_assert(return_value == true);
+//                 std::cout << "Mr." << _name << ": And you 'll sleep right away!" << std::endl;
+//                 cr_assert_stdout_eq_str("Mr.SickKoala: And you 'll sleep right away!\n");
+
+//         } else {
+//                 cr_log_error("FAIL");
+//                 cr_fail();
+
+//         }
 // }
 
-// ParameterizedTest(struct parameter_tuple *tup, temp_fahrenheit_eq, temp_celsius_eq) {
-// 	double result = floor(
-// 		(my_convert_fahrenheit_to_celsius(tup->temp_fahrenheit)
-// 			* pow(10, 3) + 0.5)) / pow(10, 3);
-// 	cr_assert_eq(result, tup->temp_celsius);
-// }
-// ///////////////////////////////////////////////////////////////////////////////
-// ParameterizedTestParameters(temp_fahrenheit2, temp_celsius2) {
-//     static struct parameter_tuple temperatures[] = {
-// 		{-459.670, -273.150},
-// 		{-50, -45.556},
-// 		{-40, -40.000},
-// 		{-30, -34.444},
-// 		{-20, -28.889},
-// 		{-10, -23.333},
-// 		{0, -17.778},
-// 		{10, -12.222},
-// 		{20, -6.667},
-// 		{30, -1.111},
-// 		{32, 0},
-// 		{40, 4.444},
-//         { 46.400, 8},
-// 		{50, 10},
-// 		{60, 15.556},
-// 		{70, 21.111},
-// 		{80, 26.667},
-// 		{90, 32.222},
-// 		{95, 35},
-//         {100, 37.778},
-//     };
+// Test(takeDrug, strParameter_notEq_BuronzandStrings_and_stdcout_caught,
+//         .init=redirect_all_stdout)
+// {
+//         std::string     _name("SickKoala");
+//         std::string     string = "BuronzanD";
+//         std::string     s_buronzand("Buronzand");
+//         bool            return_value;
 
-//     return cr_make_param_array(struct parameter_tuple,
-// 	temperatures, sizeof (temperatures) / sizeof (struct parameter_tuple));
+//         cr_assert(not(eq(str,string, s_buronzand)));
+//         if (string == s_buronzand)
+//         {
+//                 return_value = true;
+//                 cr_assert(return_value == true);
+//                 std::cout << "Mr." << _name << ": And you 'll sleep right away!" << std::endl;
+//                 cr_assert_stdout_eq_str("Mr.SickKoala: : And you 'll sleep right away!\n");
+
+//         } else {
+//                 return_value = false;
+//                 cr_assert(return_value == false);
+//                 std::cout << "Mr." << _name << ": Goerkreog !" << std::endl;
+//                 cr_assert_stdout_eq_str("Mr.SickKoala: Goerkreog !\n");
+//         }
 // }
 
-// ParameterizedTest(struct parameter_tuple *tup, temp_fahrenheit2, temp_celsius2, .init=redirect_all_stdout) {
-// 	const double 		melting_point_of_ice = 32;
-// 	const double		constant = 5.0 / 9.0;
-// 	double				result = 0.0;
-// 	std::ostringstream 	a;
+// Test(takeDrug, strParameter_notEq_strings_and_stdcout_caught2,
+//         .init=redirect_all_stdout)
+// {
+//         std::string     _name("SickKoala");
+//         std::string     string = "randomString";
+//         std::string     s_buronzand("Buronzand");
+//         std::string     s_mars("Mars");
+//         bool            return_value;
 
-// 	result = (constant) * (tup->temp_fahrenheit - melting_point_of_ice);
-// 	std::cout.precision(3);
-// 	std::cout.setf(std::ios::fixed, std::ios::floatfield);
-//     a << std::setw(16) << floor((result * pow(10, 3) + 0.5)) / pow(10, 3) << std::setw(16) 
-//     << "Celsius" << std::endl;
-// 	std::cout << a.str().c_str() << std::flush;
-// 	cr_assert_stdout_eq_str(a.str().c_str(),"        %f         Celsius\n", tup->temp_celsius);//"        -273.150         Celsius\n"
+//         cr_assert(not(eq(str,string, s_buronzand)));
+//         cr_assert(not(eq(str,string, s_mars)));
+//         if (string == s_buronzand )
+//         {
+//                 return_value = true;
+//                 cr_assert(return_value == true);
+//                 std::cout << "Mr." << _name << ": And you 'll sleep right away!" << std::endl;
+//                 cr_assert_stdout_eq_str("Mr.SickKoala: : And you 'll sleep right away!\n");
+//         } else if (string == s_mars)
+//         {
+//                 return_value = true;
+//                 cr_assert(return_value == true);
+//                 std::cout << "Mr." << _name << ": Mars, and it kreogs!" << std::endl;
+//                 cr_assert_stdout_eq_str("Mr.SickKoala: Mars, and it kreogs!\n");
+//         } else
+//         {
+//                 return_value = false;
+//                 cr_assert(return_value == false);
+//                 std::cout << "Mr." << _name << ": Goerkreog !" << std::endl;
+//                 cr_assert_stdout_eq_str("Mr.SickKoala: Goerkreog !\n");
+//         }
 // }
 
-// ParameterizedTestParameters(temp_fahrenheit_eq2, temp_celsius_eq2) {
-//     static struct parameter_tuple temperatures[] = {
-// 		{-459.670, -273.150},
-// 		{-50, -45.556},
-// 		{-40, -40.000},
-// 		{-30, -34.444},
-// 		{-20, -28.889},
-// 		{-10, -23.333},
-// 		{0, -17.778},
-// 		{10, -12.222},
-// 		{20, -6.667},
-// 		{30, -1.111},
-// 		{32, 0},
-// 		{40, 4.444},
-//         { 46.400, 8},
-// 		{50, 10},
-// 		{60, 15.556},
-// 		{70, 21.111},
-// 		{80, 26.667},
-// 		{90, 32.222},
-// 		{95, 35},
-//         {100, 37.778},
-//     };
+// Test(overDrive, strParameter_test)
+// {
+//         SickKoala sickKoala;
+//         std::string instance;
 
-//     return cr_make_param_array(struct parameter_tuple, temperatures,
-// 	sizeof (temperatures) / sizeof (struct parameter_tuple));
+//         cr_assert(zero(str, instance));
+//         cr_assert(eq(str, instance, ""));
+//         cr_assert_str_empty(instance.data());
+//         instance = "Kreog! How's it going?";
+//         cr_assert(not(zero(str, instance)));
+//         cr_assert(not(eq(str, instance, "")));
+//         cr_assert(eq(str, instance, "Kreog! How's it going?"));
+//         cr_assert(ne(str, sickKoala.get_name().data(), ""));
+//         cr_assert(eq(str, sickKoala.get_name().data(), "SickKoala"));
 // }
 
-// ParameterizedTest(struct parameter_tuple *tup, temp_fahrenheit_eq2, temp_celsius_eq2) {
-// 	double result = floor(
-// 		(my_convert_fahrenheit_to_celsius(tup->temp_fahrenheit)
-// 			* pow(10, 3) + 0.5)) / pow(10, 3);
-// 	cr_assert_eq(result, tup->temp_celsius);
+// Test(overDrive, find_and_replace_test)
+// {
+//         SickKoala sickKoala;
+//         std::string instance;
+
+//         cr_assert(zero(str, instance));
+//         cr_assert(eq(str, instance, ""));
+//         cr_assert_str_empty(instance.data());
+//         instance = "Kreog! How's it going?";
+//         cr_assert(not(zero(str, instance)));
+//         cr_assert(not(eq(str, instance, "")));
+//         cr_assert(eq(str, instance, "Kreog! How's it going?"));
+//         cr_assert(ne(str, sickKoala.get_name().data(), ""));
+//         cr_assert(eq(str, sickKoala.get_name().data(), "SickKoala"));
+//         instance.replace(instance.find("Kreog!"), sizeof(instance.find("Kreog!")) - 2, "1337!");
 // }
 
-// ///////////////////////////////////////////////////////////////////////////////
+// Test(overDrive, stdout_test, .signal=SIGPIPE, .init=redirect_all_stdout)
+// {
+//         SickKoala sickKoala;
+//         std::string instance;
 
-// Test(my_convert_celsius_to_fahrenheit, simple, .init=redirect_all_stdout) {
-//     const double 		melting_point_of_ice = 32;
-// 	const double		constant = 1.8;
-// 	double				fahrenheit = 0.0;
-// 	std::ostringstream 	a;
-
-// 	fahrenheit = (-10 * constant) + melting_point_of_ice;
-// 	a << std::setw(16) << floor((fahrenheit * pow(10, 3) + 0.5)) / pow(10, 3) << std::setw(16) << "Fahrenheit" << std::endl;
-// 	std::cout << a.str().c_str() << std::flush;
-// 	cr_assert_stdout_eq_str(a.str().c_str());//"        -273.150         Celsius\n"
-// 	// cr_assert_stdout_eq_str("              14      Fahrenheit\n");     
-// }
-
-// Test(my_convert_celsius_to_fahrenheit, simple2, .init=redirect_all_stdout) {
-//    my_convert_celsius_to_fahrenheit(-10);
-//    cr_assert_stdout_eq_str("          14.000      Fahrenheit\n");//"          14.000      Fahrenheit\n"
-// }
-
-// ParameterizedTestParameters(temp_fahrenheit3, temp_celsius3) {
-//     static struct parameter_tuple temperatures[] = {
-// 		{-459.670, -273.150},
-// 		{-50, -45.556},
-// 		{-40, -40.000},
-// 		{-30, -34.444},
-// 		{-20, -28.889},
-// 		{-10, -23.333},
-// 		{0, -17.778},
-// 		{10, -12.222},
-// 		{14, -10.000},
-// 		{20, -6.667},
-// 		{30, -1.111},
-// 		{32, 0},
-// 		{40, 4.444},
-//         { 46.400, 8},
-// 		{50, 10},
-// 		{60, 15.556},
-// 		{70, 21.111},
-// 		{80, 26.667},
-// 		{90, 32.222},
-// 		{95, 35},
-//         {100, 37.778},
-//     };
-
-//     return cr_make_param_array(struct parameter_tuple, temperatures, sizeof (temperatures) / sizeof (struct parameter_tuple));
-// }
-
-// ParameterizedTest(struct parameter_tuple *tup, temp_fahrenheit3, temp_celsius3, .init=redirect_all_stdout) {
-//     const double 			melting_point_of_ice = 32;
-// 	const double			constant = 1.8;
-// 	double					fahrenheit = 0.0;
-// 	std::ostringstream 		a;
-
-// 	fahrenheit = (tup->temp_celsius * constant) + melting_point_of_ice;
-// 	std::cout.precision(3);
-// 	std::cout.setf(std::ios::fixed, std::ios::floatfield);
-//     a << std::setw(16) << fahrenheit << std::setw(16) 
-//     << "Fahrenheit" << std::endl;
-// 	std::cout << a.str().c_str() << std::flush;
-// 	cr_assert_stdout_eq_str(a.str().c_str(),"          %f      Fahrenheit\n", tup->temp_fahrenheit);//"        -273.150         Celsius\n"
-// 	// cr_assert_stdout_eq_str("        -459.670      Fahrenheit\n","          %f      Fahrenheit\n", tup->temp_fahrenheit);//"        -273.150         Celsius\n"
-// }
-
-// ParameterizedTestParameters(temp_fahrenheit_eq3, temp_celsius_eq3) {
-//     static struct parameter_tuple temperatures[] = {
-// 		{-459.670, -273.150},
-// 		{-50.001, -45.556},
-// 		{-40, -40.000},
-// 		{-29.999, -34.444},
-// 		{-20, -28.889},
-// 		{-9.999, -23.333},
-// 		{0, -17.778},
-// 		{10, -12.222},
-// 		{14, -10},
-// 		{19.999, -6.667},
-// 		{30, -1.111},
-// 		{32, 0},
-// 		{39.999, 4.444},
-//         { 46.400, 8},
-// 		{50, 10},
-// 		{60.001, 15.556},
-// 		{70, 21.111},
-// 		{80.001, 26.667},
-// 		{90, 32.222},
-// 		{95, 35},
-//         {100, 37.778},
-//     };
-
-//     return cr_make_param_array(struct parameter_tuple, temperatures, sizeof (temperatures) / sizeof (struct parameter_tuple));
-// }
-
-// ParameterizedTest(struct parameter_tuple *tup, temp_fahrenheit_eq3, temp_celsius_eq3) {
-// 	double result = floor(
-// 		(my_convert_celsius_to_fahrenheit(tup->temp_celsius)
-// 			* pow(10, 3) + 0.5)) / pow(10, 3);
-// 	cr_assert_eq(result, tup->temp_fahrenheit,"RESULT : %f, EXPECTED : %f\n",result, tup->temp_fahrenheit);
-// }
-
-// ///////////////////////////////////////////////////////////////////////////////
-
-// Test(my_convert_celsius_to_fahrenheit, cin_celsius_to_fahrenheit, .init=redirect_all_stdout) {
-// 	auto 		&f_cin = criterion::get_redirected_cin();
-// 	double		temp_celsius = -10;
-// 	std::string s;
-// 	// std::size_t pos;
-
-// 	f_cin << temp_celsius << " Celsius";
-// 	f_cin.close();
-// 	std::getline(std::cin, s);
-// 	if (s.find("Celsius")) {
-// 		my_convert_celsius_to_fahrenheit(temp_celsius);
-// 		cr_assert_stdout_eq_str("          14.000      Fahrenheit\n");//"          14.000      Fahrenheit\n"
-// 	}
-// }
-
-// Test(my_convert_fahrenheit_to_celsius, cin_fahrenheit_to_celsius, .init=redirect_all_stdout) {
-// 	auto 		&f_cin = criterion::get_redirected_cin();
-// 	double		temp_fahrenheit = 46.400;
-// 	std::string s;
-
-// 	f_cin << temp_fahrenheit << " Fahrenheit";
-// 	f_cin.close();
-// 	std::getline(std::cin, s);
-// 	if (s.find("Fahrenheit")) {
-// 		my_convert_fahrenheit_to_celsius(temp_fahrenheit);
-// 		cr_assert_stdout_eq_str("           8.000         Celsius\n");
-// 	}
-// }
-
-// ParameterizedTestParameters(temp_fahrenheit_cin, temp_celsius_cin) {
-//     static struct parameter_tuple temperatures[] = {
-// 		{-459.670, -273.150},
-// 		{-50.001, -45.556},
-// 		{-40, -40.000},
-// 		{-29.999, -34.444},
-// 		{-20, -28.889},
-// 		{-9.999, -23.333},
-// 		{0, -17.778},
-// 		{10, -12.222},
-// 		{14, -10},
-// 		{19.999, -6.667},
-// 		{30, -1.111},
-// 		{32, 0},
-// 		{39.999, 4.444},
-//         { 46.400, 8},
-// 		{50, 10},
-// 		{60.001, 15.556},
-// 		{70, 21.111},
-// 		{80.001, 26.667},
-// 		{90, 32.222},
-// 		{95, 35},
-//         {100, 37.778},
-//     };
-
-//     return cr_make_param_array(struct parameter_tuple, temperatures, sizeof (temperatures) / sizeof (struct parameter_tuple));
-// }
-
-// ParameterizedTest(struct parameter_tuple *tup, temp_fahrenheit_cin, temp_celsius_cin, .init=redirect_all_stdout) {
-// 	auto 					&f_cin = criterion::get_redirected_cin();
-// 	const double 			melting_point_of_ice = 32;
-// 	const double			constant = 1.8;
-// 	double					fahrenheit = 0.0;
-// 	std::string 			s;
-// 	std::ostringstream 		a;
-
-// 	f_cin << tup->temp_celsius << " Celsius";
-// 	f_cin.close();
-// 	std::getline(std::cin, s);
-// 	if (s.find("Celsius")) {
-// 		fahrenheit = (tup->temp_celsius * constant) + melting_point_of_ice;
-// 		std::cout.precision(3);
-// 		std::cout.setf(std::ios::fixed, std::ios::floatfield);
-// 		a << std::setw(16) << fahrenheit << std::setw(16) 
-// 		<< "Fahrenheit" << std::endl;
-// 		std::cout << a.str().c_str() << std::flush;
-// 		cr_assert_stdout_eq_str(a.str().c_str(),"          %f      Fahrenheit\n", tup->temp_fahrenheit);
-// 	}	
-// }
-
-// ParameterizedTestParameters(temp_fahrenheit_cin2, temp_celsius_cin2) {
-//     static struct parameter_tuple temperatures[] = {
-// 		{-459.670, -273.150},
-// 		{-50.001, -45.556},
-// 		{-40, -40.000},
-// 		{-29.999, -34.444},
-// 		{-20, -28.889},
-// 		{-9.999, -23.333},
-// 		{0, -17.778},
-// 		{10, -12.222},
-// 		{14, -10},
-// 		{19.999, -6.667},
-// 		{30, -1.111},
-// 		{32, 0},
-// 		{39.999, 4.444},
-//         { 46.400, 8},
-// 		{50, 10},
-// 		{60.001, 15.556},
-// 		{70, 21.111},
-// 		{80.001, 26.667},
-// 		{90, 32.222},
-// 		{95, 35},
-//         {100, 37.778},
-//     };
-
-//     return cr_make_param_array(struct parameter_tuple, temperatures, sizeof (temperatures) / sizeof (struct parameter_tuple));
-// }
-
-// ParameterizedTest(struct parameter_tuple *tup, temp_fahrenheit_cin2, temp_celsius_cin2, .init=redirect_all_stdout) {
-// 	auto 					&f_cin = criterion::get_redirected_cin();
-// 	const double			constant = 5.0 / 9.0;
-// 	const double			melting_point_of_ice = 32;
-// 	double					result = 0.0;
-// 	std::ostringstream 		a;
-// 	std::string 			s;
-
-// 	f_cin << tup->temp_celsius << " Celsius";
-// 	f_cin.close();
-// 	std::getline(std::cin, s);
-// 	if (s.find("Celsius")) {
-// 		result = (constant) * (tup->temp_fahrenheit - melting_point_of_ice);
-// 		std::cout.precision(3);
-// 		std::cout.setf(std::ios::fixed, std::ios::floatfield);
-//     	a << std::setw(16) << floor((result * pow(10, 3) + 0.5)) / pow(10, 3) << std::setw(16) 
-//     	<< "Celsius" << std::endl;
-// 		std::cout << a.str().c_str() << std::flush;
-// 		cr_assert_stdout_eq_str(a.str().c_str(),"        %f         Celsius\n", tup->temp_celsius);
-// 	}	
+//         cr_assert(zero(str, instance));
+//         cr_assert(eq(str, instance, ""));
+//         cr_assert_str_empty(instance.data());
+//         instance = "Kreog! How's it going?";
+//         cr_assert(not(zero(str, instance)));
+//         cr_assert(not(eq(str, instance, "")));
+//         cr_assert(eq(str, instance, "Kreog! How's it going?"));
+//         cr_assert(ne(str, sickKoala.get_name().data(), ""));
+//         cr_assert(eq(str, sickKoala.get_name().data(), "SickKoala"));
+//         instance.replace(instance.find("Kreog!"), sizeof(instance.find("Kreog!")) - 2, "1337!");
+//         std::cout << "Mr." << sickKoala.get_name() << ": " << instance << std::endl << std::flush;
+//         cr_assert_stdout_eq_str("Mr.SickKoala: 1337! How's it going?\n");
 // }

@@ -6,16 +6,16 @@ INC_PATH		=	../includes/
 TESTS_SRC_PATH	=	./tests_sources/
 TESTS_INC_PATH	=	./tests_includes/
 
-NAME			=	test_my_convert_temp
+NAME			=	test_my_hospital
 
 INCFLAGS		+=	-I$(INC_PATH) -I$(INC_TEST_PATH)
 CRITFLAGS		+=	--coverage -lcriterion --verbose
 CPPFLAGS		+=	-Wall -Wextra -Werror $(INCFLAGS) $(CRITFLAGS)
 
 
-SRCS			=	tests_my_convert_temp.cpp \
-					$(SRC_PATH)/my_convert_temp.cpp \
-					$(TESTS_SRC_PATH)/tests_sources.cpp
+SRCS			=	test_my_hospital.cpp \
+					$(SRC_PATH)/my_hospital.cpp \
+					$(TESTS_SRC_PATH)/test_sources.cpp
 
 
 OBJS			=	$(SRCS:.cpp=.o)
