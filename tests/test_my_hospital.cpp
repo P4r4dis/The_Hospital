@@ -2,10 +2,10 @@
 #include "./tests_includes/test_my_hospital.hpp"
 #include <signal.h>
 
-// void            SickKoala::poke(void)
-// {
-//         std::cout << "Mr." << _name << ": Gooeeeeerrk!!" << std::endl;
-// }
+void            SickKoala::poke(void)
+{
+        std::cout << "Mr." << _name << ": Gooeeeeerrk!!" << std::endl;
+}
 
 
 
@@ -41,12 +41,12 @@ Test(SickKoala, ctorCustom_and_dtor,  .signal=SIGPIPE, .init=redirect_all_stdout
         cr_assert_stdout_eq_str("Mr.SickKoala: Kreooogg!! I'm cuuuured!\n");
 }
 
-// Test(poke, stdcout_poke_function, .signal=SIGPIPE, .init=redirect_all_stdout) {
-//         SickKoala sickKoala("SickKoala");
+Test(poke, stdcout_poke_function, .signal=SIGPIPE, .init=redirect_all_stdout) {
+        SickKoala sickKoala("SickKoala");
 
-//         sickKoala.poke();
-//         cr_assert_stdout_eq_str("Mr.SickKoala: Gooeeeeerrk!!\n");
-// }
+        sickKoala.poke();
+        cr_assert_stdout_eq_str("Mr.SickKoala: Gooeeeeerrk!!\n");
+}
 
 // Test(takeDrug, strParameter_eq_MarsStrings_and_stdcout_caught,
 //         .init=redirect_all_stdout)
