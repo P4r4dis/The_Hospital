@@ -187,7 +187,7 @@ Test(takeDrug, takeDrug_buronzandString, .signal=SIGPIPE,
         .init=redirect_all_stdout)
 {
         SickKoala sickKoala;
-
+        
         cr_assert(sickKoala.takeDrug("Buronzand") == true);
         cr_assert_stdout_eq_str("Mr.SickKoala: And you'll sleep right away!\n");
 }
