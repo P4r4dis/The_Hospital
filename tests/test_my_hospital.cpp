@@ -191,54 +191,55 @@ Test(takeDrug, takeDrug_buronzandString, .signal=SIGPIPE,
         cr_assert(sickKoala.takeDrug("Buronzand") == true);
         cr_assert_stdout_eq_str("Mr.SickKoala: And you'll sleep right away!\n");
 }
-// Test(overDrive, strParameter_test)
-// {
-//         SickKoala sickKoala;
-//         std::string instance;
 
-//         cr_assert(zero(str, instance));
-//         cr_assert(eq(str, instance, ""));
-//         cr_assert_str_empty(instance.data());
-//         instance = "Kreog! How's it going?";
-//         cr_assert(not(zero(str, instance)));
-//         cr_assert(not(eq(str, instance, "")));
-//         cr_assert(eq(str, instance, "Kreog! How's it going?"));
-//         cr_assert(ne(str, sickKoala.get_name().data(), ""));
-//         cr_assert(eq(str, sickKoala.get_name().data(), "SickKoala"));
-// }
+Test(overDrive, strParameter_test)
+{
+        SickKoala sickKoala;
+        std::string instance;
 
-// Test(overDrive, find_and_replace_test)
-// {
-//         SickKoala sickKoala;
-//         std::string instance;
+        cr_assert(zero(str, instance));
+        cr_assert(eq(str, instance, ""));
+        cr_assert_str_empty(instance.data());
+        instance = "Kreog! How's it going?";
+        cr_assert(not(zero(str, instance)));
+        cr_assert(not(eq(str, instance, "")));
+        cr_assert(eq(str, instance, "Kreog! How's it going?"));
+        cr_assert(ne(str, sickKoala.get_name().data(), ""));
+        cr_assert(eq(str, sickKoala.get_name().data(), "SickKoala"));
+}
 
-//         cr_assert(zero(str, instance));
-//         cr_assert(eq(str, instance, ""));
-//         cr_assert_str_empty(instance.data());
-//         instance = "Kreog! How's it going?";
-//         cr_assert(not(zero(str, instance)));
-//         cr_assert(not(eq(str, instance, "")));
-//         cr_assert(eq(str, instance, "Kreog! How's it going?"));
-//         cr_assert(ne(str, sickKoala.get_name().data(), ""));
-//         cr_assert(eq(str, sickKoala.get_name().data(), "SickKoala"));
-//         instance.replace(instance.find("Kreog!"), sizeof(instance.find("Kreog!")) - 2, "1337!");
-// }
+Test(overDrive, find_and_replace_test)
+{
+        SickKoala sickKoala;
+        std::string instance;
 
-// Test(overDrive, stdout_test, .signal=SIGPIPE, .init=redirect_all_stdout)
-// {
-//         SickKoala sickKoala;
-//         std::string instance;
+        cr_assert(zero(str, instance));
+        cr_assert(eq(str, instance, ""));
+        cr_assert_str_empty(instance.data());
+        instance = "Kreog! How's it going?";
+        cr_assert(not(zero(str, instance)));
+        cr_assert(not(eq(str, instance, "")));
+        cr_assert(eq(str, instance, "Kreog! How's it going?"));
+        cr_assert(ne(str, sickKoala.get_name().data(), ""));
+        cr_assert(eq(str, sickKoala.get_name().data(), "SickKoala"));
+        instance.replace(instance.find("Kreog!"), sizeof(instance.find("Kreog!")) - 2, "1337!");
+}
 
-//         cr_assert(zero(str, instance));
-//         cr_assert(eq(str, instance, ""));
-//         cr_assert_str_empty(instance.data());
-//         instance = "Kreog! How's it going?";
-//         cr_assert(not(zero(str, instance)));
-//         cr_assert(not(eq(str, instance, "")));
-//         cr_assert(eq(str, instance, "Kreog! How's it going?"));
-//         cr_assert(ne(str, sickKoala.get_name().data(), ""));
-//         cr_assert(eq(str, sickKoala.get_name().data(), "SickKoala"));
-//         instance.replace(instance.find("Kreog!"), sizeof(instance.find("Kreog!")) - 2, "1337!");
-//         std::cout << "Mr." << sickKoala.get_name() << ": " << instance << std::endl << std::flush;
-//         cr_assert_stdout_eq_str("Mr.SickKoala: 1337! How's it going?\n");
-// }
+Test(overDrive, stdout_test, .signal=SIGPIPE, .init=redirect_all_stdout)
+{
+        SickKoala sickKoala;
+        std::string instance;
+
+        cr_assert(zero(str, instance));
+        cr_assert(eq(str, instance, ""));
+        cr_assert_str_empty(instance.data());
+        instance = "Kreog! How's it going?";
+        cr_assert(not(zero(str, instance)));
+        cr_assert(not(eq(str, instance, "")));
+        cr_assert(eq(str, instance, "Kreog! How's it going?"));
+        cr_assert(ne(str, sickKoala.get_name().data(), ""));
+        cr_assert(eq(str, sickKoala.get_name().data(), "SickKoala"));
+        instance.replace(instance.find("Kreog!"), sizeof(instance.find("Kreog!")) - 2, "1337!");
+        std::cout << "Mr." << sickKoala.get_name() << ": " << instance << std::endl << std::flush;
+        cr_assert_stdout_eq_str("Mr.SickKoala: 1337! How's it going?\n");
+}
