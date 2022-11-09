@@ -243,3 +243,12 @@ Test(overDrive, stdout_test, .signal=SIGPIPE, .init=redirect_all_stdout)
         std::cout << "Mr." << sickKoala.get_name() << ": " << instance << std::endl << std::flush;
         cr_assert_stdout_eq_str("Mr.SickKoala: 1337! How's it going?\n");
 }
+
+Test(overDrive, test_overDrive_memberFunction,
+        .signal=SIGPIPE, .init=redirect_all_stdout)
+{
+        SickKoala sickKoala;
+
+        sickKoala.overDrive("Kreog! How's it going?");
+        cr_assert_stdout_eq_str("Mr.SickKoala: 1337! How's it going?\n");
+}
