@@ -1,53 +1,66 @@
-G++			=	g++
+G++				=	g++
+###############################################
+###############################################
+PART1_PATH 		= 	./part1_patients/
+PART1_SRC_PATH	=	./part1_patients/sources
+PART1_TST_PATH	=	./part1_patients/tests
+PART1_INC_PATH	=	./part1_patients/includes
 
-CORE_PATH	=	./core
-SRCS_PATH	=	./sources
-TST_PATH	=	./tests
-INCS_PATH	=	./includes
+PART1_SRC		=	$(PART1_SRC_PATH)/my_hospital.cpp
+PART1_SRC_TEST	=	$(PART1_TST_PATH)/$(NAME)_test.cpp
+###############################################
+CORE_PATH		=	./core
+SRCS_PATH		=	$(PART1_SRC_PATH)
+TST_PATH		=	$(PART1_TST_PATH)
 
-NAME		=	my_hospital
-TEST_NAME 	= 	test_$(NAME)
+NAME			=	my_hospital
+TEST_NAME 		= 	test_$(NAME)
 
+INCS_PATH 		= 	$(PART1_INC_PATH)
+INCFLAGS		+=	-I $(INCS_PATH)
 
-INCFLAGS	+=	-I $(INCS_PATH)
-#LIBFLAG 	+=	-L
+CPPFLAGS		+= 	-Wall -Wextra -Werror $(INCFLAGS)#-W -std=c++1z
 
-CPPFLAGS	+= -Wall -Wextra -Werror $(INCFLAGS)#-W -std=c++1z
+SRCS 			= 	$(PART1_SRC) \
+					$(CORE_PATH)/main.cpp
 
+SRC_TEST 		= 	$(PART1_SRC_TEST)
 
-SRCS		=	$(SRCS_PATH)/my_hospital.cpp \
-				$(CORE_PATH)/main.cpp
+OBJS			=	$(SRCS:.cpp=.o)
+CLEAN			=	clean
+FCLEAN			=	fclean
 
-SRC_TEST	=	$(TST_PATH)/$(NAME)_test.cpp
+all				:	$(NAME)
 
-OBJS		=	$(SRCS:.cpp=.o)
+$(NAME)			:	$(OBJS)
+					$(G++) $(OBJS) -o $(NAME) $(CPPFLAGS)
 
-CLEAN		=	clean
-FCLEAN		=	fclean
+RM				=	rm -rf
 
+clean			:
+					$(RM) $(OBJS)
+					@$(MAKE) $(CLEAN) -C $(PART1_TST_PATH)
 
-all			:	$(NAME)
+fclean			:	clean
+					$(RM) $(NAME) $(TEST_NAME)
+					@$(MAKE) $(FCLEAN) -C $(PART1_TST_PATH)
+					@$(MAKE) $(FCLEAN) -C $(PART1_PATH) 
 
-$(NAME)		:	$(OBJS)
-				$(G++) $(OBJS) -o $(NAME) $(CPPFLAGS)
+re				: 	fclean all
 
-RM			=	rm -rf
+part1 			: 	fclean
+					@$(MAKE) -C $(PART1_PATH)
+					$(PART1_PATH)/$(NAME)
 
-clean		:
-				$(RM) $(OBJS)
-				@$(MAKE) $(CLEAN) -C $(TST_PATH)
+tests_run_part1	:	fclean
+					@$(MAKE) -C $(PART1_TST_PATH)
+					$(PART1_TST_PATH)/$(TEST_NAME)
 
-fclean		:	clean
-				$(RM) $(NAME) $(TEST_NAME)
-				@$(MAKE) $(FCLEAN) -C $(TST_PATH)
+tests_run		:	fclean
+					@$(MAKE) -C $(PART1_TST_PATH)
+					$(PART1_TST_PATH)/$(TEST_NAME)
 
-re			: 	fclean all
-
-tests_run	:	fclean
-				@$(MAKE) -C $(TST_PATH)
-				$(TST_PATH)/$(TEST_NAME)
-
-.PHONY		: 	all clean fclean re tests_run
+.PHONY			: 	all clean fclean re part1 tests_run_part1 tests_run
 
 # $(CC) -o $(TEST_NAME) $(SRC) $(SRC_TEST) $(TESTFLAGS) $(LIBFLAG)
 #-L. -lmy_malloct
