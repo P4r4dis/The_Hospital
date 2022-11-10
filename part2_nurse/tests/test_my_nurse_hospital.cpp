@@ -47,21 +47,11 @@ Test(KoalaNurse, test_giveDrug_pointerPatient, .signal=SIGPIPE, .init=redirect_a
         cr_assert_stdout_eq_str("Mr.SickKoala: Goerkreog!\n");
 }
 
-Test(giveDrug, test_giveDrug_memberFunction) {
-        cr_assert(1);
-        // std::string     Drug;
-
-        // cr_assert(zero(str, Drug));
-        // cr_assert(eq(str, Drug, ""));
-        // cr_assert_str_empty(Drug.data());
-        // Drug = "drug";
-        // cr_assert(not(zero(str, Drug)));
-        // cr_assert(not(eq(str, Drug, "")));
-        // cr_assert(eq(str, Drug, "drug"));
-
-        // SickKoala patient;
-        // patient.takeDrug(Drug);
-        // cr_assert_stdout_eq_str("Mr.SickKoala: Goerkreog!\n");
+Test(giveDrug, test_giveDrug_memberFunction, .signal=SIGPIPE, .init=redirect_all_stdout) {
+        KoalaNurse koalaNurse(1);
+        SickKoala patient;
+        koalaNurse.giveDrug("Drug", &patient);
+        cr_assert_stdout_eq_str("Mr.SickKoala: Goerkreog!\n");
 }
 
 // Test(poke, stdcout_poke_function, .signal=SIGPIPE, .init=redirect_all_stdout) {
