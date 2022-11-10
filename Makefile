@@ -1,10 +1,10 @@
 G++				=	g++
 ###############################################
 ###############################################
-PART1_PATH 		= 	./part1_patients/
-PART1_SRC_PATH	=	./part1_patients/sources
-PART1_TST_PATH	=	./part1_patients/tests
-PART1_INC_PATH	=	./part1_patients/includes
+PART1_PATH 		= 	./part1_patient/
+PART1_SRC_PATH	=	./part1_patient/sources
+PART1_TST_PATH	=	./part1_patient/tests
+PART1_INC_PATH	=	./part1_patient/includes
 
 PART1_SRC		=	$(PART1_SRC_PATH)/my_hospital.cpp
 PART1_SRC_TEST	=	$(PART1_TST_PATH)/$(NAME)_test.cpp
