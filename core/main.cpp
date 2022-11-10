@@ -1,4 +1,6 @@
 #include "../part1_patient/includes/my_hospital.hpp"
+#include "../part2_nurse/includes/my_nurse_hospital.hpp"
+
 
 int     main(int ac, char **av)
 {
