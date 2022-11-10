@@ -1,42 +1,45 @@
-G++				=	g++
+G++					=	g++
 
-SRC_PATH		=	../sources/
-INC_PATH		=	../includes/
+SRC_PATH			=	../sources/
+SRC_PATIENT_PATH	=	../../part1_patient/sources/
 
-TESTS_SRC_PATH	=	./tests_sources/
-TESTS_INC_PATH	=	./tests_includes/
+INC_PATH			=	../includes/
 
-NAME			=	test_my_nurse_hospital
+TESTS_SRC_PATH		=	./tests_sources/
+TESTS_INC_PATH		=	./tests_includes/
 
-INCFLAGS		+=	-I$(INC_PATH) -I$(INC_TEST_PATH)
-CRITFLAGS		+=	--coverage -lcriterion --verbose
-CPPFLAGS		+=	-Wall -Wextra -Werror $(INCFLAGS) $(CRITFLAGS)
+NAME				=	test_my_nurse_hospital
 
-
-SRCS			=	test_my_nurse_hospital.cpp \
-					$(SRC_PATH)/my_nurse_hospital.cpp \
-					$(TESTS_SRC_PATH)/test_sources.cpp
+INCFLAGS			+=	-I$(INC_PATH) -I$(INC_TEST_PATH)
+CRITFLAGS			+=	--coverage -lcriterion --verbose
+CPPFLAGS			+=	-Wall -Wextra -Werror $(INCFLAGS) $(CRITFLAGS)
 
 
-OBJS			=	$(SRCS:.cpp=.o)
-OBJS_GCDA		=	$(SRCS:.cpp=.gcda)
-OBJS_GCNO		=	$(SRCS:.cpp=.gcno)
+SRCS				=	test_my_nurse_hospital.cpp \
+						$(SRC_PATH)/my_nurse_hospital.cpp \
+						$(SRC_PATIENT_PATH)/my_patient_hospital.cpp \
+						$(TESTS_SRC_PATH)/test_sources.cpp
 
 
-all				:	$(NAME)
+OBJS				=	$(SRCS:.cpp=.o)
+OBJS_GCDA			=	$(SRCS:.cpp=.gcda)
+OBJS_GCNO			=	$(SRCS:.cpp=.gcno)
 
-$(NAME)			:	$(OBJS)
-					$(G++) $(OBJS) -o $(NAME) $(CPPFLAGS)
 
-RM				=	rm -rf
+all					:	$(NAME)
 
-clean			:
-					$(RM) $(OBJS) $(OBJS_GCDA) $(OBJS_GCNO)
-					$(RM) $(TESTS_SRC_PATH)$(OBJS) $(TESTS_SRC_PATH)$(OBJS_GCDA) $(TESTS_SRC_PATH)$(OBJS_GCNO)
+$(NAME)				:	$(OBJS)
+						$(G++) $(OBJS) -o $(NAME) $(CPPFLAGS)
 
-fclean			:	clean
-					$(RM) $(NAME)
+RM					=	rm -rf
 
-re				:	fclean all
+clean				:
+						$(RM) $(OBJS) $(OBJS_GCDA) $(OBJS_GCNO)
+						$(RM) $(TESTS_SRC_PATH)$(OBJS) $(TESTS_SRC_PATH)$(OBJS_GCDA) $(TESTS_SRC_PATH)$(OBJS_GCNO)
 
-.PHONY			:	all clean fclean re
+fclean				:	clean
+						$(RM) $(NAME)
+
+re					:	fclean all
+
+.PHONY				:	all clean fclean re

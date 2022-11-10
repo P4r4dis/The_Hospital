@@ -1,4 +1,5 @@
 #include "../includes/my_nurse_hospital.hpp"
+#include "../../part1_patient/includes/my_patient_hospital.hpp"
 #include "./tests_includes/test_my_nurse_hospital.hpp"
 
 Test(KoalaNurse, test_ctor_and_getID) {
@@ -16,11 +17,52 @@ Test(KoalaNurse, test_dtor_stdcout,  .signal=SIGPIPE, .init=redirect_all_stdout)
         cr_assert_stdout_eq_str("Nurse 1: Finally some rest!\n");
 }
 
-// Test(SickKoala, ctorCustom_and_dtor,  .signal=SIGPIPE, .init=redirect_all_stdout) {
-//         SickKoala sickKoala("SickKoala");
-//         sickKoala.~SickKoala();
-//         cr_assert_stdout_eq_str("Mr.SickKoala: Kreooogg!! I'm cuuuured!\n");
-// }
+
+
+Test(KoalaNurse, test_giveDrug_strParameter) {
+        std::string     Drug;
+
+        cr_assert(zero(str, Drug));
+        cr_assert(eq(str, Drug, ""));
+        cr_assert_str_empty(Drug.data());
+        Drug = "drug";
+        cr_assert(not(zero(str, Drug)));
+        cr_assert(not(eq(str, Drug, "")));
+        cr_assert(eq(str, Drug, "drug"));
+}
+
+Test(KoalaNurse, test_giveDrug_pointerPatient, .signal=SIGPIPE, .init=redirect_all_stdout) {
+        std::string     Drug;
+
+        cr_assert(zero(str, Drug));
+        cr_assert(eq(str, Drug, ""));
+        cr_assert_str_empty(Drug.data());
+        Drug = "drug";
+        cr_assert(not(zero(str, Drug)));
+        cr_assert(not(eq(str, Drug, "")));
+        cr_assert(eq(str, Drug, "drug"));
+
+        SickKoala patient;
+        patient.takeDrug(Drug);
+        cr_assert_stdout_eq_str("Mr.SickKoala: Goerkreog!\n");
+}
+
+Test(giveDrug, test_giveDrug_memberFunction) {
+        cr_assert(1);
+        // std::string     Drug;
+
+        // cr_assert(zero(str, Drug));
+        // cr_assert(eq(str, Drug, ""));
+        // cr_assert_str_empty(Drug.data());
+        // Drug = "drug";
+        // cr_assert(not(zero(str, Drug)));
+        // cr_assert(not(eq(str, Drug, "")));
+        // cr_assert(eq(str, Drug, "drug"));
+
+        // SickKoala patient;
+        // patient.takeDrug(Drug);
+        // cr_assert_stdout_eq_str("Mr.SickKoala: Goerkreog!\n");
+}
 
 // Test(poke, stdcout_poke_function, .signal=SIGPIPE, .init=redirect_all_stdout) {
 //         SickKoala sickKoala("SickKoala");
