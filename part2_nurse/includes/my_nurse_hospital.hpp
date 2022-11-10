@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include "../../part1_patient/includes/my_patient_hospital.hpp"
 
 class KoalaNurse
 {
@@ -16,7 +17,7 @@ class KoalaNurse
     //DTOR
         ~KoalaNurse();
     //Member Function
-
+        void    giveDrug(std::string    Drug, SickKoala     *patient);
     //Getter
         int     getID(void);
     //Setter

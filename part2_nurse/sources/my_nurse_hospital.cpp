@@ -10,6 +10,15 @@ KoalaNurse::~KoalaNurse()
     std::cout << "Nurse " << _id << ": Finally some rest!" << std::endl;
 }
 //MEMBER FUNCTION
+void    KoalaNurse::giveDrug(std::string    Drug, SickKoala     *patient)
+{
+    patient->takeDrug(Drug);
+}
+
+// void    KoalaNurse::giveDrug(std::string    Drug, SickKoala     &patient)
+// {
+//     patient->takeDrug(Drug);
+// }
 
 //GETTER
 int     KoalaNurse::getID(void)
