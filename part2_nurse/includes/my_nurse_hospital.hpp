@@ -4,27 +4,25 @@
 #include <iostream>
 #include <iomanip>
 
-class SickKoala {
-    public:
-        //CTOR
-        SickKoala();
-        //CTOR CUSTOM
-        SickKoala(std::string name);
-        //DTOR
-        ~SickKoala();
-        //Member Function
-        void            poke(void);
-        bool            takeDrug(std::string str);
-        void            overDrive(std::string str);
-        //Getter
-        std::string     get_name(void);
-
-
+class KoalaNurse
+{
     private:
-        std::string     _name;
-        
-    protected:
-};
+        int     _id;
 
+    public:
+    //CTOR
+        KoalaNurse(int  id);
+    //CCTOR
+    //DTOR
+        ~KoalaNurse();
+    //Member Function
+
+    //Getter
+        int     getID(void);
+    //Setter
+
+    protected:
+
+};
 
 #endif  // !__MY_HOSPITAL__

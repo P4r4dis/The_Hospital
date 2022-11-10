@@ -1,5 +1,5 @@
-#include "../includes/my_hospital.hpp"
-#include "./tests_includes/test_my_hospital.hpp"
+#include "../includes/my_patient_hospital.hpp"
+#include "./tests_includes/test_my_patient_hospital.hpp"
 
 Test(SickKoala, ctorDefault) {
 

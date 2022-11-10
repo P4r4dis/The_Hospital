@@ -1,5 +1,5 @@
-#ifndef __MY_HOSPITAL__
-#   define __MY_HOSPITAL__
+#ifndef __MY_PATIENT_HOSPITAL__
+#   define __MY_PATIENT_HOSPITAL__
 
 #include <iostream>
 #include <iomanip>
@@ -27,4 +27,4 @@ class SickKoala {
 };
 
 
-#endif  // !__MY_HOSPITAL__
+#endif  // !__MY_PATIENT_HOSPITAL__

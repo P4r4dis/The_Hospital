@@ -1,4 +1,4 @@
-#include "../includes/my_hospital.hpp"
+#include "../includes/my_patient_hospital.hpp"
 
 //CTOR
 SickKoala::SickKoala() : _name("SickKoala")

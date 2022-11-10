@@ -1,22 +1,6 @@
 #include "../includes/my_nurse_hospital.hpp"
 #include "./tests_includes/test_my_nurse_hospital.hpp"
 
-
-KoalaNurse::KoalaNurse(int id) : _id(id)
-{
-
-}
-
-KoalaNurse::~KoalaNurse()
-{
-    std::cout << "Nurse " << _id << ": Finally some rest!" << std::endl;
-}
-
-int     KoalaNurse::getID(void)
-{
-        return _id;
-}
-
 Test(KoalaNurse, test_ctor_and_getID) {
         int             id = 1;
         KoalaNurse      koalaNurse(id);

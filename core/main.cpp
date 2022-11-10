@@ -1,10 +1,11 @@
-#include "../part1_patient/includes/my_hospital.hpp"
+#include "../part1_patient/includes/my_patient_hospital.hpp"
 #include "../part2_nurse/includes/my_nurse_hospital.hpp"
 
 
 int     main(int ac, char **av)
 {
     if (ac < 2 && av) {
+        std::cout << "CORE MAIN" << std::endl;
         //THE PATIENT SICKKOALA
         SickKoala   cancer("Ganepar");
         std::cout << cancer.get_name() << std::endl;
@@ -72,6 +73,9 @@ int     main(int ac, char **av)
         std::cout << std::boolalpha << "return value : " << 
         sickKoala.takeDrug("random") << std::endl;
         sickKoala.overDrive("Kreog! How's it going?");
+        ////////////////////////////////////////////////////
+        //NURSE
+        ////////////////////////////////////////////////////
     }
     return 0;
 }

@@ -1,9 +1,12 @@
 #include "../includes/my_nurse_hospital.hpp"
+#include "../../part1_patient/includes/my_patient_hospital.hpp" 
 
 int     main(int ac, char **av)
 {
     if (ac < 2 && av) {
-        //THE PATIENT SICKKOALA
+
+        std::cout << "NURSE MAIN" << std::endl;
+        // //THE PATIENT SICKKOALA
         SickKoala   cancer("Ganepar");
         std::cout << cancer.get_name() << std::endl;
         cancer.poke();
@@ -59,6 +62,7 @@ int     main(int ac, char **av)
         fracture.takeDrug("random") << std::endl;
         fracture.overDrive("Kreog! How's it going?");
 
+        // /////////////////////////////
         SickKoala   sickKoala("SickKoala");
         std::cout << sickKoala.get_name() << std::endl;
         sickKoala.poke();

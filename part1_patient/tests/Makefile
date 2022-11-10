@@ -6,15 +6,15 @@ INC_PATH		=	../includes/
 TESTS_SRC_PATH	=	./tests_sources/
 TESTS_INC_PATH	=	./tests_includes/
 
-NAME			=	test_my_hospital
+NAME			=	test_my_patient_hospital
 
 INCFLAGS		+=	-I$(INC_PATH) -I$(INC_TEST_PATH)
 CRITFLAGS		+=	--coverage -lcriterion --verbose
 CPPFLAGS		+=	-Wall -Wextra -Werror $(INCFLAGS) $(CRITFLAGS)
 
 
-SRCS			=	test_my_hospital.cpp \
-					$(SRC_PATH)/my_hospital.cpp \
+SRCS			=	test_my_patient_hospital.cpp \
+					$(SRC_PATH)/my_patient_hospital.cpp \
 					$(TESTS_SRC_PATH)/test_sources.cpp
 
 

@@ -1,4 +1,4 @@
-#include "../tests_includes/test_my_hospital.hpp"
+#include "../tests_includes/test_my_patient_hospital.hpp"
 
 void    redirect_all_stdout(void)
 {

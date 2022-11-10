@@ -1,53 +1,56 @@
-G++			=	g++
+G++					=	g++
+#CORE_PATH	=	./core
 
-CORE_PATH	=	./core
-SRCS_PATH	=	./sources
-TST_PATH	=	./tests
-INCS_PATH	=	./includes
+CORE_NURSE_PATH		=	./core_nurse
 
-NAME		=	my_nurse_hospital
-TEST_NAME 	= 	test_$(NAME)
+SRC_NURSE_PATH		=	./sources
+TST_NURSE_PATH		=	./tests
+INC_NURSE_PATH 		= 	./includes
 
+SRC_PATIENT_PATH 	= 	../part1_patient/sources
+INC_PATIENT_PATH 	= 	../part1_patient/includes
 
-INCFLAGS	+=	-I $(INCS_PATH)
-#LIBFLAG 	+=	-L
+INC_PATH			= 	$(INC_NURSE_PATH)
 
-CPPFLAGS	+= -Wall -Wextra -Werror $(INCFLAGS)#-W -std=c++1z
+NAME_NURSE			=	my_nurse_hospital
+TEST_NAME_NURSE 	= 	test_$(NAME_NURSE)
 
+INCFLAGS			+=	-I $(INC_PATH)
+CPPFLAGS			+= -Wall -Wextra -Werror $(INCFLAGS)#-W -std=c++1z
 
-SRCS		=	$(SRCS_PATH)/my_nurse_hospital.cpp \
-				$(CORE_PATH)/main.cpp
+SRCS		=	$(SRC_NURSE_PATH)/my_nurse_hospital.cpp \
+				$(SRC_PATIENT_PATH)/my_patient_hospital.cpp \
+				$(CORE_NURSE_PATH)/main_nurse.cpp
 
-SRC_TEST	=	$(TST_PATH)/$(NAME)_test.cpp
+SRC_TEST	=	$(TST_NURSE_PATH)/$(NAME_NURSE)_test.cpp
 
 OBJS		=	$(SRCS:.cpp=.o)
 
 CLEAN		=	clean
 FCLEAN		=	fclean
 
+all			:	$(NAME_NURSE)
 
-all			:	$(NAME)
-
-$(NAME)		:	$(OBJS)
-				$(G++) $(OBJS) -o $(NAME) $(CPPFLAGS)
+$(NAME_NURSE)		:	$(OBJS)
+						$(G++) $(OBJS) -o $(NAME_NURSE) $(CPPFLAGS)
 
 RM			=	rm -rf
 
 clean		:
 				$(RM) $(OBJS)
-				@$(MAKE) $(CLEAN) -C $(TST_PATH)
+				@$(MAKE) $(CLEAN) -C $(TST_NURSE_PATH)
 
 fclean		:	clean
-				$(RM) $(NAME) $(TEST_NAME)
-				@$(MAKE) $(FCLEAN) -C $(TST_PATH)
+				$(RM) $(NAME_NURSE) $(TEST_NAME_NURSE)
+				@$(MAKE) $(FCLEAN) -C $(TST_NURSE_PATH)
 
 re			: 	fclean all
 
 tests_run	:	fclean
-				@$(MAKE) -C $(TST_PATH)
-				$(TST_PATH)/$(TEST_NAME)
+				@$(MAKE) -C $(TST_NURSE_PATH)
+				$(TST_NURSE_PATH)/$(TEST_NAME_NURSE)
 
 .PHONY		: 	all clean fclean re tests_run
 
-# $(CC) -o $(TEST_NAME) $(SRC) $(SRC_TEST) $(TESTFLAGS) $(LIBFLAG)
+# $(CC) -o $(TEST_NAME_NURSE) $(SRC) $(SRC_TEST) $(TESTFLAGS) $(LIBFLAG)
 #-L. -lmy_malloct

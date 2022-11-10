@@ -1,22 +1,22 @@
 G++			=	g++
 
-CORE_PATH	=	./core
-SRCS_PATH	=	./sources
+CORE_PATH	=	./core_patient
+SRC_PATH	=	./sources
 TST_PATH	=	./tests
-INCS_PATH	=	./includes
+INC_PATH	=	./includes
 
-NAME		=	my_hospital
+NAME		=	my_patient_hospital
 TEST_NAME 	= 	test_$(NAME)
 
 
-INCFLAGS	+=	-I $(INCS_PATH)
+INCFLAGS	+=	-I $(INC_PATH)
 #LIBFLAG 	+=	-L
 
 CPPFLAGS	+= -Wall -Wextra -Werror $(INCFLAGS)#-W -std=c++1z
 
 
-SRCS		=	$(SRCS_PATH)/my_hospital.cpp \
-				$(CORE_PATH)/main.cpp
+SRCS		=	$(SRC_PATH)/my_patient_hospital.cpp \
+				$(CORE_PATH)/main_patient.cpp
 
 SRC_TEST	=	$(TST_PATH)/$(NAME)_test.cpp
 

@@ -10,22 +10,21 @@
 
 void                redirect_all_stdout(void);
 
-class KoalaNurse
-{
-    private:
-        int     _id;
+// class KoalaNurse
+// {
+//     private:
+//         int     _id;
 
-    public:
-    //CTOR
-        KoalaNurse(int  id);
-    //CCTOR
-    //DTOR
-        ~KoalaNurse();
-    //Member Function
+//     public:
+//     //CTOR
+//         KoalaNurse(int  id);
+//     //CCTOR
+//     //DTOR
+//         ~KoalaNurse();
+//     //Member Function
 
-    //Getter
-        int     getID(void);
-    //Setter
-};
-
+//     //Getter
+//         int     getID(void);
+//     //Setter
+// };
 #endif  // !__TEST_MY_HOSPITAL__
