@@ -515,6 +515,44 @@ Test(readReport, test_readReport, .signal=SIGPIPE,  .init=redirect_all_stdout) {
         f_stream.close();
         cr_assert(f_stream.is_open() == false);
 }
+
+Test(readReport, test_readReport_memberFunction_with_fileName, .signal=SIGPIPE,  .init=redirect_all_stdout) {
+
+        int             id = 1;
+        KoalaNurse      koalaNurse(id);
+        std::string     return_value;
+
+        return_value = koalaNurse.readReport("SickKoala");
+        cr_assert(id);
+        cr_assert(eq(int, koalaNurse.getID(), 1));
+        cr_assert(eq(int, koalaNurse.getID(), id));
+        cr_assert_stdout_eq_str("Nurse 1: Kreog! Mr.SickKoala needs a DRUG!\n");
+        cr_assert(not(eq(str,return_value, "")));
+        cr_assert(eq(str, return_value, "Nurse " + std::to_string(koalaNurse.getID()) 
+                        + ": Kreog! Mr.SickKoala needs a DRUG!\n"));
+
+        // return_value = koalaNurse.readReport("SickKoalaw");
+        // cr_log_warn(return_value.data());
+        // cr_assert(id);
+        // cr_assert(eq(int, koalaNurse.getID(), 1));
+        // cr_assert(eq(int, koalaNurse.getID(), id));
+        // cr_assert_stdout_eq_str("");
+        // cr_assert(eq(str,return_value, ""));
+}
+
+Test(readReport, test_readReport_memberFunction_without_fileName, .signal=SIGPIPE,  .init=redirect_all_stdout) {
+
+        int             id = 1;
+        KoalaNurse      koalaNurse(id);
+        std::string     return_value;
+
+        return_value = koalaNurse.readReport("");
+        cr_assert(id);
+        cr_assert(eq(int, koalaNurse.getID(), 1));
+        cr_assert(eq(int, koalaNurse.getID(), id));
+        cr_assert_stdout_eq_str("");
+        cr_assert(eq(str,return_value, ""));
+}
 // Test(readReport, test_readReport) {
 //         SickKoala       sickKoala;
 //         std::string     filename_param = sickKoala.get_name() + ".dreport";
