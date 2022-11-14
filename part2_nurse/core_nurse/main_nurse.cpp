@@ -79,9 +79,11 @@ int     main(int ac, char **av)
         ///////////////////////////////////////////////////
         KoalaNurse      ratched(1);
         KoalaNurse      betty(2);
-        std::cout << "TEST" << std::endl;
         ratched.giveDrug("Drug", &sickKoala);
-                std::cout << "END TEST" << std::endl;
+                        std::cout << "TEST" << std::endl;
+
+        betty.readReport("SickKoala");
+                        std::cout << "END TEST" << std::endl;
 
     }
     return 0;
