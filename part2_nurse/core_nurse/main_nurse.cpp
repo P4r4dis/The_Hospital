@@ -80,10 +80,19 @@ int     main(int ac, char **av)
         KoalaNurse      ratched(1);
         KoalaNurse      betty(2);
         ratched.giveDrug("Drug", &sickKoala);
-                        std::cout << "TEST" << std::endl;
-
         betty.readReport("SickKoala");
-                        std::cout << "END TEST" << std::endl;
+        std::cout << "TEST" << std::endl;
+        std::cout << std::boolalpha << "bool : " << 
+        betty.get_isWorking() << std::endl;
+        betty.timeCheck();
+        std::cout << std::boolalpha << "bool : " << 
+        betty.get_isWorking() << std::endl;
+
+        betty.timeCheck();
+        std::cout << std::boolalpha << "bool : " << 
+        betty.get_isWorking() << std::endl;
+
+        std::cout << "END TEST" << std::endl;
 
     }
     return 0;

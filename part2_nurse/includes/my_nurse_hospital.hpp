@@ -10,6 +10,7 @@ class KoalaNurse
 {
     private:
         int     _id;
+        bool    _isWorking;
 
     public:
     //CTOR
@@ -20,8 +21,10 @@ class KoalaNurse
     //Member Function
         void            giveDrug(std::string    Drug, SickKoala     *patient);
         std::string     readReport(std::string  fileName);
+        void            timeCheck(void);
     //Getter
         int             getID(void);
+        bool            get_isWorking(void);
     //Setter
 
     protected:

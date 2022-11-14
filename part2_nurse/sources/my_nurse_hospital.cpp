@@ -41,8 +41,24 @@ std::string     KoalaNurse::readReport(std::string  fileName)
         f_stream.close();
         return "";
 }
+
+void            KoalaNurse::timeCheck(void)
+{
+        this->_isWorking = !this->_isWorking;
+        if(_isWorking == true) {
+                std::cout << "Nurse " << this->_id << ": Time to get to work!" << std::endl;
+        }
+        else {
+                std::cout << "Nurse " << this->_id << ": Time to go home to my eucalyptus forest!" << std::endl;
+        }
+}
 //GETTER
 int             KoalaNurse::getID(void)
 {
         return _id;
+}
+
+bool            KoalaNurse::get_isWorking(void)
+{
+        return _isWorking;
 }
