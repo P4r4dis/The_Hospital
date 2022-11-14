@@ -81,19 +81,14 @@ int     main(int ac, char **av)
         KoalaNurse      betty(2);
         ratched.giveDrug("Drug", &sickKoala);
         betty.readReport("SickKoala");
-        std::cout << "TEST" << std::endl;
         std::cout << std::boolalpha << "bool : " << 
         betty.get_isWorking() << std::endl;
         betty.timeCheck();
         std::cout << std::boolalpha << "bool : " << 
         betty.get_isWorking() << std::endl;
-
         betty.timeCheck();
         std::cout << std::boolalpha << "bool : " << 
         betty.get_isWorking() << std::endl;
-
-        std::cout << "END TEST" << std::endl;
-
     }
     return 0;
 }

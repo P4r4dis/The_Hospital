@@ -24,26 +24,29 @@ TEST_NAME_NURSE 	= 	test_$(NAME_NURSE)
 
 ###############################################
 CORE_PATH			=	./core
-SRCS_PATH			=	$(PART1_SRC_PATH)
-#$(PART2_SRC_PATH)
-TST_PATH			=	$(PART1_TST_PATH)
-#$(PART2_TST_PATH)
+SRCS_PATH			=	$(PART1_SRC_PATH) \
+						$(PART2_SRC_PATH)
+
+TST_PATH			=	$(PART1_TST_PATH) \
+						$(PART2_TST_PATH)
 
 NAME				=	my_hospital
 TEST_NAME 			= 	test_$(NAME)
 
-INC_PATH 			= 	$(PART1_INC_PATH)
+#INC_PATH 			= 	$(PART1_INC_PATH)
 #$(PART2_INC_PATH)
-INCFLAGS			+=	-I $(INC_PATH)
+INCFLAGS			+=	-I $(PART1_INC_PATH) -I $(PART2_INC_PATH)
+#$(INC_PATH)
 
 CPPFLAGS			+= 	-Wall -Wextra -Werror $(INCFLAGS)#-W -std=c++1z
 
 SRCS 				= 	$(PART1_SRC) \
+						$(PART2_SRC) \
 						$(CORE_PATH)/main.cpp
 #$(PART2_SRC)
 
 SRC_TEST 			= 	$(PART1_SRC_TEST) \
-					#$(PART2_SRC_TEST)
+						$(PART2_SRC_TEST)
 
 OBJS				=	$(SRCS:.cpp=.o)
 CLEAN				=	clean
@@ -87,8 +90,13 @@ tests_run_part2		:	fclean
 						$(PART2_TST_PATH)/$(TEST_NAME_NURSE)
 
 tests_run			:	fclean
-						@$(MAKE) -C $(PART1_TST_PATH)
-						$(PART1_TST_PATH)/$(TEST_NAME)
+						@$(MAKE) tests_run_part1
+						@$(MAKE) tests_run_part2	
+
+#						@$(MAKE) -C $(PART1_TST_PATH)
+#						$(PART1_TST_PATH)/$(TEST_NAME_PATIENT)
+#						@$(MAKE) -C $(PART2_TST_PATH)
+#						$(PART2_TST_PATH)/$(TEST_NAME_NURSE)
 
 .PHONY				: 	all clean fclean re part1 tests_run_part1 tests_run
 

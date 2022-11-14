@@ -76,6 +76,19 @@ int     main(int ac, char **av)
         ////////////////////////////////////////////////////
         //NURSE
         ////////////////////////////////////////////////////
+        KoalaNurse      ratched(1);
+        KoalaNurse      betty(2);
+        
+        ratched.giveDrug("Drug", &sickKoala);
+        betty.readReport("SickKoala");
+        std::cout << std::boolalpha << "bool : " << 
+        betty.get_isWorking() << std::endl;
+        betty.timeCheck();
+        std::cout << std::boolalpha << "bool : " << 
+        betty.get_isWorking() << std::endl;
+        betty.timeCheck();
+        std::cout << std::boolalpha << "bool : " << 
+        betty.get_isWorking() << std::endl;
     }
     return 0;
 }
