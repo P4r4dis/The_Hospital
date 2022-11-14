@@ -2,7 +2,7 @@
 //CTOR
 KoalaNurse::KoalaNurse(int id) : _id(id)
 {
-
+        this->_isWorking = false;
 }
 //DTOR
 KoalaNurse::~KoalaNurse()
@@ -61,4 +61,10 @@ int             KoalaNurse::getID(void)
 bool            KoalaNurse::get_isWorking(void)
 {
         return _isWorking;
+}
+
+//SETTER
+void            KoalaNurse::set_isWorking(bool isWorking)
+{
+        this->_isWorking = isWorking;
 }

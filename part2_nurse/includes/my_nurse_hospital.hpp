@@ -26,7 +26,7 @@ class KoalaNurse
         int             getID(void);
         bool            get_isWorking(void);
     //Setter
-
+        void            set_isWorking(bool  isWorking);
     protected:
 
 };

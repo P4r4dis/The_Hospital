@@ -530,6 +530,26 @@ Test(timeCheck, test_timeCheck_nurse_Working, .init=redirect_all_stdout) {
                 cr_assert_stdout_eq_str("Nurse 1: Time to go home to my eucalyptus forest!\n");
         }
 }
+
+Test(timeCheck, test_timeCheck_memberFunction_working, .signal=SIGPIPE, .init=redirect_all_stdout) {
+        KoalaNurse      koalaNurse(1);
+
+        cr_assert(koalaNurse.get_isWorking() == false);
+        koalaNurse.timeCheck();
+        cr_assert(koalaNurse.get_isWorking() == true);
+        cr_assert_stdout_eq_str("Nurse 1: Time to get to work!\n");
+}
+
+Test(timeCheck, test_timeCheck_memberFunction_NotWorking, .signal=SIGPIPE, .init=redirect_all_stdout) {
+        KoalaNurse      koalaNurse(1);
+
+        cr_assert(koalaNurse.get_isWorking() == false);
+        koalaNurse.set_isWorking(true);
+        cr_assert(koalaNurse.get_isWorking() == true);
+        koalaNurse.timeCheck();
+        cr_assert(koalaNurse.get_isWorking() == false);
+        cr_assert_stdout_eq_str("Nurse 1: Time to go home to my eucalyptus forest!\n");
+}
 // Test(readReport, test_readReport) {
 //         SickKoala       sickKoala;
 //         std::string     filename_param = sickKoala.get_name() + ".dreport";
