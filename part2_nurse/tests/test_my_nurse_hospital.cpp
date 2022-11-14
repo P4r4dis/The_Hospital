@@ -54,6 +54,490 @@ Test(giveDrug, test_giveDrug_memberFunction, .signal=SIGPIPE, .init=redirect_all
         cr_assert_stdout_eq_str("Mr.SickKoala: Goerkreog!\n");
 }
 
+Test(readReport, test_readReport_params) {
+        SickKoala       sickKoala;
+
+        cr_assert(ne(str, sickKoala.get_name().data(), ""));
+        cr_assert(eq(str, sickKoala.get_name().data(), "SickKoala"));
+//////////////////////////////////////////////////////////////////////////
+        std::string     filename_param = sickKoala.get_name() + ".report";
+
+        cr_assert(not(zero(str, filename_param)));
+        cr_assert(not(eq(str, filename_param, "")));        
+        cr_assert(ne(str, filename_param.data(), ""));
+        cr_assert(eq(str, filename_param.data(), "SickKoala.report"));
+//////////////////////////////////////////////////////////////////////////
+        int             id = 1;
+        KoalaNurse      koalaNurse(id);
+
+        cr_assert(id);
+        cr_assert(eq(int, koalaNurse.getID(), 1));
+        cr_assert(eq(int, koalaNurse.getID(), id));
+//////////////////////////////////////////////////////////////////////////
+        std::string     my_line;
+
+        cr_assert(zero(str, my_line));
+        cr_assert(eq(str, my_line, ""));
+        cr_assert_str_empty(my_line.data());
+//////////////////////////////////////////////////////////////////////////
+        std::string     return_value;
+
+        cr_assert(zero(str, return_value));
+        cr_assert(eq(str, return_value, ""));
+        cr_assert_str_empty(return_value.data());
+//////////////////////////////////////////////////////////////////////////
+
+        // std::fstream    f_stream;
+        // std::string     my_line;
+        // std::string     return_value;
+
+        // f_stream.open(filename_param.data(), std::fstream::in);
+        // if (f_stream.is_open()) {
+        //         while (std::getline (f_stream, my_line, '\0')) {
+        //                 std::cout << "Nurse " << koalaNurse.getID() 
+        //                 << ": Kreog! Mr." << sickKoala.get_name() 
+        //                 << " needs a " << my_line << "!" << std::endl;
+        //                 return_value = "Nurse " + koalaNurse.getID() + ": Kreog! Mr." + sickKoala.get_name() + " needs a " + my_line << "!";
+
+        //         }
+        // } else {
+        //         std::cout << "empty string";
+        //         return_value = "";
+
+        // }
+        // f_stream.close();
+}
+
+Test(readReport, test_readReport_openfile) {
+        SickKoala       sickKoala;
+
+        cr_assert(ne(str, sickKoala.get_name().data(), ""));
+        cr_assert(eq(str, sickKoala.get_name().data(), "SickKoala"));
+//////////////////////////////////////////////////////////////////////////
+        std::string     filename_param = sickKoala.get_name() + ".report";
+
+        cr_assert(not(zero(str, filename_param)));
+        cr_assert(not(eq(str, filename_param, "")));        
+        cr_assert(ne(str, filename_param.data(), ""));
+        cr_assert(eq(str, filename_param.data(), "SickKoala.report"));
+//////////////////////////////////////////////////////////////////////////
+        int             id = 1;
+        KoalaNurse      koalaNurse(id);
+
+        cr_assert(id);
+        cr_assert(eq(int, koalaNurse.getID(), 1));
+        cr_assert(eq(int, koalaNurse.getID(), id));
+//////////////////////////////////////////////////////////////////////////
+        std::string     my_line;
+
+        cr_assert(zero(str, my_line));
+        cr_assert(eq(str, my_line, ""));
+        cr_assert_str_empty(my_line.data());
+//////////////////////////////////////////////////////////////////////////
+        std::string     return_value;
+
+        cr_assert(zero(str, return_value));
+        cr_assert(eq(str, return_value, ""));
+        cr_assert_str_empty(return_value.data());
+//////////////////////////////////////////////////////////////////////////
+        std::fstream    f_stream;
+
+        f_stream.open(filename_param.data(), std::ios::in);
+        cr_assert(f_stream.is_open() == true);
+
+
+        // if (f_stream.is_open()) {
+        //         while (std::getline (f_stream, my_line, '\0')) {
+        //                 std::cout << "Nurse " << koalaNurse.getID() 
+        //                 << ": Kreog! Mr." << sickKoala.get_name() 
+        //                 << " needs a " << my_line << "!" << std::endl;
+        //                 return_value = "Nurse " + koalaNurse.getID() + ": Kreog! Mr." + sickKoala.get_name() + " needs a " + my_line << "!";
+
+        //         }
+        // } else {
+        //         std::cout << "empty string";
+        //         return_value = "";
+
+        // }
+        // f_stream.close();
+}
+
+Test(readReport, test_readReport_notOpenFile) {
+        SickKoala       sickKoala("TEST");
+
+        cr_assert(ne(str, sickKoala.get_name().data(), ""));
+        cr_assert(eq(str, sickKoala.get_name().data(), "TEST"));
+//////////////////////////////////////////////////////////////////////////
+        std::string     filename_param = sickKoala.get_name() + ".report";
+
+        cr_assert(not(zero(str, filename_param)));
+        cr_assert(not(eq(str, filename_param, "")));        
+        cr_assert(ne(str, filename_param.data(), ""));
+        cr_assert(eq(str, filename_param.data(), "TEST.report"));
+//////////////////////////////////////////////////////////////////////////
+        int             id = 1;
+        KoalaNurse      koalaNurse(id);
+
+        cr_assert(id);
+        cr_assert(eq(int, koalaNurse.getID(), 1));
+        cr_assert(eq(int, koalaNurse.getID(), id));
+//////////////////////////////////////////////////////////////////////////
+        std::string     my_line;
+
+        cr_assert(zero(str, my_line));
+        cr_assert(eq(str, my_line, ""));
+        cr_assert_str_empty(my_line.data());
+//////////////////////////////////////////////////////////////////////////
+        std::string     return_value;
+
+        cr_assert(zero(str, return_value));
+        cr_assert(eq(str, return_value, ""));
+        cr_assert_str_empty(return_value.data());
+//////////////////////////////////////////////////////////////////////////
+        std::fstream    f_stream;
+
+        f_stream.open(filename_param.data(), std::ios::in);
+        cr_assert(f_stream.is_open() == false);
+
+
+        // if (f_stream.is_open()) {
+        //         while (std::getline (f_stream, my_line, '\0')) {
+        //                 std::cout << "Nurse " << koalaNurse.getID() 
+        //                 << ": Kreog! Mr." << sickKoala.get_name() 
+        //                 << " needs a " << my_line << "!" << std::endl;
+        //                 return_value = "Nurse " + koalaNurse.getID() + ": Kreog! Mr." + sickKoala.get_name() + " needs a " + my_line << "!";
+
+        //         }
+        // } else {
+        //         std::cout << "empty string";
+        //         return_value = "";
+
+        // }
+        // f_stream.close();
+}
+
+Test(readReport, test_readReport_readFile_and_stdout, .signal=SIGPIPE, .init=redirect_all_stdout) {
+        SickKoala       sickKoala;
+
+        cr_assert(ne(str, sickKoala.get_name().data(), ""));
+        cr_assert(eq(str, sickKoala.get_name().data(), "SickKoala"));
+//////////////////////////////////////////////////////////////////////////
+        std::string     filename_param = sickKoala.get_name() + ".report";
+
+        cr_assert(not(zero(str, filename_param)));
+        cr_assert(not(eq(str, filename_param, "")));        
+        cr_assert(ne(str, filename_param.data(), ""));
+        cr_assert(eq(str, filename_param.data(), "SickKoala.report"));
+//////////////////////////////////////////////////////////////////////////
+        int             id = 1;
+        KoalaNurse      koalaNurse(id);
+
+        cr_assert(id);
+        cr_assert(eq(int, koalaNurse.getID(), 1));
+        cr_assert(eq(int, koalaNurse.getID(), id));
+//////////////////////////////////////////////////////////////////////////
+        std::string     my_line;
+
+        cr_assert(zero(str, my_line));
+        cr_assert(eq(str, my_line, ""));
+        cr_assert_str_empty(my_line.data());
+//////////////////////////////////////////////////////////////////////////
+        std::string     return_value;
+
+        cr_assert(zero(str, return_value));
+        cr_assert(eq(str, return_value, ""));
+        cr_assert_str_empty(return_value.data());
+//////////////////////////////////////////////////////////////////////////
+        std::fstream    f_stream;
+
+        f_stream.open(filename_param.data(), std::ios::in);
+        cr_assert(f_stream.is_open() == true);
+//////////////////////////////////////////////////////////////////////////
+        if (f_stream.is_open()) {
+                while (std::getline (f_stream, my_line, '\0')) {
+                        std::cout << "Nurse " << koalaNurse.getID() 
+                        << ": Kreog! Mr." << sickKoala.get_name() 
+                        << " needs a " << my_line << "!" << std::endl;
+                        return_value = "Nurse " + std::to_string(koalaNurse.getID()) 
+                        + ": Kreog! Mr." + sickKoala.get_name() + " needs a " + my_line + "!\n";
+                        cr_assert_stdout_eq_str("Nurse 1: Kreog! Mr.SickKoala needs a DRUG!\n");
+                        cr_assert(not(eq(str,return_value, "")));
+                        cr_assert(eq(str, return_value, "Nurse " + std::to_string(koalaNurse.getID()) 
+                        + ": Kreog! Mr." + sickKoala.get_name() + " needs a " + my_line + "!\n"));
+                }
+        } else {
+                return_value = "";
+                cr_assert(zero(str, return_value));
+                cr_assert(eq(str, return_value, ""));
+                cr_assert_str_empty(return_value.data());
+        }
+        // f_stream.close();
+}
+
+Test(readReport, test_readReport_NotReadFile_and_stdout, .signal=SIGPIPE,  .init=redirect_all_stdout) {
+        SickKoala       sickKoala("TEST");
+
+        cr_assert(ne(str, sickKoala.get_name().data(), ""));
+        cr_assert(eq(str, sickKoala.get_name().data(), "TEST"));
+//////////////////////////////////////////////////////////////////////////
+        std::string     filename_param = sickKoala.get_name() + ".report";
+
+        cr_assert(not(zero(str, filename_param)));
+        cr_assert(not(eq(str, filename_param, "")));        
+        cr_assert(ne(str, filename_param.data(), ""));
+        cr_assert(eq(str, filename_param.data(), "TEST.report"));
+//////////////////////////////////////////////////////////////////////////
+        int             id = 1;
+        KoalaNurse      koalaNurse(id);
+
+        cr_assert(id);
+        cr_assert(eq(int, koalaNurse.getID(), 1));
+        cr_assert(eq(int, koalaNurse.getID(), id));
+//////////////////////////////////////////////////////////////////////////
+        std::string     my_line;
+
+        cr_assert(zero(str, my_line));
+        cr_assert(eq(str, my_line, ""));
+        cr_assert_str_empty(my_line.data());
+//////////////////////////////////////////////////////////////////////////
+        std::string     return_value;
+
+        cr_assert(zero(str, return_value));
+        cr_assert(eq(str, return_value, ""));
+        cr_assert_str_empty(return_value.data());
+//////////////////////////////////////////////////////////////////////////
+        std::fstream    f_stream;
+
+        f_stream.open(filename_param.data(), std::ios::in);
+        cr_assert(f_stream.is_open() == false);
+//////////////////////////////////////////////////////////////////////////
+        if (f_stream.is_open()) {
+                while (std::getline (f_stream, my_line, '\0')) {
+                        std::cout << "Nurse " << koalaNurse.getID() 
+                        << ": Kreog! Mr." << sickKoala.get_name() 
+                        << " needs a " << my_line << "!" << std::endl;
+                        return_value = "Nurse " + std::to_string(koalaNurse.getID()) 
+                        + ": Kreog! Mr." + sickKoala.get_name() + " needs a " + my_line + "!\n";
+                        cr_assert_stdout_eq_str("Nurse 1: Kreog! Mr.SickKoala needs a DRUG!\n");
+                        cr_assert(not(eq(str,return_value, "")));
+                        cr_assert(eq(str, return_value, "Nurse " + std::to_string(koalaNurse.getID()) 
+                        + ": Kreog! Mr." + sickKoala.get_name() + " needs a " + my_line + "!\n"));
+                }
+        } else {
+                std::cout << "" << std::flush;
+                return_value = "";
+                cr_assert(zero(str, return_value));
+                cr_assert(eq(str, return_value, ""));
+                cr_assert_str_empty(return_value.data());
+                cr_assert_stdout_eq_str("");
+        }
+        // f_stream.close();
+}
+
+Test(readReport, test_readReport_closeFile, .signal=SIGPIPE,  .init=redirect_all_stdout) {
+        SickKoala       sickKoala;
+
+        cr_assert(ne(str, sickKoala.get_name().data(), ""));
+        cr_assert(eq(str, sickKoala.get_name().data(), "SickKoala"));
+//////////////////////////////////////////////////////////////////////////
+        std::string     filename_param = sickKoala.get_name() + ".report";
+
+        cr_assert(not(zero(str, filename_param)));
+        cr_assert(not(eq(str, filename_param, "")));        
+        cr_assert(ne(str, filename_param.data(), ""));
+        cr_assert(eq(str, filename_param.data(), "SickKoala.report"));
+//////////////////////////////////////////////////////////////////////////
+        int             id = 1;
+        KoalaNurse      koalaNurse(id);
+
+        cr_assert(id);
+        cr_assert(eq(int, koalaNurse.getID(), 1));
+        cr_assert(eq(int, koalaNurse.getID(), id));
+//////////////////////////////////////////////////////////////////////////
+        std::string     my_line;
+
+        cr_assert(zero(str, my_line));
+        cr_assert(eq(str, my_line, ""));
+        cr_assert_str_empty(my_line.data());
+//////////////////////////////////////////////////////////////////////////
+        std::string     return_value;
+
+        cr_assert(zero(str, return_value));
+        cr_assert(eq(str, return_value, ""));
+        cr_assert_str_empty(return_value.data());
+//////////////////////////////////////////////////////////////////////////
+        std::fstream    f_stream;
+
+        f_stream.open(filename_param.data(), std::ios::in);
+        cr_assert(f_stream.is_open() == true);
+//////////////////////////////////////////////////////////////////////////
+        if (f_stream.is_open()) {
+                while (std::getline (f_stream, my_line, '\0')) {
+                        std::cout << "Nurse " << koalaNurse.getID() 
+                        << ": Kreog! Mr." << sickKoala.get_name() 
+                        << " needs a " << my_line << "!" << std::endl;
+                        return_value = "Nurse " + std::to_string(koalaNurse.getID()) 
+                        + ": Kreog! Mr." + sickKoala.get_name() + " needs a " + my_line + "!\n";
+                        cr_assert_stdout_eq_str("Nurse 1: Kreog! Mr.SickKoala needs a DRUG!\n");
+                        cr_assert(not(eq(str,return_value, "")));
+                        cr_assert(eq(str, return_value, "Nurse " + std::to_string(koalaNurse.getID()) 
+                        + ": Kreog! Mr." + sickKoala.get_name() + " needs a " + my_line + "!\n"));
+                }
+        } else {
+                std::cout << "" << std::flush;
+                return_value = "";
+                cr_assert(zero(str, return_value));
+                cr_assert(eq(str, return_value, ""));
+                cr_assert_str_empty(return_value.data());
+                cr_assert_stdout_eq_str("");
+        }
+        f_stream.close();
+        cr_assert(f_stream.is_open() == false);
+}
+
+Test(readReport, test_readReport_NotCloseFile, .signal=SIGPIPE,  .init=redirect_all_stdout) {
+        SickKoala       sickKoala;
+
+        cr_assert(ne(str, sickKoala.get_name().data(), ""));
+        cr_assert(eq(str, sickKoala.get_name().data(), "SickKoala"));
+//////////////////////////////////////////////////////////////////////////
+        std::string     filename_param = sickKoala.get_name() + ".report";
+
+        cr_assert(not(zero(str, filename_param)));
+        cr_assert(not(eq(str, filename_param, "")));        
+        cr_assert(ne(str, filename_param.data(), ""));
+        cr_assert(eq(str, filename_param.data(), "SickKoala.report"));
+//////////////////////////////////////////////////////////////////////////
+        int             id = 1;
+        KoalaNurse      koalaNurse(id);
+
+        cr_assert(id);
+        cr_assert(eq(int, koalaNurse.getID(), 1));
+        cr_assert(eq(int, koalaNurse.getID(), id));
+//////////////////////////////////////////////////////////////////////////
+        std::string     my_line;
+
+        cr_assert(zero(str, my_line));
+        cr_assert(eq(str, my_line, ""));
+        cr_assert_str_empty(my_line.data());
+//////////////////////////////////////////////////////////////////////////
+        std::string     return_value;
+
+        cr_assert(zero(str, return_value));
+        cr_assert(eq(str, return_value, ""));
+        cr_assert_str_empty(return_value.data());
+//////////////////////////////////////////////////////////////////////////
+        std::fstream    f_stream;
+
+        f_stream.open(filename_param.data(), std::ios::in);
+        cr_assert(f_stream.is_open() == true);
+//////////////////////////////////////////////////////////////////////////
+        if (f_stream.is_open()) {
+                while (std::getline (f_stream, my_line, '\0')) {
+                        std::cout << "Nurse " << koalaNurse.getID() 
+                        << ": Kreog! Mr." << sickKoala.get_name() 
+                        << " needs a " << my_line << "!" << std::endl;
+                        return_value = "Nurse " + std::to_string(koalaNurse.getID()) 
+                        + ": Kreog! Mr." + sickKoala.get_name() + " needs a " + my_line + "!\n";
+                        cr_assert_stdout_eq_str("Nurse 1: Kreog! Mr.SickKoala needs a DRUG!\n");
+                        cr_assert(not(eq(str,return_value, "")));
+                        cr_assert(eq(str, return_value, "Nurse " + std::to_string(koalaNurse.getID()) 
+                        + ": Kreog! Mr." + sickKoala.get_name() + " needs a " + my_line + "!\n"));
+                }
+        } else {
+                std::cout << "" << std::flush;
+                return_value = "";
+                cr_assert(zero(str, return_value));
+                cr_assert(eq(str, return_value, ""));
+                cr_assert_str_empty(return_value.data());
+                cr_assert_stdout_eq_str("");
+        }
+        cr_assert(f_stream.is_open() == true);
+}
+
+Test(readReport, test_readReport, .signal=SIGPIPE,  .init=redirect_all_stdout) {
+        SickKoala       sickKoala;
+
+        cr_assert(ne(str, sickKoala.get_name().data(), ""));
+        cr_assert(eq(str, sickKoala.get_name().data(), "SickKoala"));
+//////////////////////////////////////////////////////////////////////////
+        std::string     filename_param = sickKoala.get_name() + ".report";
+
+        cr_assert(not(zero(str, filename_param)));
+        cr_assert(not(eq(str, filename_param, "")));        
+        cr_assert(ne(str, filename_param.data(), ""));
+        cr_assert(eq(str, filename_param.data(), "SickKoala.report"));
+//////////////////////////////////////////////////////////////////////////
+        int             id = 1;
+        KoalaNurse      koalaNurse(id);
+
+        cr_assert(id);
+        cr_assert(eq(int, koalaNurse.getID(), 1));
+        cr_assert(eq(int, koalaNurse.getID(), id));
+//////////////////////////////////////////////////////////////////////////
+        std::string     my_line;
+
+        cr_assert(zero(str, my_line));
+        cr_assert(eq(str, my_line, ""));
+        cr_assert_str_empty(my_line.data());
+//////////////////////////////////////////////////////////////////////////
+        std::string     return_value;
+
+        cr_assert(zero(str, return_value));
+        cr_assert(eq(str, return_value, ""));
+        cr_assert_str_empty(return_value.data());
+//////////////////////////////////////////////////////////////////////////
+        std::fstream    f_stream;
+
+        f_stream.open(filename_param.data(), std::ios::in);
+        cr_assert(f_stream.is_open() == true);
+//////////////////////////////////////////////////////////////////////////
+        if (f_stream.is_open()) {
+                while (std::getline (f_stream, my_line, '\0')) {
+                        std::cout << "Nurse " << koalaNurse.getID() 
+                        << ": Kreog! Mr." << sickKoala.get_name() 
+                        << " needs a " << my_line << "!" << std::endl;
+                        return_value = "Nurse " + std::to_string(koalaNurse.getID()) 
+                        + ": Kreog! Mr." + sickKoala.get_name() + " needs a " + my_line + "!\n";
+                        cr_assert_stdout_eq_str("Nurse 1: Kreog! Mr.SickKoala needs a DRUG!\n");
+                        cr_assert(not(eq(str,return_value, "")));
+                        cr_assert(eq(str, return_value, "Nurse " + std::to_string(koalaNurse.getID()) 
+                        + ": Kreog! Mr." + sickKoala.get_name() + " needs a " + my_line + "!\n"));
+                }
+        } else {
+                std::cout << "" << std::flush;
+                return_value = "";
+                cr_assert(zero(str, return_value));
+                cr_assert(eq(str, return_value, ""));
+                cr_assert_str_empty(return_value.data());
+                cr_assert_stdout_eq_str("");
+        }
+        f_stream.close();
+        cr_assert(f_stream.is_open() == false);
+}
+// Test(readReport, test_readReport) {
+//         SickKoala       sickKoala;
+//         std::string     filename_param = sickKoala.get_name() + ".dreport";
+//         KoalaNurse      koalaNurse(1);
+//         std::fstream    f_stream;
+//         std::string     my_line;
+//         std::string     return_value;
+
+//         f_stream.open(filename_param.data(), std::fstream::in);
+//         if (f_stream.is_open()) {
+//                 while (std::getline (f_stream, my_line, '\0')) {
+//                         std::cout << "Nurse " << koalaNurse.getID() << ": Kreog! Mr." << sickKoala.get_name() << " needs a " << my_line << "!" << std::endl;
+//                         return_value = "Nurse " + std::to_string(koalaNurse.getID()) + ": Kreog! Mr." + sickKoala.get_name() + " needs a " + my_line + "!";
+
+//                 }
+//         } else {
+//                 std::cout << "empty string";
+//                 return_value = "";
+
+//         }
+//         f_stream.close();
+// }
+
 // Test(poke, stdcout_poke_function, .signal=SIGPIPE, .init=redirect_all_stdout) {
 //         SickKoala sickKoala("SickKoala");
 
