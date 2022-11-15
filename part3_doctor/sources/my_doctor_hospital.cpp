@@ -25,7 +25,6 @@ std::string             KoalaDoctor::getName(void)
 {
         return _name;
 }
-
 // //SETTER
 // void            Doctor::set_isWorking(bool isWorking)
 // {
