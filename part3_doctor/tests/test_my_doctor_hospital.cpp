@@ -18,7 +18,6 @@ Test(KoalaDoctor, test_getName) {
     cr_assert(eq(str, cox.getName(), "Cox"));
 }
 
-
 //////////////////////////////////////////////////////////////////////////////
 // Test(KoalaNurse, test_ctor_and_getID) {
 //         int             id = 1;
