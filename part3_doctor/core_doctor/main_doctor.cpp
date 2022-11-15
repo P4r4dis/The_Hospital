@@ -93,6 +93,9 @@ int     main(int ac, char **av)
         ////////////////////////////////////////////////////
         //DOCTOR
         ////////////////////////////////////////////////////
+        KoalaDoctor     cox("Cox");
+
+        std::cout << cox.getName() << std::endl;
         
     }
     return 0;
