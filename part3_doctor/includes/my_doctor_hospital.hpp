@@ -5,28 +5,24 @@
 #include <iomanip>
 #include <fstream>
 #include "../../part1_patient/includes/my_patient_hospital.hpp"
+// #include "../../part2_nurse/includes/my_nurse_hospital.hpp"
 
-class Doctor
+class KoalaDoctor
 {
     private:
-        int     _id;
-        bool    _isWorking;
+        std::string     _name;
 
     public:
     //CTOR
-        Doctor(int  id);
+        KoalaDoctor(std::string  name);
     //CCTOR
     //DTOR
-        ~Doctor();
+        ~KoalaDoctor();
     //Member Function
-        void            giveDrug(std::string    Drug, SickKoala     *patient);
-        std::string     readReport(std::string  fileName);
-        void            timeCheck(void);
+
     //Getter
-        int             getID(void);
-        bool            get_isWorking(void);
+        std::string     getName(void);
     //Setter
-        void            set_isWorking(bool  isWorking);
     protected:
 
 };

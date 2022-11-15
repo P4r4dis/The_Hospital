@@ -1,16 +1,22 @@
+#include "../includes/my_doctor_hospital.hpp"
 #include "../../part2_nurse/includes/my_nurse_hospital.hpp"
 #include "../../part1_patient/includes/my_patient_hospital.hpp"
 #include "./tests_includes/test_my_doctor_hospital.hpp"
 
 
-// Test(KoalaNurse, test_ctor_and_getID) {
-//         int             id = 1;
-//         KoalaNurse      koalaNurse(id);
+Test(KoalaDoctor, test_ctor_stdout,.init=redirect_all_stdout) {
+    KoalaDoctor     cox("Cox");
 
-//         cr_assert(id);
-//         cr_assert(eq(int, koalaNurse.getID(), 1));
-//         cr_assert(eq(int, koalaNurse.getID(), id));
-// }
+    cr_assert_stdout_eq_str("Dr.Cox: I'm Dr.Cox! How do you kreog?\n");
+}
+
+Test(KoalaDoctor, test_getName) {
+    KoalaDoctor     cox("Cox");
+
+    cr_assert(not(zero(str, cox.getName())));
+    cr_assert(not(eq(str, cox.getName(), "")));
+    cr_assert(eq(str, cox.getName(), "Cox"));
+}
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -50,9 +56,9 @@
 //         cr_assert(eq(str, Drug, ""));
 //         cr_assert_str_empty(Drug.data());
 //         Drug = "drug";
-//         cr_assert(not(zero(str, Drug)));
-//         cr_assert(not(eq(str, Drug, "")));
-//         cr_assert(eq(str, Drug, "drug"));
+        // cr_assert(not(zero(str, Drug)));
+        // cr_assert(not(eq(str, Drug, "")));
+        // cr_assert(eq(str, Drug, "drug"));
 
 //         SickKoala patient;
 //         patient.takeDrug(Drug);
@@ -69,8 +75,8 @@
 // Test(readReport, test_readReport_params) {
 //         SickKoala       sickKoala;
 
-//         cr_assert(ne(str, sickKoala.get_name().data(), ""));
-//         cr_assert(eq(str, sickKoala.get_name().data(), "SickKoala"));
+        // cr_assert(ne(str, sickKoala.get_name().data(), ""));
+        // cr_assert(eq(str, sickKoala.get_name().data(), "SickKoala"));
 // //////////////////////////////////////////////////////////////////////////
 //         std::string     filename_param = sickKoala.get_name() + ".report";
 
