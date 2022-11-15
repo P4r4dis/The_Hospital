@@ -4,7 +4,7 @@
 #include "./tests_includes/test_my_doctor_hospital.hpp"
 
 
-Test(KoalaDoctor, test_ctor_stdout,.init=redirect_all_stdout) {
+Test(KoalaDoctor, test_ctor_stdout, .init=redirect_all_stdout) {
     KoalaDoctor     cox("Cox");
 
     cr_assert_stdout_eq_str("Dr.Cox: I'm Dr.Cox! How do you kreog?\n");
@@ -16,6 +16,17 @@ Test(KoalaDoctor, test_getName) {
     cr_assert(not(zero(str, cox.getName())));
     cr_assert(not(eq(str, cox.getName(), "")));
     cr_assert(eq(str, cox.getName(), "Cox"));
+}
+
+Test(KoalaDoctor, test_diagnose, .signal=SIGPIPE, .init=redirect_all_stdout)
+{
+    KoalaDoctor     cox("Cox");
+    SickKoala       sickKoala;
+
+    std::cout << "Dr." << cox.getName() 
+    << ": So what's goerking you Mr." 
+    << sickKoala.get_name().data() << "?" << std::endl;
+    cr_assert_stdout_eq_str("Dr.Cox: I'm Dr.Cox! How do you kreog?\nDr.Cox: So what's goerking you Mr.SickKoala?\n");
 }
 
 //////////////////////////////////////////////////////////////////////////////
