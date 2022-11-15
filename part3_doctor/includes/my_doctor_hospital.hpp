@@ -1,12 +1,12 @@
-#ifndef __MY_NURSE_HOSPITAL__
-#   define __MY_NURSE__HOSPITAL__
+#ifndef __MY_DOCTOR_HOSPITAL__
+#   define __MY_DOCTOR_HOSPITAL__
 
 #include <iostream>
 #include <iomanip>
 #include <fstream>
 #include "../../part1_patient/includes/my_patient_hospital.hpp"
 
-class KoalaNurse
+class Doctor
 {
     private:
         int     _id;
@@ -14,10 +14,10 @@ class KoalaNurse
 
     public:
     //CTOR
-        KoalaNurse(int  id);
+        Doctor(int  id);
     //CCTOR
     //DTOR
-        ~KoalaNurse();
+        ~Doctor();
     //Member Function
         void            giveDrug(std::string    Drug, SickKoala     *patient);
         std::string     readReport(std::string  fileName);
@@ -31,4 +31,4 @@ class KoalaNurse
 
 };
 
-#endif  // !__MY_NURSE_HOSPITAL__
+#endif  // !__MY_DOCTOR_HOSPITAL__
