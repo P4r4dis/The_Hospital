@@ -18,15 +18,265 @@ Test(KoalaDoctor, test_getName) {
     cr_assert(eq(str, cox.getName(), "Cox"));
 }
 
-Test(KoalaDoctor, test_diagnose, .signal=SIGPIPE, .init=redirect_all_stdout)
+Test(KoalaDoctor, test_diagnose_parameters,.init=redirect_all_stdout)//, .signal=SIGPIPE, .init=redirect_all_stdout)
 {
     KoalaDoctor     cox("Cox");
-    SickKoala       sickKoala;
+    cr_assert_stdout_eq_str("Dr.Cox: I'm Dr.Cox! How do you kreog?\n");
+///////////////////////////////////////////////////////////////////////
+    SickKoala       *sickKoala = new SickKoala;
+    std::string     name;
+    cr_assert(zero(str, name));
+    cr_assert(eq(str, name, ""));
+    cr_assert_str_empty(name.data());
+    cr_assert(ne(str, sickKoala->get_name().data(), ""));
+    cr_assert(eq(str, sickKoala->get_name().data(), "SickKoala"));
+//////////////////////////////////////////////////////////////////////
+    std::string     file_nameReport = sickKoala->get_name() + ".report";
+    cr_assert(not(zero(str, file_nameReport)));
+    cr_assert(not(eq(str, file_nameReport, "")));        
+    cr_assert(ne(str, file_nameReport.data(), ""));
+    cr_assert(eq(str, file_nameReport.data(), "SickKoala.report"));
+//////////////////////////////////////////////////////////////////////
+    std::ofstream   file_drReport;
+
+    file_drReport.open(file_nameReport.data());
+    cr_assert(file_drReport.is_open() == true);
+    file_drReport.close();
+    cr_assert(file_drReport.is_open() == false);
+/////////////////////////////////////////////////////////////////////
+    std::string     drug[5] = {"Mars", "Buronzand", "Viagra", "Extasy", "Eucalyptus leaf"};
+    std::string     drug2[5] = {"Mars", "Buronzand", "Viagra", "Extasy", "Eucalyptus leaf"};
+
+    cr_assert(eq(str[5], drug, drug2));
+//////////////////////////////////////////////////////////////////////
+    long            number_random = random() % 5;
+    cr_assert(number_random != 0);
+    cr_assert(number_random == 3);
+
+
+    // std::cout << "Dr." << cox.getName() 
+    // << ": So what's goerking you Mr." 
+    // << sickKoala->get_name() << "?" << std::endl;
+    // sickKoala->poke();
+
+    // file_drReport.open(file_nameReport);
+    // file_drReport << drug[number_random];
+    // file_drReport.close();
+    // cr_assert_stdout_eq_str("Dr.Cox: I'm Dr.Cox! How do you kreog?\nDr.Cox: So what's goerking you Mr.SickKoala?\nMr.SickKoala: Gooeeeeerrk!!\n");
+
+
+
+    // std::cout << "Dr." << cox.getName() 
+    // << ": So what's goerking you Mr." 
+    // << sickKoala->get_name() << "?" << std::endl;
+    // sickKoala->poke();
+
+    // file_nameReport = sickKoala->get_name() + ".report";
+    // file_drReport.open(file_nameReport);
+    // file_drReport << drug[number_random];
+    // file_drReport.close();
+    // cr_assert_stdout_eq_str("Dr.Cox: I'm Dr.Cox! How do you kreog?\nDr.Cox: So what's goerking you Mr.SickKoala?\nMr.SickKoala: Gooeeeeerrk!!\n");
+}
+
+Test(KoalaDoctor, test_diagnose_KoalaDoctor_stdout,.init=redirect_all_stdout)//, .signal=SIGPIPE, .init=redirect_all_stdout)
+{
+    KoalaDoctor     cox("Cox");
+///////////////////////////////////////////////////////////////////////
+    SickKoala       *sickKoala = new SickKoala;
+    std::string     name;
+    cr_assert(zero(str, name));
+    cr_assert(eq(str, name, ""));
+    cr_assert_str_empty(name.data());
+    cr_assert(ne(str, sickKoala->get_name().data(), ""));
+    cr_assert(eq(str, sickKoala->get_name().data(), "SickKoala"));
+//////////////////////////////////////////////////////////////////////
+    std::string     file_nameReport = sickKoala->get_name() + ".report";
+    cr_assert(not(zero(str, file_nameReport)));
+    cr_assert(not(eq(str, file_nameReport, "")));        
+    cr_assert(ne(str, file_nameReport.data(), ""));
+    cr_assert(eq(str, file_nameReport.data(), "SickKoala.report"));
+//////////////////////////////////////////////////////////////////////
+    std::ofstream   file_drReport;
+
+    file_drReport.open(file_nameReport.data());
+    cr_assert(file_drReport.is_open() == true);
+    file_drReport.close();
+    cr_assert(file_drReport.is_open() == false);
+/////////////////////////////////////////////////////////////////////
+    std::string     drug[5] = {"Mars", "Buronzand", "Viagra", "Extasy", "Eucalyptus leaf"};
+    std::string     drug2[5] = {"Mars", "Buronzand", "Viagra", "Extasy", "Eucalyptus leaf"};
+
+    cr_assert(eq(str[5], drug, drug2));
+//////////////////////////////////////////////////////////////////////
+    long            number_random = random() % 5;
+    cr_assert(number_random != 0);
+    cr_assert(number_random == 3);
+//////////////////////////////////////////////////////////////////////
+    std::cout << "Dr." << cox.getName() 
+    << ": So what's goerking you Mr." 
+    << sickKoala->get_name() << "?" << std::endl;
+    cr_assert_stdout_eq_str("Dr.Cox: I'm Dr.Cox! How do you kreog?\nDr.Cox: So what's goerking you Mr.SickKoala?\n");
+//////////////////////////////////////////////////////////////////////
+    // sickKoala->poke();
+
+    // file_drReport.open(file_nameReport);
+    // file_drReport << drug[number_random];
+    // file_drReport.close();
+    // cr_assert_stdout_eq_str("Dr.Cox: I'm Dr.Cox! How do you kreog?\nDr.Cox: So what's goerking you Mr.SickKoala?\nMr.SickKoala: Gooeeeeerrk!!\n");
+
+
+
+    // std::cout << "Dr." << cox.getName() 
+    // << ": So what's goerking you Mr." 
+    // << sickKoala->get_name() << "?" << std::endl;
+    // sickKoala->poke();
+
+    // file_nameReport = sickKoala->get_name() + ".report";
+    // file_drReport.open(file_nameReport);
+    // file_drReport << drug[number_random];
+    // file_drReport.close();
+    // cr_assert_stdout_eq_str("Dr.Cox: I'm Dr.Cox! How do you kreog?\nDr.Cox: So what's goerking you Mr.SickKoala?\nMr.SickKoala: Gooeeeeerrk!!\n");
+}
+
+Test(KoalaDoctor, test_diagnose_Sickkoala_poke_memberFunction,.init=redirect_all_stdout)//, .signal=SIGPIPE, .init=redirect_all_stdout)
+{
+    KoalaDoctor     cox("Cox");
+///////////////////////////////////////////////////////////////////////
+    SickKoala       *sickKoala = new SickKoala;
+    std::string     name;
+    cr_assert(zero(str, name));
+    cr_assert(eq(str, name, ""));
+    cr_assert_str_empty(name.data());
+    cr_assert(ne(str, sickKoala->get_name().data(), ""));
+    cr_assert(eq(str, sickKoala->get_name().data(), "SickKoala"));
+//////////////////////////////////////////////////////////////////////
+    std::string     file_nameReport = sickKoala->get_name() + ".report";
+    cr_assert(not(zero(str, file_nameReport)));
+    cr_assert(not(eq(str, file_nameReport, "")));        
+    cr_assert(ne(str, file_nameReport.data(), ""));
+    cr_assert(eq(str, file_nameReport.data(), "SickKoala.report"));
+//////////////////////////////////////////////////////////////////////
+    std::ofstream   file_drReport;
+
+    file_drReport.open(file_nameReport.data());
+    cr_assert(file_drReport.is_open() == true);
+    file_drReport.close();
+    cr_assert(file_drReport.is_open() == false);
+/////////////////////////////////////////////////////////////////////
+    std::string     drug[5] = {"Mars", "Buronzand", "Viagra", "Extasy", "Eucalyptus leaf"};
+    std::string     drug2[5] = {"Mars", "Buronzand", "Viagra", "Extasy", "Eucalyptus leaf"};
+
+    cr_assert(eq(str[5], drug, drug2));
+//////////////////////////////////////////////////////////////////////
+    long            number_random = random() % 5;
+    cr_assert(number_random != 0);
+    cr_assert(number_random == 3);
+//////////////////////////////////////////////////////////////////////
+    std::cout << "Dr." << cox.getName() 
+    << ": So what's goerking you Mr." 
+    << sickKoala->get_name() << "?" << std::endl;
+//////////////////////////////////////////////////////////////////////
+    sickKoala->poke();
+    cr_assert_stdout_eq_str("Dr.Cox: I'm Dr.Cox! How do you kreog?\nDr.Cox: So what's goerking you Mr.SickKoala?\nMr.SickKoala: Gooeeeeerrk!!\n");
+//////////////////////////////////////////////////////////////////////
+    // file_drReport.open(file_nameReport);
+    // file_drReport << drug[number_random];
+    // file_drReport.close();
+    // cr_assert_stdout_eq_str("Dr.Cox: I'm Dr.Cox! How do you kreog?\nDr.Cox: So what's goerking you Mr.SickKoala?\nMr.SickKoala: Gooeeeeerrk!!\n");
+
+
+
+    // std::cout << "Dr." << cox.getName() 
+    // << ": So what's goerking you Mr." 
+    // << sickKoala->get_name() << "?" << std::endl;
+    // sickKoala->poke();
+
+    // file_nameReport = sickKoala->get_name() + ".report";
+    // file_drReport.open(file_nameReport);
+    // file_drReport << drug[number_random];
+    // file_drReport.close();
+    // cr_assert_stdout_eq_str("Dr.Cox: I'm Dr.Cox! How do you kreog?\nDr.Cox: So what's goerking you Mr.SickKoala?\nMr.SickKoala: Gooeeeeerrk!!\n");
+}
+
+Test(KoalaDoctor, test_diagnose_writeReport, .init=redirect_all_stdout)//, .signal=SIGPIPE, .init=redirect_all_stdout)
+{
+    KoalaDoctor     cox("Cox");
+///////////////////////////////////////////////////////////////////////
+    SickKoala       *sickKoala = new SickKoala;
+    std::string     name;
+    cr_assert(zero(str, name));
+    cr_assert(eq(str, name, ""));
+    cr_assert_str_empty(name.data());
+    cr_assert(ne(str, sickKoala->get_name().data(), ""));
+    cr_assert(eq(str, sickKoala->get_name().data(), "SickKoala"));
+//////////////////////////////////////////////////////////////////////
+    std::string     file_nameReport = sickKoala->get_name() + ".report";
+    cr_assert(not(zero(str, file_nameReport)));
+    cr_assert(not(eq(str, file_nameReport, "")));        
+    cr_assert(ne(str, file_nameReport.data(), ""));
+    cr_assert(eq(str, file_nameReport.data(), "SickKoala.report"));
+//////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
+    std::string     drug[5] = {"Mars", "Buronzand", "Viagra", "Extasy", "Eucalyptus leaf"};
+    std::string     drug2[5] = {"Mars", "Buronzand", "Viagra", "Extasy", "Eucalyptus leaf"};
+
+    cr_assert(eq(str[5], drug, drug2));
+//////////////////////////////////////////////////////////////////////
+    long            number_random = random() % 5;
+    cr_assert(number_random != 0);
+    cr_assert(number_random == 3);
+//////////////////////////////////////////////////////////////////////
+    std::cout << "Dr." << cox.getName() 
+    << ": So what's goerking you Mr." 
+    << sickKoala->get_name() << "?" << std::endl;
+//////////////////////////////////////////////////////////////////////
+    sickKoala->poke();
+    // cr_assert_stdout_eq_str("Dr.Cox: I'm Dr.Cox! How do you kreog?\nDr.Cox: So what's goerking you Mr.SickKoala?\nMr.SickKoala: Gooeeeeerrk!!\n");
+//////////////////////////////////////////////////////////////////////
+    std::ofstream   file_drReport;
+
+    file_drReport.open(file_nameReport.data());
+    cr_assert(file_drReport.is_open() == true);
+    file_drReport << drug[number_random];
+    file_drReport.close();
+    cr_assert(file_drReport.is_open() == false);
+
+    std::string line;
+    std::ifstream myfile("SickKoala.report");
+
+    if (myfile.is_open())
+    {
+        while ( getline (myfile,line) )
+        {
+            std::cout << line << std::endl;
+        }
+        myfile.close();
+        cr_assert(myfile.is_open() == false);
+    }
+    cr_assert_stdout_eq_str("Dr.Cox: I'm Dr.Cox! How do you kreog?\nDr.Cox: So what's goerking you Mr.SickKoala?\nMr.SickKoala: Gooeeeeerrk!!\nExtasy\n");
+}
+
+
+Test(KoalaDoctor, test_diagnose,.init=redirect_all_stdout)//, .signal=SIGPIPE, .init=redirect_all_stdout)
+{
+    KoalaDoctor     cox("Cox");
+    SickKoala       *sickKoala = new SickKoala;
+    std::ofstream   file_drReport;
+    std::string     file_nameReport;
+
+    std::string     drug[5] = {"Mars", "Buronzand", "Viagra", "Extasy", "Eucalyptus leaf"};
+    long            number_random = random() % 5;
 
     std::cout << "Dr." << cox.getName() 
     << ": So what's goerking you Mr." 
-    << sickKoala.get_name().data() << "?" << std::endl;
-    cr_assert_stdout_eq_str("Dr.Cox: I'm Dr.Cox! How do you kreog?\nDr.Cox: So what's goerking you Mr.SickKoala?\n");
+    << sickKoala->get_name() << "?" << std::endl;
+    sickKoala->poke();
+
+    file_nameReport = sickKoala->get_name() + ".report";
+    file_drReport.open(file_nameReport);
+    file_drReport << drug[number_random];
+    file_drReport.close();
+    cr_assert_stdout_eq_str("Dr.Cox: I'm Dr.Cox! How do you kreog?\nDr.Cox: So what's goerking you Mr.SickKoala?\nMr.SickKoala: Gooeeeeerrk!!\n");
 }
 
 //////////////////////////////////////////////////////////////////////////////
