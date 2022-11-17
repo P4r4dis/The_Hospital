@@ -1,5 +1,5 @@
 # The_Hospital
-## The_Hospital Part 2 : KoalaNurse (Nurse)
+## The_Hospital Part 3 : KoalaDoctor (Doctor)
 [![forthebadge](https://forthebadge.com/images/badges/made-with-c-plus-plus.svg)](https://forthebadge.com)
 ## Table Of Contents
 <p align="center">
@@ -52,51 +52,48 @@ This should be all you need.
 ## Description
 [(Back to top)](#table-of-contents)
 
-* Now that we have patients, we need a nurse to take care of them.
-You are now coding the nurse for the koala: the KoalaNurse class.
+* Now that we have patients, we have a nurse to take care of them.
+We still need a doctor to give instructions to the nurses.
+You are now coding the Doctor for the koala: the __KoalaDoctor class.__
 ## Objectifs
 [(Back to top)](#table-of-contents)
+* Before we get started, __add a getName member function__ to the __SickKoala class__, taking __no parameters__ and __returning the name of the patient as a string.__
 
-* Create a __KoalaNurse class__
-* Each __KoalaNurse__ has a __numerical identifier (ID)__ which must be provided when the object is created,
-but it is not possible to create a nurse without __specifying her ID__.
-* when a __KoalaNurse is destroyed__, it’ll express its relief like so:
+* Create a __KoalaDoctor class__.
+it must be __instantiated__ with a __name string__.
+During __construction__, it must __print__ the following to the __standard output__:
     ```
-    Nurse [ID]: Finally some rest!
+    Dr .[ name ]: I ' m Dr .[ name ]! How do you kreog ?
     ```
-* The nurse can give drugs to patients, through a __giveDrug member function__ with the following __parameters a string (Drug) and a pointer to the patient__.
-This member function does not return anything.
-When it is called, the nurse gives medication to the patient.
-*  The nurse can read the doctor’s report through a __readReport member function__ that takes a __filename
-string as parameter__.
-    * The __filename__ is built from the __sick Koala’s name__, followed by the __.report extension__.
-    * The file contains the __name of the drug__ to give to the patient.
-This member function __returns the name of the drug as a string and prints the following to the standard output__:
-    ```
-    Nurse [ ID ]: Kreog ! Mr .[ patientName ] needs a [ drugName ]!
-    ```
-    If the __.report file doesn’t exist or is not valid__, nothing must be displayed and the return value must be an __empty string__.
-* The nurse can clock in thanks to a __timeCheck member function__ that takes __no parameter and doesn’t
-return anything__.
-The nurse calls this member function when it __starts working__ and when it __stops working__ (as it is a very
-diligent worker).
-When it clocks in at the __start__ of her job, it says:
-    ```
-    Nurse [ ID ]: Time to get to work !
-    ```
-    When it __stops__ working, it says:
-    ```
-    Nurse [ ID ]: Time to go home to my eucalyptus forest !
-    ```
-* It is up to you to figure out a way to find out when it starts and stops working.
-* By default, when the program starts, the nurse is not working yet.
-The KoalaNurse being very diligent, it will take any job.
-Even outsided the hospital.
-Only a call to the timeCheck member function lets the KoalaNurse change her working status: if it is not
-working, it starts to work; if it is working, it stops.
-* In this exercise, __[ID] must be replaced with the KoalaNurse’s ID__ in any output.
+*  It can __diagnose patients__ using the __diagnose member function__ that takes a __pointer to the patient to diagnose as parameter__.
+    * This __member function prints__ the following to the __standard output__:
+        ```
+        Dr .[ name ]: So what ' s goerking you Mr .[ patientName ]?
+        ```
+    * It then calls the __poke member function__ of the __SickKoala__.
+    * The doctor then __writes a report__ for nurses, in a __file named [patientname].report__.
+    * This __file contains the name of the drug to give to the patient__.
+    * The name will be __picked__ at __random__ from the following __list__:
+        * Mars
+        * Buronzand
+        * Viagra
+        * Extasy
+        * Eucalyptus leaf
+            * To do this, you must __use random() % 5__ on the previous list, in the given order.
+            The __srandom__ function will be called by the __correction main__.
+* The __KoalaDoctor__ clocks in through a __timeCheck member function__, which takes __no parameters__ and does __not return anything__.
+    * When it __starts working__, it says:
+        ```
+        Dr .[ name ]: Time to get to work !
+        ```
+    * When it __stops working__, it says:
+        ```
+        Dr .[ name ]: Time to go home to my eucalyptus forest !
+        ```
+    * The __KoalaDoctor__ being very diligent, it will take any job.
+    Even outside the hospital.
+* In this exercise, any occurence of __[name]__ must be replaced with the __name of the KoalaDoctor__, and occurences of __[patientName]__ must be replaced with the __name of the SickKoala__ that is currently being treated.
 
-   
 ## Key learnings
 [(Back to top)](#table-of-contents)
 ### How to create a class
@@ -229,7 +226,26 @@ For creating files / writing information to files | For reading information from
 	    fstream my_file;
 	    my_file.close();
         ```
-
+##### How to Write to Files
+* You can write to file right from your C++ program. You use stream insertion operator (<<) for this. The text to be written to the file should be enclosed within double-quotes.
+* ```
+    #include <iostream>
+    #include <fstream>
+    using namespace std;
+    int main() {
+        fstream my_file;
+        my_file.open("my_file.txt", ios::out);
+        if (!my_file) {
+            cout << "File not created!";
+        }
+        else {
+            cout << "File created successfully!";
+            my_file << "TEST";
+            my_file.close();
+        }
+        return 0;
+    }
+    ```
 ##### How to read files
 [(Back to top)](#table-of-contents)
 
@@ -255,11 +271,11 @@ For creating files / writing information to files | For reading information from
 
 * After downloaded the project and gone to the root path SimpleCatCommand repository you can use the __Makefile__ for compile the program or the units tests and generate a bynary:
     * ```
-        make part2
+        make part3
         ```
     or for the unit_tests :
     * ```
-        make tests_run_part2
+        make tests_run_part3
         ```
 ## How To Use
 [(Back to top)](#table-of-contents)
@@ -281,7 +297,7 @@ $ make tests_run
 ########################################################
 #2e possibilities :
 # Go into the repository
-$ cd The_hospital/part2_nurse
+$ cd The_hospital/part3_doctor
 
 # start Makefile for compilation and generate binary
 $ make
@@ -295,7 +311,7 @@ $ cd The_hospital
 # start Makefile for compilation and generate binary
 $ make part
 # Or start Makefile for unit_tests
-$ make tests_run_part
+$ make tests_run_part3
 #######################################################
 
 # Use binary
