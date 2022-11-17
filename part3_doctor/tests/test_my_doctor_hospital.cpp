@@ -288,6 +288,66 @@ Test(diagnose, test_diagnose_memberfunction,.init=redirect_all_stdout)//, .signa
     cr_assert_stdout_eq_str("Dr.Cox: I'm Dr.Cox! How do you kreog?\nDr.Cox: So what's goerking you Mr.SickKoala?\nMr.SickKoala: Gooeeeeerrk!!\n");
 }
 
+
+Test(timeCheck, test_timeCheck_doctor_notWorking, .init=redirect_all_stdout)
+{
+        KoalaDoctor     cox("Cox");
+        bool            _isWorking = false;
+
+        cr_assert(_isWorking == false);
+        cr_assert(eq(str, cox.getName().data(), "Cox"));
+
+        if(_isWorking == true)
+        {
+                std::cout << "Dr." << cox.getName() << ": Time to get to work!" << std::endl;
+                cr_assert_stdout_eq_str("Dr.Cox: Time to get to work!\n");
+        }
+        else
+        {
+                std::cout << "Dr." << cox.getName() << ": Time to go home to my eucalyptus forest!" << std::endl;
+                cr_assert_stdout_eq_str("Dr.Cox: I'm Dr.Cox! How do you kreog?\nDr.Cox: Time to go home to my eucalyptus forest!\n");
+        }
+}
+
+Test(timeCheck, test_timeCheck_doctor_Working, .init=redirect_all_stdout) {
+        KoalaDoctor     cox("Cox");
+        bool            _isWorking = false;
+
+        cr_assert(_isWorking == false);
+        _isWorking = !_isWorking;
+        cr_assert(_isWorking == true);
+        cr_assert(eq(str, cox.getName().data(), "Cox"));
+
+        if(_isWorking == true) {
+                std::cout << "Dr." << cox.getName() << ": Time to get to work!" << std::endl;
+                cr_assert_stdout_eq_str("Dr.Cox: I'm Dr.Cox! How do you kreog?\nDr.Cox: Time to get to work!\n");
+        }
+        else {
+                std::cout << "Dr." << cox.getName() << ": Time to go home to my eucalyptus forest!" << std::endl;
+                cr_assert_stdout_eq_str("Dr.Cox: I'm Dr.Cox! How do you kreog?\nDr.Cox: Time to go home to my eucalyptus forest!\n");
+        }
+}
+
+// Test(timeCheck, test_timeCheck_memberFunction_working, .signal=SIGPIPE, .init=redirect_all_stdout) {
+//         KoalaNurse      koalaNurse(1);
+
+//         cr_assert(koalaNurse.get_isWorking() == false);
+//         koalaNurse.timeCheck();
+//         cr_assert(koalaNurse.get_isWorking() == true);
+//         cr_assert_stdout_eq_str("Nurse 1: Time to get to work!\n");
+// }
+
+// Test(timeCheck, test_timeCheck_memberFunction_NotWorking, .signal=SIGPIPE, .init=redirect_all_stdout) {
+//         KoalaNurse      koalaNurse(1);
+
+//         cr_assert(koalaNurse.get_isWorking() == false);
+//         koalaNurse.set_isWorking(true);
+//         cr_assert(koalaNurse.get_isWorking() == true);
+//         koalaNurse.timeCheck();
+//         cr_assert(koalaNurse.get_isWorking() == false);
+//         cr_assert_stdout_eq_str("Nurse 1: Time to go home to my eucalyptus forest!\n");
+// }
+
 //////////////////////////////////////////////////////////////////////////////
 // Test(KoalaNurse, test_ctor_and_getID) {
 //         int             id = 1;
