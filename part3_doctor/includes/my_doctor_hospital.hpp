@@ -19,6 +19,7 @@ class KoalaDoctor
     //DTOR
         ~KoalaDoctor();
     //Member Function
+        void            diagnose(SickKoala         *patient);
 
     //Getter
         std::string     getName(void);

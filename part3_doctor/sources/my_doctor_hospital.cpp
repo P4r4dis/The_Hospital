@@ -10,6 +10,25 @@ KoalaDoctor::~KoalaDoctor()
 {
 }
 // //MEMBER FUNCTION
+void                    KoalaDoctor::diagnose(SickKoala         *patient)
+{
+        std::ofstream   file_drReport;
+        std::string     file_nameReport = patient->get_name() + ".report";
+        std::string     drug[5] = {"Mars", "Buronzand", 
+        "Viagra", "Extasy", "Eucalyptus leaf"};
+        long            number_random = random() % 5;
+
+        std::cout << "Dr." << _name
+        << ": So what's goerking you Mr." 
+        << patient->get_name() << "?" << std::endl;
+        patient->poke();
+        file_drReport.open(file_nameReport);
+        if (file_drReport.is_open())
+        {
+                file_drReport << drug[number_random];
+                file_drReport.close();
+        }
+}
 // void            Doctor::giveDrug(std::string    Drug, SickKoala     *patient)
 // {
 //     patient->takeDrug(Drug);
