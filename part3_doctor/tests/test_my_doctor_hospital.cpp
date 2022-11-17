@@ -279,6 +279,15 @@ Test(KoalaDoctor, test_diagnose,.init=redirect_all_stdout)//, .signal=SIGPIPE, .
     cr_assert_stdout_eq_str("Dr.Cox: I'm Dr.Cox! How do you kreog?\nDr.Cox: So what's goerking you Mr.SickKoala?\nMr.SickKoala: Gooeeeeerrk!!\n");
 }
 
+Test(diagnose, test_diagnose_memberfunction,.init=redirect_all_stdout)//, .signal=SIGPIPE, .init=redirect_all_stdout)
+{
+    KoalaDoctor     cox("Cox");
+    SickKoala       *sickKoala = new SickKoala;
+
+    cox.diagnose(sickKoala);
+    cr_assert_stdout_eq_str("Dr.Cox: I'm Dr.Cox! How do you kreog?\nDr.Cox: So what's goerking you Mr.SickKoala?\nMr.SickKoala: Gooeeeeerrk!!\n");
+}
+
 //////////////////////////////////////////////////////////////////////////////
 // Test(KoalaNurse, test_ctor_and_getID) {
 //         int             id = 1;
