@@ -11,6 +11,7 @@ class KoalaDoctor
 {
     private:
         std::string     _name;
+        bool            _isWorking;
 
     public:
     //CTOR
@@ -20,10 +21,15 @@ class KoalaDoctor
         ~KoalaDoctor();
     //Member Function
         void            diagnose(SickKoala         *patient);
+        void            timeCheck(void);
 
     //Getter
         std::string     getName(void);
+        bool            getIsWorking(void);
+
     //Setter
+        void            setIsWorking(bool isWorking);
+
     protected:
 
 };

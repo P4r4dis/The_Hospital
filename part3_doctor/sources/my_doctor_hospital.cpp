@@ -1,6 +1,6 @@
 #include "../includes/my_doctor_hospital.hpp"
 //CTOR
-KoalaDoctor::KoalaDoctor(std::string      name) : _name(name)
+KoalaDoctor::KoalaDoctor(std::string      name) : _name(name), _isWorking(false)
 {
         std::cout << "Dr." << _name << ": I'm Dr." 
         << _name << "! How do you kreog?" << std::endl;
@@ -29,6 +29,17 @@ void                    KoalaDoctor::diagnose(SickKoala         *patient)
                 file_drReport.close();
         }
 }
+
+void                    KoalaDoctor::timeCheck(void)
+{
+        this->_isWorking = !this->_isWorking;
+        if(_isWorking == true) {
+                std::cout << "Dr." << getName() << ": Time to get to work!" << std::endl;
+        }
+        else {
+                std::cout << "Dr." << getName() << ": Time to go home to my eucalyptus forest!" << std::endl;
+        }
+}
 // void            Doctor::giveDrug(std::string    Drug, SickKoala     *patient)
 // {
 //     patient->takeDrug(Drug);
@@ -44,8 +55,13 @@ std::string             KoalaDoctor::getName(void)
 {
         return _name;
 }
+
+bool                    KoalaDoctor::getIsWorking(void)
+{
+        return _isWorking;
+}
 // //SETTER
-// void            Doctor::set_isWorking(bool isWorking)
-// {
-//         this->_isWorking = isWorking;
-// }
+void                    KoalaDoctor::setIsWorking(bool isWorking)
+{
+        this->_isWorking = isWorking;
+}

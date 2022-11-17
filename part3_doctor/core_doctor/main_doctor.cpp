@@ -97,6 +97,17 @@ int     main(int ac, char **av)
 
         std::cout << cox.getName() << std::endl;
         cox.diagnose(&sickKoala);
+        std::cout << "TEST" << std::endl;
+        std::cout << std::boolalpha << "bool : " << 
+        cox.getIsWorking() << std::endl;
+        cox.timeCheck();
+        std::cout << std::boolalpha << "bool : " << 
+        cox.getIsWorking() << std::endl;
+        cox.timeCheck();
+        std::cout << std::boolalpha << "bool : " << 
+        cox.getIsWorking() << std::endl;
+        std::cout << "END TEST" << std::endl;
+
     }
     return 0;
 }
