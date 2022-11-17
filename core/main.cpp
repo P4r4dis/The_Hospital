@@ -1,5 +1,7 @@
 #include "../part1_patient/includes/my_patient_hospital.hpp"
 #include "../part2_nurse/includes/my_nurse_hospital.hpp"
+#include "../part3_doctor/includes/my_doctor_hospital.hpp"
+
 
 
 int     main(int ac, char **av)
@@ -89,6 +91,21 @@ int     main(int ac, char **av)
         betty.timeCheck();
         std::cout << std::boolalpha << "bool : " << 
         betty.get_isWorking() << std::endl;
+        ////////////////////////////////////////////////////
+        // DOCTOR
+        ////////////////////////////////////////////////////
+        KoalaDoctor     cox("Cox");
+
+        std::cout << cox.getName() << std::endl;
+        cox.diagnose(&sickKoala);
+        std::cout << std::boolalpha << "bool : " << 
+        cox.getIsWorking() << std::endl;
+        cox.timeCheck();
+        std::cout << std::boolalpha << "bool : " << 
+        cox.getIsWorking() << std::endl;
+        cox.timeCheck();
+        std::cout << std::boolalpha << "bool : " << 
+        cox.getIsWorking() << std::endl;
     }
     return 0;
 }

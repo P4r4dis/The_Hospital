@@ -208,7 +208,7 @@ Test(readReport, test_readReport_readFile_and_stdout, .signal=SIGPIPE, .init=red
                         << " needs a " << my_line << "!" << std::endl;
                         return_value = "Nurse " + std::to_string(koalaNurse.getID()) 
                         + ": Kreog! Mr." + sickKoala.get_name() + " needs a " + my_line + "!\n";
-                        cr_assert_stdout_eq_str("Nurse 1: Kreog! Mr.SickKoala needs a DRUG!\n");
+                        cr_assert_stdout_eq_str("Nurse 1: Kreog! Mr.SickKoala needs a Extasy!\n");
                         cr_assert(not(eq(str,return_value, "")));
                         cr_assert(eq(str, return_value, "Nurse " + std::to_string(koalaNurse.getID()) 
                         + ": Kreog! Mr." + sickKoala.get_name() + " needs a " + my_line + "!\n"));
@@ -326,7 +326,7 @@ Test(readReport, test_readReport_closeFile, .signal=SIGPIPE,  .init=redirect_all
                         << " needs a " << my_line << "!" << std::endl;
                         return_value = "Nurse " + std::to_string(koalaNurse.getID()) 
                         + ": Kreog! Mr." + sickKoala.get_name() + " needs a " + my_line + "!\n";
-                        cr_assert_stdout_eq_str("Nurse 1: Kreog! Mr.SickKoala needs a DRUG!\n");
+                        cr_assert_stdout_eq_str("Nurse 1: Kreog! Mr.SickKoala needs a Extasy!\n");
                         cr_assert(not(eq(str,return_value, "")));
                         cr_assert(eq(str, return_value, "Nurse " + std::to_string(koalaNurse.getID()) 
                         + ": Kreog! Mr." + sickKoala.get_name() + " needs a " + my_line + "!\n"));
@@ -387,7 +387,7 @@ Test(readReport, test_readReport_NotCloseFile, .signal=SIGPIPE,  .init=redirect_
                         << " needs a " << my_line << "!" << std::endl;
                         return_value = "Nurse " + std::to_string(koalaNurse.getID()) 
                         + ": Kreog! Mr." + sickKoala.get_name() + " needs a " + my_line + "!\n";
-                        cr_assert_stdout_eq_str("Nurse 1: Kreog! Mr.SickKoala needs a DRUG!\n");
+                        cr_assert_stdout_eq_str("Nurse 1: Kreog! Mr.SickKoala needs a Extasy!\n");
                         cr_assert(not(eq(str,return_value, "")));
                         cr_assert(eq(str, return_value, "Nurse " + std::to_string(koalaNurse.getID()) 
                         + ": Kreog! Mr." + sickKoala.get_name() + " needs a " + my_line + "!\n"));
@@ -447,7 +447,7 @@ Test(readReport, test_readReport, .signal=SIGPIPE,  .init=redirect_all_stdout) {
                         << " needs a " << my_line << "!" << std::endl;
                         return_value = "Nurse " + std::to_string(koalaNurse.getID()) 
                         + ": Kreog! Mr." + sickKoala.get_name() + " needs a " + my_line + "!\n";
-                        cr_assert_stdout_eq_str("Nurse 1: Kreog! Mr.SickKoala needs a DRUG!\n");
+                        cr_assert_stdout_eq_str("Nurse 1: Kreog! Mr.SickKoala needs a Extasy!\n");
                         cr_assert(not(eq(str,return_value, "")));
                         cr_assert(eq(str, return_value, "Nurse " + std::to_string(koalaNurse.getID()) 
                         + ": Kreog! Mr." + sickKoala.get_name() + " needs a " + my_line + "!\n"));
@@ -474,10 +474,10 @@ Test(readReport, test_readReport_memberFunction_with_fileName, .signal=SIGPIPE, 
         cr_assert(id);
         cr_assert(eq(int, koalaNurse.getID(), 1));
         cr_assert(eq(int, koalaNurse.getID(), id));
-        cr_assert_stdout_eq_str("Nurse 1: Kreog! Mr.SickKoala needs a DRUG!\n");
+        cr_assert_stdout_eq_str("Nurse 1: Kreog! Mr.SickKoala needs a Extasy!\n");
         cr_assert(not(eq(str,return_value, "")));
         cr_assert(eq(str, return_value, "Nurse " + std::to_string(koalaNurse.getID()) 
-                        + ": Kreog! Mr.SickKoala needs a DRUG!\n"));
+                        + ": Kreog! Mr.SickKoala needs a Extasy!\n"));
 }
 
 Test(readReport, test_readReport_memberFunction_without_fileName, .signal=SIGPIPE,  .init=redirect_all_stdout) {

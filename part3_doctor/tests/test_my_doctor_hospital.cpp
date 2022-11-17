@@ -328,25 +328,25 @@ Test(timeCheck, test_timeCheck_doctor_Working, .init=redirect_all_stdout) {
         }
 }
 
-// Test(timeCheck, test_timeCheck_memberFunction_working, .signal=SIGPIPE, .init=redirect_all_stdout) {
-//         KoalaNurse      koalaNurse(1);
+Test(timeCheck, test_timeCheck_memberFunction_working, .init=redirect_all_stdout) {
+        KoalaDoctor      cox("Cox");
 
-//         cr_assert(koalaNurse.get_isWorking() == false);
-//         koalaNurse.timeCheck();
-//         cr_assert(koalaNurse.get_isWorking() == true);
-//         cr_assert_stdout_eq_str("Nurse 1: Time to get to work!\n");
-// }
+        cr_assert(cox.getIsWorking() == false);
+        cox.timeCheck();
+        cr_assert(cox.getIsWorking() == true);
+        cr_assert_stdout_eq_str("Dr.Cox: I'm Dr.Cox! How do you kreog?\nDr.Cox: Time to get to work!\n");
+}
 
-// Test(timeCheck, test_timeCheck_memberFunction_NotWorking, .signal=SIGPIPE, .init=redirect_all_stdout) {
-//         KoalaNurse      koalaNurse(1);
+Test(timeCheck, test_timeCheck_memberFunction_NotWorking, .init=redirect_all_stdout) {
+        KoalaDoctor      cox("Cox");
 
-//         cr_assert(koalaNurse.get_isWorking() == false);
-//         koalaNurse.set_isWorking(true);
-//         cr_assert(koalaNurse.get_isWorking() == true);
-//         koalaNurse.timeCheck();
-//         cr_assert(koalaNurse.get_isWorking() == false);
-//         cr_assert_stdout_eq_str("Nurse 1: Time to go home to my eucalyptus forest!\n");
-// }
+        cr_assert(cox.getIsWorking() == false);
+        cox.setIsWorking(true);
+        cr_assert(cox.getIsWorking() == true);
+        cox.timeCheck();
+        cr_assert(cox.getIsWorking() == false);
+        cr_assert_stdout_eq_str("Dr.Cox: I'm Dr.Cox! How do you kreog?\nDr.Cox: Time to go home to my eucalyptus forest!\n");
+}
 
 //////////////////////////////////////////////////////////////////////////////
 // Test(KoalaNurse, test_ctor_and_getID) {
