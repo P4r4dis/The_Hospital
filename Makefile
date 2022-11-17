@@ -34,22 +34,35 @@ NAME_DOCTOR			=	my_doctor_hospital
 TEST_NAME_DOCTOR 	= 	test_$(NAME_DOCTOR)
 
 ###############################################
+PART4_PATH 			= 	./part4_list
+PART4_SRC_PATH		=	./part4_list/sources
+PART4_TST_PATH		=	./part4_list/tests
+PART4_INC_PATH		=	./part4_list/includes
+
+PART4_SRC			=	$(PART4_SRC_PATH)/my_list_hospital.cpp
+PART4_SRC_TEST		=	$(PART4_TST_PATH)/$(NAME)_test.cpp
+NAME_LIST			=	my_list_hospital
+TEST_NAME_LIST 		= 	test_$(NAME_LIST)
+
+###############################################
 CORE_PATH			=	./core
 SRCS_PATH			=	$(PART1_SRC_PATH) \
 						$(PART2_SRC_PATH) \
-						$(PART3_SRC_PATH) 
+						$(PART3_SRC_PATH) \
+						$(PART4_SRC_PATH) 
 
 
 TST_PATH			=	$(PART1_TST_PATH) \
 						$(PART2_TST_PATH) \
-						$(PART3_TST_PATH)
+						$(PART3_TST_PATH) \
+						$(PART4_TST_PATH)
 
 NAME				=	my_hospital
 TEST_NAME 			= 	test_$(NAME)
 
 #INC_PATH 			= 	$(PART1_INC_PATH)
 #$(PART2_INC_PATH)
-INCFLAGS			+=	-I $(PART1_INC_PATH) -I $(PART2_INC_PATH) -I $(PART3_INC_PATH)
+INCFLAGS			+=	-I $(PART1_INC_PATH) -I $(PART2_INC_PATH) -I $(PART3_INC_PATH) -I $(PART4_INC_PATH)
 #$(INC_PATH)
 
 CPPFLAGS			+= 	-Wall -Wextra -Werror $(INCFLAGS)#-W -std=c++1z
@@ -57,12 +70,14 @@ CPPFLAGS			+= 	-Wall -Wextra -Werror $(INCFLAGS)#-W -std=c++1z
 SRCS 				= 	$(PART1_SRC) \
 						$(PART2_SRC) \
 						$(PART3_SRC) \
+						$(PART$_SRC) \
 						$(CORE_PATH)/main.cpp
 #$(PART2_SRC)
 
 SRC_TEST 			= 	$(PART1_SRC_TEST) \
 						$(PART2_SRC_TEST) \
-						$(PART3_SRC_TEST) 
+						$(PART3_SRC_TEST) \
+						$(PART4_SRC_TEST)
 
 OBJS				=	$(SRCS:.cpp=.o)
 CLEAN				=	clean
@@ -80,6 +95,8 @@ clean				:
 						@$(MAKE) $(CLEAN) -C $(PART1_TST_PATH)
 						@$(MAKE) $(CLEAN) -C $(PART2_TST_PATH)
 						@$(MAKE) $(CLEAN) -C $(PART3_TST_PATH)
+						@$(MAKE) $(CLEAN) -C $(PART4_TST_PATH)
+
 
 fclean				:	clean
 						$(RM) $(NAME) $(TEST_NAME)
@@ -89,6 +106,8 @@ fclean				:	clean
 						@$(MAKE) $(FCLEAN) -C $(PART2_PATH)
 						@$(MAKE) $(FCLEAN) -C $(PART3_TST_PATH)
 						@$(MAKE) $(FCLEAN) -C $(PART3_PATH)
+						@$(MAKE) $(FCLEAN) -C $(PART4_TST_PATH)
+						@$(MAKE) $(FCLEAN) -C $(PART4_PATH)
 
 re					: 	fclean all
 
@@ -104,6 +123,10 @@ part3 				: 	fclean
 						@$(MAKE) -C $(PART3_PATH)
 						$(PART3_PATH)/$(NAME_DOCTOR)
 
+part4 				: 	fclean
+						@$(MAKE) -C $(PART4_PATH)
+						$(PART4_PATH)/$(NAME_LIST)
+
 tests_run_part1		:	fclean
 						@$(MAKE) -C $(PART1_TST_PATH)
 						$(PART1_TST_PATH)/$(TEST_NAME_PATIENT)
@@ -116,10 +139,16 @@ tests_run_part3		:	fclean
 						@$(MAKE) -C $(PART3_TST_PATH)
 						$(PART3_TST_PATH)/$(TEST_NAME_DOCTOR)
 
+tests_run_part4		:	fclean
+						@$(MAKE) -C $(PART4_TST_PATH)
+						$(PART4_TST_PATH)/$(TEST_NAME_LIST)
+
 tests_run			:	fclean
 						@$(MAKE) tests_run_part1
 						@$(MAKE) tests_run_part2
-						@$(MAKE) tests_run_part3	
+						@$(MAKE) tests_run_part3
+						@$(MAKE) tests_run_part4
+
 
 
 #						@$(MAKE) -C $(PART1_TST_PATH)
@@ -127,7 +156,7 @@ tests_run			:	fclean
 #						@$(MAKE) -C $(PART2_TST_PATH)
 #						$(PART2_TST_PATH)/$(TEST_NAME_NURSE)
 
-.PHONY				: 	all clean fclean re part1 tests_run_part1 part2 tests_run_part2 part3 tests_run_part3 tests_run
+.PHONY				: 	all clean fclean re part1 tests_run_part1 part2 tests_run_part2 part3 tests_run_part3 part4 tests_run_part4 tests_run
 
 # $(CC) -o $(TEST_NAME) $(SRC) $(SRC_TEST) $(TESTFLAGS) $(LIBFLAG)
 #-L. -lmy_malloct

@@ -1,15 +1,14 @@
-#include "../part1_patient/includes/my_patient_hospital.hpp"
-#include "../part2_nurse/includes/my_nurse_hospital.hpp"
-#include "../part3_doctor/includes/my_doctor_hospital.hpp"
-#include "../part4_list/includes/my_list_hospital.hpp"
-
-
+#include "../../part3_doctor/includes/my_doctor_hospital.hpp"
+#include "../../part2_nurse/includes/my_nurse_hospital.hpp"
+#include "../../part1_patient/includes/my_patient_hospital.hpp"
+#include "../includes/my_list_hospital.hpp"
 
 int     main(int ac, char **av)
 {
     if (ac < 2 && av) {
-        std::cout << "CORE MAIN" << std::endl;
-        //THE PATIENT SICKKOALA
+
+        std::cout << "NURSE MAIN" << std::endl;
+        // //THE PATIENT SICKKOALA
         SickKoala   cancer("Ganepar");
         std::cout << cancer.get_name() << std::endl;
         cancer.poke();
@@ -65,7 +64,7 @@ int     main(int ac, char **av)
         fracture.takeDrug("random") << std::endl;
         fracture.overDrive("Kreog! How's it going?");
 
-        /////////////////////////////
+        // /////////////////////////////
         SickKoala   sickKoala("SickKoala");
         std::cout << sickKoala.get_name() << std::endl;
         sickKoala.poke();
@@ -76,12 +75,12 @@ int     main(int ac, char **av)
         std::cout << std::boolalpha << "return value : " << 
         sickKoala.takeDrug("random") << std::endl;
         sickKoala.overDrive("Kreog! How's it going?");
-        ////////////////////////////////////////////////////
-        //NURSE
-        ////////////////////////////////////////////////////
+
+        ///////////////////////////////////////////////////
+        //                      NURSE                    //
+        ///////////////////////////////////////////////////
         KoalaNurse      ratched(1);
         KoalaNurse      betty(2);
-        
         ratched.giveDrug("Drug", &sickKoala);
         betty.readReport("SickKoala");
         std::cout << std::boolalpha << "bool : " << 
@@ -93,12 +92,13 @@ int     main(int ac, char **av)
         std::cout << std::boolalpha << "bool : " << 
         betty.get_isWorking() << std::endl;
         ////////////////////////////////////////////////////
-        // DOCTOR
+        //DOCTOR
         ////////////////////////////////////////////////////
         KoalaDoctor     cox("Cox");
 
         std::cout << cox.getName() << std::endl;
         cox.diagnose(&sickKoala);
+        std::cout << "TEST" << std::endl;
         std::cout << std::boolalpha << "bool : " << 
         cox.getIsWorking() << std::endl;
         cox.timeCheck();
@@ -107,6 +107,8 @@ int     main(int ac, char **av)
         cox.timeCheck();
         std::cout << std::boolalpha << "bool : " << 
         cox.getIsWorking() << std::endl;
+        std::cout << "END TEST" << std::endl;
+
     }
     return 0;
 }
