@@ -6,9 +6,15 @@
 
 
 
-
 ///////////////////////////////////////////////////////////////////////////////
 
+Test(SickKoalaList, test_ctor_init_params) {
+        SickKoala               cancer;
+        SickKoalaList           sick1(&cancer);
+
+        cr_assert(not(zero(ptr,sick1.getPatient())));
+        cr_assert_eq(sick1.getPatient(), &cancer);
+}
 
 
 
