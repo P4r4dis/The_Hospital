@@ -6,25 +6,25 @@ void    redirect_all_stdout(void)
     cr_redirect_stderr();
 }
 
-        SickKoalaList::SickKoalaList(SickKoala     *patient)
-        {
-            this->_patient = patient;
-            this->_next = nullptr;
-        }
+    //     SickKoalaList::SickKoalaList(SickKoala     *patient)
+    //     {
+    //         this->_patient = patient;
+    //         this->_next = nullptr;
+    //     }
 
-       SickKoalaList::~SickKoalaList()
-       {
-       }
+    //    SickKoalaList::~SickKoalaList()
+    //    {
+    //    }
 
-       SickKoala *SickKoalaList::getPatient(){
-        return _patient;
-       }
+    //    SickKoala *SickKoalaList::getPatient(){
+    //     return _patient;
+    //    }
 
 
-       SickKoalaList    *SickKoalaList::getNext(void)
-       {
-            return _next;
-       }
+    //    SickKoalaList    *SickKoalaList::getNext(void)
+    //    {
+    //         return _next;
+    //    }
 // #include <iostream>
 // #include <iomanip>
 // int main() {

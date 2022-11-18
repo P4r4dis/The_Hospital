@@ -12,31 +12,31 @@
 
 void                redirect_all_stdout(void);
 
-class SickKoalaList
-{
-    private:
-        SickKoala       *_patient;
-        SickKoalaList   *_next;
-    public:
-    //CTOR
-        SickKoalaList(SickKoala     *patient);
-    //CCTOR
-    //DTOR
-        ~SickKoalaList();
-    //Member Function
-        bool            isEnd(void);
-        void            append(SickKoalaList            *sickKoalaList);
-        SickKoalaList   *remove(SickKoalaList           *sickKoalaList);
-        SickKoalaList   *removeFromName(std::string     name);
-        void            dump(void);
+// class SickKoalaList
+// {
+//     private:
+//         SickKoala       *_patient;
+//         SickKoalaList   *_next;
+//     public:
+//     //CTOR
+//         SickKoalaList(SickKoala     *patient);
+//     //CCTOR
+//     //DTOR
+//         ~SickKoalaList();
+//     //Member Function
+//         bool            isEnd(void);
+//         void            append(SickKoalaList            *sickKoalaList);
+//         SickKoalaList   *remove(SickKoalaList           *sickKoalaList);
+//         SickKoalaList   *removeFromName(std::string     name);
+//         void            dump(void);
 
-    //Getter
-        SickKoala       *getPatient();
-        SickKoala       *getFromName(std::string        name);
-        SickKoala       *getContent(void);
-        SickKoalaList   *getNext(void);
-    //Setter
-};
+//     //Getter
+//         SickKoala       *getPatient();
+//         SickKoala       *getFromName(std::string        name);
+//         SickKoala       *getContent(void);
+//         SickKoalaList   *getNext(void);
+//     //Setter
+// };
 
 
 

@@ -12,8 +12,8 @@ Test(SickKoalaList3, test_ctor_init_params) {
         SickKoala               cancer;
         SickKoalaList           sick1(&cancer);
 
-        cr_assert(not(zero(ptr,sick1.getPatient())));
-        cr_assert_eq(sick1.getPatient(), &cancer);
+        cr_assert(not(zero(ptr,sick1.getContent())));
+        cr_assert_eq(sick1.getContent(), &cancer);
         cr_assert(zero(ptr,sick1.getNext()));
         cr_assert_eq(sick1.getNext(), nullptr);
 }
