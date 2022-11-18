@@ -18,7 +18,7 @@ Test(SickKoalaList, test_ctor_init_params) {
         cr_assert_eq(sick1.getNext(), nullptr);
 }
 
-Test(SickKoalaList, test_ctor_isEnd) {
+Test(SickKoalaList, test_isEnd) {
         SickKoala               cancer;
         SickKoalaList           sick1(&cancer);
         bool                    return_value;
@@ -41,7 +41,19 @@ Test(SickKoalaList, test_ctor_isEnd) {
         }
 }
 
+Test(SickKoalaList, test_isEnd_memberFunction) {
+        SickKoala               cancer;
+        SickKoalaList           sick1(&cancer);
 
+        cr_assert(not(zero(ptr,sick1.getContent())));
+        cr_assert_eq(sick1.getContent(), &cancer);
+        cr_assert(zero(ptr,sick1.getNext()));
+        cr_assert_eq(sick1.getNext(), nullptr);
+
+        cr_assert(sick1.isEnd() == true);
+        sick1.setNext(&sick1);
+        cr_assert(sick1.isEnd() == false);
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////
