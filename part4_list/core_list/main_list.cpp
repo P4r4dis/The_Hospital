@@ -115,6 +115,11 @@ int     main(int ac, char **av)
 
         std::cout << "getContent " << sick1.getContent() << std::endl;
         std::cout << "getNext " << sick1.getNext() << std::endl;
+        std::cout << std::boolalpha << "bool : " << 
+        sick1.isEnd() << std::endl;
+        sick1.setNext(&sick1);
+        std::cout << std::boolalpha << "bool : " << 
+        sick1.isEnd() << std::endl;
     }
     return 0;
 }

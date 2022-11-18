@@ -7,6 +7,14 @@ SickKoalaList::     SickKoalaList(SickKoala     *content) :
 SickKoalaList::     ~SickKoalaList()
 {}
 //MEMBER FUNCTION
+bool                SickKoalaList::isEnd(void)
+{
+        if(_next == nullptr)
+            return true;
+        else
+            return false;
+        
+}
 ////ACCESSORS / GETTER
 SickKoala           *SickKoalaList::getContent(void)
 {
