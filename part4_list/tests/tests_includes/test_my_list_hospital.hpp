@@ -15,7 +15,8 @@ void                redirect_all_stdout(void);
 class SickKoalaList
 {
     private:
-        SickKoala   *_patient;
+        SickKoala       *_patient;
+        SickKoalaList   *_next;
     public:
     //CTOR
         SickKoalaList(SickKoala     *patient);
@@ -23,8 +24,17 @@ class SickKoalaList
     //DTOR
         ~SickKoalaList();
     //Member Function
+        bool            isEnd(void);
+        void            append(SickKoalaList            *sickKoalaList);
+        SickKoalaList   *remove(SickKoalaList           *sickKoalaList);
+        SickKoalaList   *removeFromName(std::string     name);
+        void            dump(void);
+
     //Getter
-        SickKoala   *getPatient();
+        SickKoala       *getPatient();
+        SickKoala       *getFromName(std::string        name);
+        SickKoala       *getContent(void);
+        SickKoalaList   *getNext(void);
     //Setter
 };
 
@@ -32,15 +42,5 @@ class SickKoalaList
 
 #endif  // !__TEST_MY_LIST_HOSPITAL__
 
-        SickKoalaList::SickKoalaList(SickKoala     *patient)
-        {
-            this->_patient = patient;
-        }
 
-       SickKoalaList::~SickKoalaList()
-       {
-       }
 
-       SickKoala *SickKoalaList::getPatient(){
-        return _patient;
-       }
