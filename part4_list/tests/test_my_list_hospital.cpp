@@ -18,6 +18,28 @@ Test(SickKoalaList3, test_ctor_init_params) {
         cr_assert_eq(sick1.getNext(), nullptr);
 }
 
+Test(SickKoalaList3, test_ctor_isEnd) {
+        SickKoala               cancer;
+        SickKoalaList           sick1(&cancer);
+        bool                    return_value;
+
+        cr_assert(not(zero(ptr,sick1.getContent())));
+        cr_assert_eq(sick1.getContent(), &cancer);
+        cr_assert(zero(ptr,sick1.getNext()));
+        cr_assert_eq(sick1.getNext(), nullptr);
+
+        if(sick1.getNext() == nullptr)
+        {
+                return_value = true;
+                cr_assert(return_value == true);
+        }
+        sick1.setNext(&sick1);
+        if(sick1.getNext() != nullptr)
+        {
+                return_value = false;
+                cr_assert(return_value == false);
+        }
+}
 
 
 

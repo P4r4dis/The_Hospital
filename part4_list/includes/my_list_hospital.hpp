@@ -30,6 +30,7 @@ class SickKoalaList
         SickKoala       *getContent(void);
         SickKoalaList   *getNext(void);
     //Setter
+        void            setNext(SickKoalaList *next);
 };
 
 #endif  // !__MY_LIST_HOSPITAL__

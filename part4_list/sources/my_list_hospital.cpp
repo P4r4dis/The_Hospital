@@ -18,7 +18,10 @@ SickKoalaList       *SickKoalaList::getNext(void)
     return _next;
 }
 ////MUTATORS / SETTER
-
+    void SickKoalaList::setNext(SickKoalaList *next)
+    {
+        this->_next = next;
+    }
 // //CTOR
 // KoalaDoctor::KoalaDoctor(std::string      name) : _name(name), _isWorking(false)
 // {

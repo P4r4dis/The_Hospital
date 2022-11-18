@@ -36,6 +36,7 @@ void                redirect_all_stdout(void);
 //         SickKoala       *getContent(void);
 //         SickKoalaList   *getNext(void);
 //     //Setter
+//         void            setNext(SickKoalaList *next);
 // };
 
 

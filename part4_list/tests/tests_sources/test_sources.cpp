@@ -25,6 +25,11 @@ void    redirect_all_stdout(void)
     //    {
     //         return _next;
     //    }
+
+    // void SickKoalaList::setNext(SickKoalaList *next)
+    // {
+    //     this->_next = next;
+    // }
 // #include <iostream>
 // #include <iomanip>
 // int main() {
