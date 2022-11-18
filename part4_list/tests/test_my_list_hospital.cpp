@@ -8,7 +8,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 
-Test(SickKoalaList3, test_ctor_init_params) {
+Test(SickKoalaList, test_ctor_init_params) {
         SickKoala               cancer;
         SickKoalaList           sick1(&cancer);
 
@@ -18,7 +18,7 @@ Test(SickKoalaList3, test_ctor_init_params) {
         cr_assert_eq(sick1.getNext(), nullptr);
 }
 
-Test(SickKoalaList3, test_ctor_isEnd) {
+Test(SickKoalaList, test_ctor_isEnd) {
         SickKoala               cancer;
         SickKoalaList           sick1(&cancer);
         bool                    return_value;
