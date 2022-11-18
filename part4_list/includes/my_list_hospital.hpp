@@ -7,31 +7,29 @@
 #include "../../part1_patient/includes/my_patient_hospital.hpp"
 // #include "../../part2_nurse/includes/my_nurse_hospital.hpp"
 
-// class KoalaDoctor
-// {
-//     private:
-//         std::string     _name;
-//         bool            _isWorking;
+class SickKoalaList
+{
+    private:
+        SickKoala       *_content;
+        SickKoalaList   *_next;
+    public:
+    //CTOR
+        SickKoalaList(SickKoala     *patient);
+    //CCTOR
+    //DTOR
+        ~SickKoalaList();
+    //Member Function
+        bool            isEnd(void);
+        void            append(SickKoalaList            *sickKoalaList);
+        SickKoalaList   *remove(SickKoalaList           *sickKoalaList);
+        SickKoalaList   *removeFromName(std::string     name);
+        void            dump(void);
 
-//     public:
-//     //CTOR
-//         KoalaDoctor(std::string  name);
-//     //CCTOR
-//     //DTOR
-//         ~KoalaDoctor();
-//     //Member Function
-//         void            diagnose(SickKoala         *patient);
-//         void            timeCheck(void);
-
-//     //Getter
-//         std::string     getName(void);
-//         bool            getIsWorking(void);
-
-//     //Setter
-//         void            setIsWorking(bool isWorking);
-
-//     protected:
-
-// };
+    //Getter
+        SickKoala       *getFromName(std::string        name);
+        SickKoala       *getContent(void);
+        SickKoalaList   *getNext(void);
+    //Setter
+};
 
 #endif  // !__MY_LIST_HOSPITAL__

@@ -1,4 +1,24 @@
 #include "../includes/my_list_hospital.hpp"
+//CTOR
+SickKoalaList::     SickKoalaList(SickKoala     *content) : 
+    _content(content), _next(nullptr) 
+{}
+//DTOR
+SickKoalaList::     ~SickKoalaList()
+{}
+//MEMBER FUNCTION
+////ACCESSORS / GETTER
+SickKoala           *SickKoalaList::getContent(void)
+{
+    return _content;
+}
+
+SickKoalaList       *SickKoalaList::getNext(void)
+{
+    return _next;
+}
+////MUTATORS / SETTER
+
 // //CTOR
 // KoalaDoctor::KoalaDoctor(std::string      name) : _name(name), _isWorking(false)
 // {

@@ -108,7 +108,13 @@ int     main(int ac, char **av)
         std::cout << std::boolalpha << "bool : " << 
         cox.getIsWorking() << std::endl;
         std::cout << "END TEST" << std::endl;
+        //////////////////////////////////////////////////////
+        //SICKKOALALIST
+        /////////////////////////////////////////////////////
+        SickKoalaList   sick1(&cancer);
 
+        std::cout << "getContent " << sick1.getContent() << std::endl;
+        std::cout << "getNext " << sick1.getNext() << std::endl;
     }
     return 0;
 }
