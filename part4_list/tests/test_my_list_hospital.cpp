@@ -55,24 +55,7 @@ Test(SickKoalaList, test_isEnd_memberFunction) {
         cr_assert(sick1.isEnd() == false);
 }
 
-void SickKoalaList::append(SickKoalaList *newElement) {
-  
-  SickKoalaList* newNode = new SickKoalaList(newElement->_content);
-  newNode->_content = newElement->_content;
-  SickKoalaList* temp = this;// = this;
 
-      if(newNode == NULL) { //this insteand newNode
-        // *this = *newNode;
-        newNode = newElement;
-      } else {
-        // SickKoalaList* temp = this;//getThis(); //this
-
-        while(temp->_next != NULL)
-          temp = temp->_next;
-        temp->_next = newNode;
-        newNode->_prev = temp;
-      }
-    }
 
 SickKoala *SickKoalaList::getFromName(std::string name) {
   if (this->_content && this->_content->get_name().compare(name) == 0)

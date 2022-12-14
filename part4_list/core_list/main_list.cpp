@@ -111,15 +111,36 @@ int     main(int ac, char **av)
         //////////////////////////////////////////////////////
         //SICKKOALALIST
         /////////////////////////////////////////////////////
-        SickKoalaList   sick1(&cancer);
+        SickKoalaList   sickkoalaList(&cancer);
 
-        std::cout << "getContent " << sick1.getContent() << std::endl;
-        std::cout << "getNext " << sick1.getNext() << std::endl;
+        std::cout << "getContent " << sickkoalaList.getContent() << std::endl;
+        std::cout << "getNext " << sickkoalaList.getNext() << std::endl;
         std::cout << std::boolalpha << "bool : " << 
-        sick1.isEnd() << std::endl;
-        sick1.setNext(&sick1);
+        sickkoalaList.isEnd() << std::endl;
+        sickkoalaList.setNext(&sickkoalaList);
         std::cout << std::boolalpha << "bool : " << 
-        sick1.isEnd() << std::endl;
+        sickkoalaList.isEnd() << std::endl;
+
+        SickKoalaList   sickkoalaList1(&cancer);
+        SickKoalaList   sickkoalaList2(&gangrene);
+        SickKoalaList   sickkoalaList3(&measles);
+        SickKoalaList   sickkoalaList4(&smallpox);
+        SickKoalaList   sickkoalaList5(&fracture);
+
+        sickkoalaList1.append(&sickkoalaList2);
+        sickkoalaList1.append(&sickkoalaList3);
+        sickkoalaList1.append(&sickkoalaList4);
+        sickkoalaList1.append(&sickkoalaList5);
+
+
+        SickKoalaList* temp = sickkoalaList1.getThis();
+        std::cout<<"Patients : ";
+        while(temp) {
+            std::cout << temp->getContent()->get_name() <<" ";
+            temp = temp->getNext();
+        }
+        std::cout<<std::endl;
+
     }
     return 0;
 }
