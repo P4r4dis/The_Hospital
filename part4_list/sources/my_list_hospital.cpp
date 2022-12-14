@@ -2,9 +2,7 @@
 //CTOR
 SickKoalaList::     SickKoalaList(SickKoala     *content) : 
     _content(content), _next(nullptr) 
-{
-
-}
+{}
 //DTOR
 SickKoalaList::     ~SickKoalaList()
 {}
@@ -43,51 +41,64 @@ void                SickKoalaList::setContent(SickKoala       *content)
     this->_content = content;
 }
 
-// void                SickKoalaList::append(SickKoalaList       *sickKoalaList)
-// {
-//     SickKoalaList* newNode = new SickKoalaList(sickKoalaList->_content);
-//     SickKoalaList* temp = this;
-
-//     newNode->_content = sickKoalaList->_content;
-//     if(temp == nullptr) {
-//         // newNode = sickKoalaList;
-//         *this = *newNode;
-//     }
-//     else
-//     {
-//         while(temp->_next != NULL)
-//           temp = temp->_next;
-//         temp->_next = newNode;
-//         newNode->_prev = temp;
-//       }
-//     }
-
-void            SickKoalaList::append(SickKoalaList *  sick1)
+void                SickKoalaList::append(SickKoalaList       *sickKoalaList)
 {
+  SickKoalaList* newNode = new SickKoalaList(sickKoalaList->_content);
+  SickKoalaList* temp = this;
 
-
-
-    // if (this->isEnd())
-    //     this->setNext(sick1);
-    // else
-    //     this->_next->append(sick1);
-    SickKoalaList *tmp;
-
-  tmp = this;
-  if (tmp == NULL)
-    {
-        // this->_content = sick1->_content;
-        tmp->setContent(sick1->_content);
-        // this->_next = sick1->_next;
-        tmp->setNext(sick1->_next);
-
-    }
-//   while (tmp != NULL && tmp->_next != NULL)
-  while (tmp->isEnd() != true && tmp->getNext() != NULL)
-  {
-    // tmp = tmp->_next;
-    tmp = tmp->getNext();
+  newNode->_content = sickKoalaList->_content;
+  if(newNode == NULL) {
+    newNode = sickKoalaList;
   }
-//   tmp->_next = sick1;
-    tmp->setNext(sick1);
+  else
+  {
+    while(temp->_next != NULL)
+      temp = temp->_next;
+    temp->_next = newNode;
+    newNode->_prev = temp;
+    }
 }
+
+SickKoala         *SickKoalaList::getFromName(std::string name){
+    SickKoalaList* current = this;
+ 
+    while (current != NULL)
+    {
+        if (current->_content->get_name() == name)
+        {
+            return (current->_content);
+        }
+        current = current->_next;
+    }
+    return nullptr;
+}
+
+// void            SickKoalaList::append(SickKoalaList *  sick1)
+// {
+
+
+
+//     // if (this->isEnd())
+//     //     this->setNext(sick1);
+//     // else
+//     //     this->_next->append(sick1);
+//     SickKoalaList *tmp;
+
+//   tmp = this;
+//   if (tmp == NULL)
+//     {
+//         // this->_content = sick1->_content;
+//         tmp->setContent(sick1->_content);
+//         // this->_next = sick1->_next;
+//         tmp->setNext(sick1->_next);
+
+//     }
+// //   while (tmp != NULL && tmp->_next != NULL)
+//   while (tmp->isEnd() != true && tmp->getNext() != NULL)
+//   {
+//     // tmp = tmp->_next;
+//     tmp = tmp->getNext();
+//   }
+// //   tmp->_next = sick1;
+//     tmp->setNext(sick1);
+// }

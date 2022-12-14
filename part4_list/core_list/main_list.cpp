@@ -141,6 +141,15 @@ int     main(int ac, char **av)
         }
         std::cout<<std::endl;
 
+        SickKoala *koala = sickkoalaList1.getFromName("Varia");
+        
+        if (koala == nullptr)
+		    std::cout << "ERROR nullptr" << std::endl;
+        else if (koala->get_name().compare("Varia") == 0)
+		    std::cout << "OK Varia found" << std::endl;
+        else
+		    std::cout << "ERROR " << koala->get_name() << " found instead of Varia" << std::endl;
+    
     }
     return 0;
 }
