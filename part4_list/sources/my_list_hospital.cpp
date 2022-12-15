@@ -73,6 +73,42 @@ SickKoala         *SickKoalaList::getFromName(std::string name){
     return nullptr;
 }
 
+SickKoalaList *SickKoalaList::remove(SickKoalaList *newElement)
+{
+    SickKoalaList* prev = this;
+    SickKoalaList* current = this; //this
+    
+    while (current != nullptr)
+    {
+        if (current->_content == newElement->_content)
+        {
+            if(current == this)
+            {
+                // this->_next;
+                delete current;
+                current = this->_next;
+            }
+            else
+            {
+                prev->_next = current->_next;
+                delete current;
+                current = prev->_next;
+            }
+        }
+        else
+        { 
+            prev = current;
+            current = current->_next;
+        }
+    }
+    // key not found in list
+    if (current == nullptr)
+    {
+        return this; //this
+    }
+    return this; //this
+}
+
 // void            SickKoalaList::append(SickKoalaList *  sick1)
 // {
 

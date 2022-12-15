@@ -404,9 +404,6 @@ Test(SickKoalaList, test_remove,) // .signal=SIGPIPE, .init=redirect_all_stdout
         }
 	else
 		std::cout << "ERROR " << koala->get_name() << " found instead of Sayori" << std::endl;
-
-
-        // cr_assert_stdout_eq_str("Sayori founded\n");
 }
 
 // Test(SickKoalaList, test_removeFromName,) // .signal=SIGPIPE, .init=redirect_all_stdout

@@ -149,6 +149,13 @@ int     main(int ac, char **av)
 		    std::cout << "OK Varia found" << std::endl;
         else
 		    std::cout << "ERROR " << koala->get_name() << " found instead of Varia" << std::endl;
+        temp = sickkoalaList1.remove(&sickkoalaList4);
+        std::cout<<"Patients after remove : ";
+        while(temp) {
+            std::cout << temp->getContent()->get_name() <<" ";
+            temp = temp->getNext();
+        }
+        std::cout<<std::endl;
     
     }
     return 0;
