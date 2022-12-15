@@ -149,6 +149,7 @@ int     main(int ac, char **av)
 		    std::cout << "OK Varia found" << std::endl;
         else
 		    std::cout << "ERROR " << koala->get_name() << " found instead of Varia" << std::endl;
+
         temp = sickkoalaList1.remove(&sickkoalaList4);
         std::cout<<"Patients after remove : ";
         while(temp) {
@@ -156,7 +157,22 @@ int     main(int ac, char **av)
             temp = temp->getNext();
         }
         std::cout<<std::endl;
-    
+
+        temp = sickkoalaList1.removeFromName("RedFace");
+        koala = sickkoalaList1.getFromName("RedFace");
+        if (koala == nullptr)
+		    std::cout << "ERROR nullptr" << std::endl;
+        else if (koala->get_name().compare("RedFace") == 0)
+		    std::cout << "OK RedFace found" << std::endl;
+        else
+		    std::cout << "ERROR " << koala->get_name() << " found instead of RedFace" << std::endl;
+
+        std::cout<<"Patients after removeFromName : ";
+        while(temp) {
+            std::cout << temp->getContent()->get_name() <<" ";
+            temp = temp->getNext();
+        }
+        std::cout<<std::endl;
     }
     return 0;
 }

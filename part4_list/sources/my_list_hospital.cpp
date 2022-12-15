@@ -109,6 +109,40 @@ SickKoalaList *SickKoalaList::remove(SickKoalaList *newElement)
     return this; //this
 }
 
+SickKoalaList *SickKoalaList::removeFromName(std::string name)
+{
+    SickKoalaList* prev = nullptr;
+    SickKoalaList* current = this; //this
+    
+    while (current != nullptr)
+    {
+        if (current->_content->get_name() == name)
+        {
+            if(current == this)
+            {
+                // current->setNext(nullptr);
+                delete current; //can be comment
+                current = this->_next;
+            }
+            else
+            {
+                prev->_next = current->_next;
+                delete current; // can be comment
+                current = prev->_next;
+            }
+        }
+        else
+        { 
+            prev = current;
+            current = current->_next;
+        }
+    }
+  // key not found in list
+    if (current == nullptr)
+        return this; // this
+    return this;// this
+}
+
 // void            SickKoalaList::append(SickKoalaList *  sick1)
 // {
 
