@@ -185,3 +185,26 @@ void SickKoalaList::dump()
 // //   tmp->_next = sick1;
 //     tmp->setNext(sick1);
 // }
+
+
+
+KoalaNurseList::KoalaNurseList(KoalaNurse     *nurse) : _nurse(nurse), _next(nullptr)
+{} 
+
+KoalaNurseList::~KoalaNurseList()
+{
+}
+
+KoalaNurse *KoalaNurseList::getNurse(void){
+    return _nurse;
+}
+
+KoalaNurseList    *KoalaNurseList::getNext(void)
+{
+    return _next;
+}
+
+void KoalaNurseList::setNext(KoalaNurseList *next)
+{
+    _next = next;
+}
