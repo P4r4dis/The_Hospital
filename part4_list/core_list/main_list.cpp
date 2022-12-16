@@ -1,5 +1,5 @@
 #include "../../part3_doctor/includes/my_doctor_hospital.hpp"
-#include "../../part2_nurse/includes/my_nurse_hospital.hpp"
+// #include "../../part2_nurse/includes/my_nurse_hospital.hpp"
 #include "../../part1_patient/includes/my_patient_hospital.hpp"
 #include "../includes/my_list_hospital.hpp"
 
@@ -178,10 +178,10 @@ int     main(int ac, char **av)
         //////////////////////////////////////////////////////
         //NURSEKOALALIST
         /////////////////////////////////////////////////////
-        // SickKoalaList   sickkoalaList(&cancer);
+        KoalaNurseList   koalaNurseList(&ratched);
 
-        // std::cout << "getContent " << sickkoalaList.getContent() << std::endl;
-        // std::cout << "getNext " << sickkoalaList.getNext() << std::endl;
+        std::cout << "KOALANURSELIST getNurse " << koalaNurseList.getNurse()->getID() << std::endl;
+        std::cout << "getNext " << koalaNurseList.getNext() << std::endl;
         // std::cout << std::boolalpha << "bool : " << 
         // sickkoalaList.isEnd() << std::endl;
         // sickkoalaList.setNext(&sickkoalaList);
