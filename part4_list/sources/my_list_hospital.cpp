@@ -143,6 +143,19 @@ SickKoalaList *SickKoalaList::removeFromName(std::string name)
     return this;// this
 }
 
+void SickKoalaList::dump()
+{
+    SickKoalaList* temp = this;  
+    
+    std::cout<<"Patients : ";
+    while(temp)
+    {
+        std::cout << (temp == this ? "" : ", ");
+        std::cout << (temp->getContent() ? temp->getContent()->get_name() : "[nullptr]");
+        temp = temp->_next;
+    }
+    std::cout<< "." << std::endl;
+}
 // void            SickKoalaList::append(SickKoalaList *  sick1)
 // {
 

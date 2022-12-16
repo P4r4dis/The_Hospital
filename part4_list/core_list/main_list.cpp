@@ -173,6 +173,74 @@ int     main(int ac, char **av)
             temp = temp->getNext();
         }
         std::cout<<std::endl;
+        sickkoalaList1.dump();
+
+        //////////////////////////////////////////////////////
+        //NURSEKOALALIST
+        /////////////////////////////////////////////////////
+        // SickKoalaList   sickkoalaList(&cancer);
+
+        // std::cout << "getContent " << sickkoalaList.getContent() << std::endl;
+        // std::cout << "getNext " << sickkoalaList.getNext() << std::endl;
+        // std::cout << std::boolalpha << "bool : " << 
+        // sickkoalaList.isEnd() << std::endl;
+        // sickkoalaList.setNext(&sickkoalaList);
+        // std::cout << std::boolalpha << "bool : " << 
+        // sickkoalaList.isEnd() << std::endl;
+
+        // SickKoalaList   sickkoalaList1(&cancer);
+        // SickKoalaList   sickkoalaList2(&gangrene);
+        // SickKoalaList   sickkoalaList3(&measles);
+        // SickKoalaList   sickkoalaList4(&smallpox);
+        // SickKoalaList   sickkoalaList5(&fracture);
+
+        // sickkoalaList1.append(&sickkoalaList2);
+        // sickkoalaList1.append(&sickkoalaList3);
+        // sickkoalaList1.append(&sickkoalaList4);
+        // sickkoalaList1.append(&sickkoalaList5);
+
+
+        // SickKoalaList* temp = sickkoalaList1.getThis();
+        // std::cout<<"Patients : ";
+        // while(temp) {
+        //     std::cout << temp->getContent()->get_name() <<" ";
+        //     temp = temp->getNext();
+        // }
+        // std::cout<<std::endl;
+
+        // SickKoala *koala = sickkoalaList1.getFromName("Varia");
+        
+        // if (koala == nullptr)
+		//     std::cout << "ERROR nullptr" << std::endl;
+        // else if (koala->get_name().compare("Varia") == 0)
+		//     std::cout << "OK Varia found" << std::endl;
+        // else
+		//     std::cout << "ERROR " << koala->get_name() << " found instead of Varia" << std::endl;
+
+        // temp = sickkoalaList1.remove(&sickkoalaList4);
+        // std::cout<<"Patients after remove : ";
+        // while(temp) {
+        //     std::cout << temp->getContent()->get_name() <<" ";
+        //     temp = temp->getNext();
+        // }
+        // std::cout<<std::endl;
+
+        // temp = sickkoalaList1.removeFromName("RedFace");
+        // koala = sickkoalaList1.getFromName("RedFace");
+        // if (koala == nullptr)
+		//     std::cout << "ERROR nullptr" << std::endl;
+        // else if (koala->get_name().compare("RedFace") == 0)
+		//     std::cout << "OK RedFace found" << std::endl;
+        // else
+		//     std::cout << "ERROR " << koala->get_name() << " found instead of RedFace" << std::endl;
+
+        // std::cout<<"Patients after removeFromName : ";
+        // while(temp) {
+        //     std::cout << temp->getContent()->get_name() <<" ";
+        //     temp = temp->getNext();
+        // }
+        // std::cout<<std::endl;
+        // sickkoalaList1.dump();
     }
     return 0;
 }
