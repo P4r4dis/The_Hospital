@@ -515,42 +515,42 @@ Test(KoakaNurseList, test_ctor_init_params) {
         cr_assert_eq(nurse1.getNext(), nullptr);
 }
 
-// Test(SickKoalaList, test_isEnd) {
-//         SickKoala               cancer;
-//         SickKoalaList           sick1(&cancer);
-//         bool                    return_value;
+Test(KoakaNurseList, test_isEnd) {
+        KoalaNurse               ratched(1);
+        KoalaNurseList           nurse1(&ratched);
+        bool                    return_value;
 
-//         cr_assert(not(zero(ptr,sick1.getContent())));
-//         cr_assert_eq(sick1.getContent(), &cancer);
-//         cr_assert(zero(ptr,sick1.getNext()));
-//         cr_assert_eq(sick1.getNext(), nullptr);
+        cr_assert(not(zero(ptr,nurse1.getNurse())));
+        cr_assert_eq(nurse1.getNurse(), &ratched);
+        cr_assert(zero(ptr,nurse1.getNext()));
+        cr_assert_eq(nurse1.getNext(), nullptr);
 
-//         if(sick1.getNext() == nullptr)
-//         {
-//                 return_value = true;
-//                 cr_assert(return_value == true);
-//         }
-//         sick1.setNext(&sick1);
-//         if(sick1.getNext() != nullptr)
-//         {
-//                 return_value = false;
-//                 cr_assert(return_value == false);
-//         }
-// }
+        if(nurse1.getNext() == nullptr)
+        {
+                return_value = true;
+                cr_assert(return_value == true);
+        }
+        nurse1.setNext(&nurse1);
+        if(nurse1.getNext() != nullptr)
+        {
+                return_value = false;
+                cr_assert(return_value == false);
+        }
+}
 
-// Test(SickKoalaList, test_isEnd_memberFunction) {
-//         SickKoala               cancer;
-//         SickKoalaList           sick1(&cancer);
+Test(KoakaNurseList, test_isEnd_memberFunction) {
+        KoalaNurse               ratched(1);
+        KoalaNurseList           nurse1(&ratched);
 
-//         cr_assert(not(zero(ptr,sick1.getContent())));
-//         cr_assert_eq(sick1.getContent(), &cancer);
-//         cr_assert(zero(ptr,sick1.getNext()));
-//         cr_assert_eq(sick1.getNext(), nullptr);
+        cr_assert(not(zero(ptr,nurse1.getNurse())));
+        cr_assert_eq(nurse1.getNurse(), &ratched);
+        cr_assert(zero(ptr,nurse1.getNext()));
+        cr_assert_eq(nurse1.getNext(), nullptr);
 
-//         cr_assert(sick1.isEnd() == true);
-//         sick1.setNext(&sick1);
-//         cr_assert(sick1.isEnd() == false);
-// }
+        cr_assert(nurse1.isEnd() == true);
+        nurse1.setNext(&nurse1);
+        cr_assert(nurse1.isEnd() == false);
+}
 
 // Test(SickKoalaList, test_append, .signal=SIGPIPE, .init=redirect_all_stdout) { //avoid signal
 
