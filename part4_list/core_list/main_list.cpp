@@ -215,14 +215,14 @@ int     main(int ac, char **av)
         }
         std::cout<< "." << std::endl;
 
-        // SickKoala *koala = sickkoalaList1.getFromName("Varia");
+        KoalaNurse *koalaNurse = nurse1.getFromId(2);
         
-        // if (koala == nullptr)
-		//     std::cout << "ERROR nullptr" << std::endl;
-        // else if (koala->get_name().compare("Varia") == 0)
-		//     std::cout << "OK Varia found" << std::endl;
-        // else
-		//     std::cout << "ERROR " << koala->get_name() << " found instead of Varia" << std::endl;
+        if (koalaNurse == nullptr)
+		    std::cout << "ERROR nullptr" << std::endl;
+        else if (koalaNurse->getID() == 2)
+		    std::cout << "OK id2 found" << std::endl;
+        else
+		    std::cout << "ERROR " << koalaNurse->getID() << " found instead of id2" << std::endl;
 
         // temp = sickkoalaList1.remove(&sickkoalaList4);
         // std::cout<<"Patients after remove : ";
