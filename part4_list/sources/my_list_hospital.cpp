@@ -208,3 +208,12 @@ void KoalaNurseList::setNext(KoalaNurseList *next)
 {
     _next = next;
 }
+
+bool                KoalaNurseList::isEnd(void)
+{
+        if(_next == nullptr)
+            return true;
+        else
+            return false;
+        
+}

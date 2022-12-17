@@ -182,11 +182,11 @@ int     main(int ac, char **av)
 
         std::cout << "KOALANURSELIST getNurse " << koalaNurseList.getNurse()->getID() << std::endl;
         std::cout << "getNext " << koalaNurseList.getNext() << std::endl;
-        // std::cout << std::boolalpha << "bool : " << 
-        // sickkoalaList.isEnd() << std::endl;
-        // sickkoalaList.setNext(&sickkoalaList);
-        // std::cout << std::boolalpha << "bool : " << 
-        // sickkoalaList.isEnd() << std::endl;
+        std::cout << std::boolalpha << "bool : " << 
+        koalaNurseList.isEnd() << std::endl;
+        koalaNurseList.setNext(&koalaNurseList);
+        std::cout << std::boolalpha << "bool : " << 
+        koalaNurseList.isEnd() << std::endl;
 
         // SickKoalaList   sickkoalaList1(&cancer);
         // SickKoalaList   sickkoalaList2(&gangrene);
