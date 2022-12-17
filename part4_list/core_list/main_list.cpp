@@ -224,13 +224,15 @@ int     main(int ac, char **av)
         else
 		    std::cout << "ERROR " << koalaNurse->getID() << " found instead of id2" << std::endl;
 
-        // temp = sickkoalaList1.remove(&sickkoalaList4);
-        // std::cout<<"Patients after remove : ";
-        // while(temp) {
-        //     std::cout << temp->getContent()->get_name() <<" ";
-        //     temp = temp->getNext();
-        // }
-        // std::cout<<std::endl;
+        temp2 = nurse1.remove(&nurse2);
+        std::cout<<"Nurse after remove : ";
+        while(temp2)
+        {
+            std::cout << (temp2 == &nurse1 ? "" : ", ");
+            std::cout << "id" << (temp2->getNurse() ? std::to_string(temp2->getNurse()->getID()) : "[nullptr]");
+            temp2 = temp2->getNext();
+        }
+        std::cout<< "." << std::endl;
 
         // temp = sickkoalaList1.removeFromName("RedFace");
         // koala = sickkoalaList1.getFromName("RedFace");
