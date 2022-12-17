@@ -287,3 +287,37 @@ KoalaNurseList *KoalaNurseList::remove(KoalaNurseList *newElement)
     }
     return this; //this
 }
+
+KoalaNurseList *KoalaNurseList::removeFromId(int id)
+{
+    KoalaNurseList* prev = nullptr;
+    KoalaNurseList* current = this; //this
+    
+    while (current != nullptr)
+    {
+        if (current->_nurse->getID() == id)
+        {
+            if(current == this)
+            {
+                // current->setNext(nullptr);
+                delete current; //can be comment
+                current = this->_next;
+            }
+            else
+            {
+                prev->_next = current->_next;
+                delete current; // can be comment
+                current = prev->_next;
+            }
+        }
+        else
+        { 
+            prev = current;
+            current = current->_next;
+        }
+    }
+  // key not found in list
+    if (current == nullptr)
+        return this; // this
+    return this;// this
+}
