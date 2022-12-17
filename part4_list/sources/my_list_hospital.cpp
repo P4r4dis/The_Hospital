@@ -147,7 +147,7 @@ void SickKoalaList::dump()
 {
     SickKoalaList* temp = this;  
     
-    std::cout<<"Patients : ";
+    std::cout<<"Patients: ";
     while(temp)
     {
         std::cout << (temp == this ? "" : ", ");
@@ -216,4 +216,22 @@ bool                KoalaNurseList::isEnd(void)
         else
             return false;
         
+}
+
+void                KoalaNurseList::append(KoalaNurseList       *koalaNurseList)
+{
+  KoalaNurseList* newNode = new KoalaNurseList(koalaNurseList->_nurse);
+  KoalaNurseList* temp = this;
+
+  newNode->_nurse = koalaNurseList->_nurse;
+  if(newNode == NULL) {
+    newNode = koalaNurseList;
+  }
+  else
+  {
+    while(temp->_next != NULL)
+      temp = temp->_next;
+    temp->_next = newNode;
+    newNode->_prev = temp;
+    }
 }

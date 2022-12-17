@@ -43,6 +43,8 @@ class KoalaNurseList
     private:
         KoalaNurse          *_nurse;
         KoalaNurseList      *_next;
+        KoalaNurseList      *_prev;
+
     public:
     //CTOR
         KoalaNurseList(KoalaNurse     *nurse);
