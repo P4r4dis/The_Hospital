@@ -178,15 +178,16 @@ int     main(int ac, char **av)
         //////////////////////////////////////////////////////
         //NURSEKOALALIST
         /////////////////////////////////////////////////////
-        KoalaNurseList   koalaNurseList(&ratched);
+        KoalaNurseList   koalaNurseList1(&ratched);
+        KoalaNurseList   koalaNurseList2(&betty);
 
-        std::cout << "KOALANURSELIST getNurse " << koalaNurseList.getNurse()->getID() << std::endl;
-        std::cout << "getNext " << koalaNurseList.getNext() << std::endl;
+        std::cout << "KOALANURSELIST getNurse " << koalaNurseList1.getNurse()->getID() << std::endl;
+        std::cout << "getNext " << koalaNurseList1.getNext() << std::endl;
         std::cout << std::boolalpha << "bool : " << 
-        koalaNurseList.isEnd() << std::endl;
-        koalaNurseList.setNext(&koalaNurseList);
+        koalaNurseList1.isEnd() << std::endl;
+        koalaNurseList1.setNext(&koalaNurseList1);
         std::cout << std::boolalpha << "bool : " << 
-        koalaNurseList.isEnd() << std::endl;
+        koalaNurseList1.isEnd() << std::endl;
 
         // SickKoalaList   sickkoalaList1(&cancer);
         // SickKoalaList   sickkoalaList2(&gangrene);
@@ -194,19 +195,25 @@ int     main(int ac, char **av)
         // SickKoalaList   sickkoalaList4(&smallpox);
         // SickKoalaList   sickkoalaList5(&fracture);
 
-        // sickkoalaList1.append(&sickkoalaList2);
+        KoalaNurseList   nurse1(&ratched);
+        KoalaNurseList   nurse2(&betty);
+
+        nurse1.append(&nurse2);
         // sickkoalaList1.append(&sickkoalaList3);
         // sickkoalaList1.append(&sickkoalaList4);
         // sickkoalaList1.append(&sickkoalaList5);
 
 
-        // SickKoalaList* temp = sickkoalaList1.getThis();
-        // std::cout<<"Patients : ";
-        // while(temp) {
-        //     std::cout << temp->getContent()->get_name() <<" ";
-        //     temp = temp->getNext();
-        // }
-        // std::cout<<std::endl;
+        KoalaNurseList* temp2 = &nurse1;  
+
+        std::cout<<"Nurses: ";
+        while(temp2)
+        {
+            std::cout << (temp2 == &nurse1 ? "" : ", ");
+            std::cout << "id" << (temp2->getNurse() ? std::to_string(temp2->getNurse()->getID()) : "[nullptr]");
+            temp2 = temp2->getNext();
+        }
+        std::cout<< "." << std::endl;
 
         // SickKoala *koala = sickkoalaList1.getFromName("Varia");
         

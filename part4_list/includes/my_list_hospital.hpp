@@ -54,6 +54,7 @@ class KoalaNurseList
     //Member Function
         bool            isEnd(void);
         void            append(KoalaNurseList       *koalaNurseList);
+
         KoalaNurseList  *remove(KoalaNurseList      *koalaNurseList);
         KoalaNurseList  *removeFromId(int           id);
         void            dump(void);
