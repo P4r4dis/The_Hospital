@@ -734,103 +734,114 @@ Test(KoalaNurseList, test_getFromId, .signal=SIGPIPE, .init=redirect_all_stdout)
     std::cout<< "." << std::endl;
 }
 
-// Test(SickKoalaList, test_remove,)
-// {
-//         SickKoala k1("Hibiki");
-//         cr_assert(not(zero(ptr,&k1)));
-//         cr_assert(not(zero(str,k1.get_name())));
-//         cr_assert_eq(k1.get_name(), "Hibiki");
+Test(KoalaNurseList, test_remove_KoalaNurseList,)
+{
+        KoalaNurse k1(1);
+        cr_assert(not(zero(ptr,&k1)));
+        cr_assert(not(zero(int ,k1.getID())));
+        cr_assert(eq(int, k1.getID(), 1));
 
-//         SickKoala k2("Satsuki");
-//         cr_assert(not(zero(ptr,&k2)));
-//         cr_assert(not(zero(str,k2.get_name())));
-//         cr_assert_eq(k2.get_name(), "Satsuki");
+        KoalaNurse k2(2);
+        cr_assert(not(zero(ptr,&k2)));
+        cr_assert(not(zero(int ,k2.getID())));
+        cr_assert(eq(int, k2.getID(), 2));
 
-//         SickKoala k3("Hibana");
-//         cr_assert(not(zero(ptr,&k3)));
-//         cr_assert(not(zero(str,k3.get_name())));
-//         cr_assert_eq(k3.get_name(), "Hibana");
+        KoalaNurse k3(3);
+        cr_assert(not(zero(ptr,&k3)));
+        cr_assert(not(zero(int ,k3.getID())));
+        cr_assert(eq(int, k3.getID(), 3));
 
-//         SickKoala k4("Sayori");
-//         cr_assert(not(zero(ptr,&k4)));
-//         cr_assert(not(zero(str,k4.get_name())));
-//         cr_assert_eq(k4.get_name(), "Sayori");
+        KoalaNurse k4(4);
+        cr_assert(not(zero(ptr,&k4)));
+        cr_assert(not(zero(int ,k1.getID())));
+        cr_assert(eq(int, k1.getID(), 1));
 
-//         SickKoala k5("Hanaki");
-//         cr_assert(not(zero(ptr,&k5)));
-//         cr_assert(not(zero(str,k5.get_name())));
-//         cr_assert_eq(k5.get_name(), "Hanaki");
+        KoalaNurse k5(5);
+        cr_assert(not(zero(ptr,&k1)));
+        cr_assert(not(zero(int ,k1.getID())));
+        cr_assert(eq(int, k1.getID(), 1));
 
-//         SickKoalaList sick1(&k1);
-//         cr_assert(not(zero(ptr,&sick1)));
-//         cr_assert(not(zero(ptr, sick1.getContent())));
-//         cr_assert(zero(ptr, sick1.getNext()));
-//         cr_assert_eq(sick1.getContent(), &k1);
+        KoalaNurseList nurse1(&k1);
+        cr_assert(not(zero(ptr,&nurse1)));
+        cr_assert(not(zero(ptr, nurse1.getNurse())));
+        cr_assert(zero(ptr, nurse1.getNext()));
+        cr_assert_eq(nurse1.getNurse(), &k1);
 
-//         SickKoalaList sick2(&k2);
-//         cr_assert(not(zero(ptr,&sick2)));
-//         cr_assert(not(zero(ptr, sick2.getContent())));
-//         cr_assert(zero(ptr, sick2.getNext()));
-//         cr_assert_eq(sick2.getContent(), &k2);
+        KoalaNurseList nurse2(&k2);
+        cr_assert(not(zero(ptr,&nurse2)));
+        cr_assert(not(zero(ptr, nurse2.getNurse())));
+        cr_assert(zero(ptr, nurse2.getNext()));
+        cr_assert_eq(nurse2.getNurse(), &k2);
 
-//         SickKoalaList sick3(&k3);
-//         cr_assert(not(zero(ptr,&sick3)));
-//         cr_assert(not(zero(ptr, sick3.getContent())));
-//         cr_assert(zero(ptr, sick3.getNext()));
-//         cr_assert_eq(sick3.getContent(), &k3);
+        KoalaNurseList nurse3(&k3);
+        cr_assert(not(zero(ptr,&nurse3)));
+        cr_assert(not(zero(ptr, nurse3.getNurse())));
+        cr_assert(zero(ptr, nurse3.getNext()));
+        cr_assert_eq(nurse3.getNurse(), &k3);
 
-//         SickKoalaList sick4(&k4);
-//         cr_assert(not(zero(ptr,&sick4)));
-//         cr_assert(not(zero(ptr, sick4.getContent())));
-//         cr_assert(zero(ptr, sick4.getNext()));
-//         cr_assert_eq(sick4.getContent(), &k4);
+        KoalaNurseList nurse4(&k4);
+        cr_assert(not(zero(ptr,&nurse4)));
+        cr_assert(not(zero(ptr, nurse4.getNurse())));
+        cr_assert(zero(ptr, nurse4.getNext()));
+        cr_assert_eq(nurse4.getNurse(), &k4);
 
-//         SickKoalaList sick5(&k5);
-//         cr_assert(not(zero(ptr,&sick5)));
-//         cr_assert(not(zero(ptr, sick5.getContent())));
-//         cr_assert(zero(ptr, sick5.getNext()));
-//         cr_assert_eq(sick5.getContent(), &k5);
+        KoalaNurseList nurse5(&k5);
+        cr_assert(not(zero(ptr,&nurse5)));
+        cr_assert(not(zero(ptr, nurse5.getNurse())));
+        cr_assert(zero(ptr, nurse5.getNext()));
+        cr_assert_eq(nurse5.getNurse(), &k5);
 
-//         sick1.append(&sick2);
-//         cr_assert(not(zero(ptr, sick1.getNext())));
+        nurse1.append(&nurse2);
+        cr_assert(not(zero(ptr, nurse1.getNext())));
 
-//         sick1.append(&sick3);
-//         cr_assert(not(zero(ptr, sick1.getNext())));
+        nurse1.append(&nurse3);
+        cr_assert(not(zero(ptr, nurse1.getNext())));
 
-//         sick1.append(&sick4);
-//         cr_assert(not(zero(ptr, sick1.getNext())));
+        nurse1.append(&nurse4);
+        cr_assert(not(zero(ptr, nurse1.getNext())));
 
-//         sick1.append(&sick5);
-//         cr_assert(not(zero(ptr, sick1.getNext())));
+        nurse1.append(&nurse5);
+        cr_assert(not(zero(ptr, nurse1.getNext())));
 
-// 	SickKoala *koala = sick1.getFromName("Sayori");
-// 	if (koala == nullptr)
-//                 std::cout << "ERROR nullptr" << std::endl;
-//         else if (koala->get_name().compare("Sayori") == 0)
-//         {
-//                 cr_assert(koala != nullptr);
-//                 cr_assert(koala->get_name() == "Sayori");
-// 		std::cout << "Sayori founded" << std::endl;
-//         }
-// 	else
-// 		std::cout << "ERROR " << koala->get_name() << " found instead of Sayori" << std::endl;
 
-//         sick1.remove(&sick4);
-//         sick1.dump();
-//         koala = sick1.getFromName("Sayori");
-// 	if (koala == nullptr){
-//                 std::cout << "ERROR nullptr" << std::endl;
-//                 cr_assert(koala == nullptr);
-//         }
-//         else if (koala->get_name().compare("Sayori") == 0)
-//         {
-//                 cr_assert(koala != nullptr);
-//                 cr_assert(koala->get_name() == "Sayori");
-// 		std::cout << "Sayori founded2" << std::endl;
-//         }
-// 	else
-// 		std::cout << "ERROR " << koala->get_name() << " found instead of Sayori" << std::endl;
-// }
+	KoalaNurse *koalaNurse = nurse1.getFromId(2);
+
+	if (koalaNurse == nullptr)
+                std::cout << "ERROR nullptr" << std::endl;
+        else if (koalaNurse->getID() == 2)
+        {
+                cr_assert(koalaNurse != nullptr);
+                cr_assert(koalaNurse->getID() == 2);
+		std::cout << "id2 founded" << std::endl;
+        }
+	else
+		std::cout << "ERROR " << koalaNurse->getID() << " found instead of id2" << std::endl;
+
+        nurse1.remove(&nurse2);
+        KoalaNurseList* temp = &nurse1;  
+    
+        std::cout<<"Nurses: ";
+        while(temp)
+        {
+                std::cout << (temp == &nurse1 ? "" : ", ");
+                std::cout << "id" << (temp->getNurse() ? std::to_string(temp->getNurse()->getID()) : "[nullptr]");
+                temp = temp->getNext();
+        }
+        std::cout<< "." << std::endl;
+
+        koalaNurse = nurse1.getFromId(2);
+
+	if (koalaNurse == nullptr)
+                std::cout << "ERROR nullptr" << std::endl;
+        else if (koalaNurse->getID() == 2)
+        {
+                cr_assert(koalaNurse != nullptr);
+                cr_assert(koalaNurse->getID() == 2);
+		std::cout << "id2 founded" << std::endl;
+        }
+	else
+		std::cout << "ERROR " << koalaNurse->getID() << " found instead of id2" << std::endl;
+}
 
 // Test(SickKoalaList, test_removeFromName,)
 // {

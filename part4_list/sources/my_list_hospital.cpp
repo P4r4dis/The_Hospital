@@ -250,3 +250,40 @@ KoalaNurse         *KoalaNurseList::getFromId(int id)
     }
     return nullptr;
 }
+
+
+KoalaNurseList *KoalaNurseList::remove(KoalaNurseList *newElement)
+{
+    KoalaNurseList* prev = this;
+    KoalaNurseList* current = this; //this
+    
+    while (current != nullptr)
+    {
+        if (current->_nurse == newElement->_nurse)
+        {
+            if(current == this)
+            {
+                // this->_next;
+                delete current;
+                current = this->_next;
+            }
+            else
+            {
+                prev->_next = current->_next;
+                delete current;
+                current = prev->_next;
+            }
+        }
+        else
+        { 
+            prev = current;
+            current = current->_next;
+        }
+    }
+    // key not found in list
+    if (current == nullptr)
+    {
+        return this; //this
+    }
+    return this; //this
+}
