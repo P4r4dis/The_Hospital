@@ -235,3 +235,18 @@ void                KoalaNurseList::append(KoalaNurseList       *koalaNurseList)
     newNode->_prev = temp;
     }
 }
+
+KoalaNurse         *KoalaNurseList::getFromId(int id)
+{
+    KoalaNurseList* current = this;
+ 
+    while (current != NULL)
+    {
+        if (current->_nurse->getID() == id)
+        {
+            return (current->_nurse);
+        }
+        current = current->_next;
+    }
+    return nullptr;
+}
