@@ -220,7 +220,7 @@ int     main(int ac, char **av)
         if (koalaNurse == nullptr)
 		    std::cout << "ERROR nullptr" << std::endl;
         else if (koalaNurse->getID() == 2)
-		    std::cout << "OK id2 found" << std::endl;
+		    std::cout << "getFromId OK id2 found" << std::endl;
         else
 		    std::cout << "ERROR " << koalaNurse->getID() << " found instead of id2" << std::endl;
 
@@ -232,23 +232,35 @@ int     main(int ac, char **av)
             std::cout << "id" << (temp2->getNurse() ? std::to_string(temp2->getNurse()->getID()) : "[nullptr]");
             temp2 = temp2->getNext();
         }
-        std::cout<< "." << std::endl;
+        std::cout<<std::endl;
 
-        // temp = sickkoalaList1.removeFromName("RedFace");
-        // koala = sickkoalaList1.getFromName("RedFace");
-        // if (koala == nullptr)
-		//     std::cout << "ERROR nullptr" << std::endl;
-        // else if (koala->get_name().compare("RedFace") == 0)
-		//     std::cout << "OK RedFace found" << std::endl;
-        // else
-		//     std::cout << "ERROR " << koala->get_name() << " found instead of RedFace" << std::endl;
+        koalaNurse = nurse1.getFromId(2);
+        if (koalaNurse == nullptr)
+		    std::cout << "ID2 was deleted good nullptr" << std::endl;
+        else if (koalaNurse->getID() == 2)
+		    std::cout << "error id2 found" << std::endl;
+        else
+		    std::cout << "ERROR " << koalaNurse->getID() << " found instead of null" << std::endl;
 
-        // std::cout<<"Patients after removeFromName : ";
-        // while(temp) {
-        //     std::cout << temp->getContent()->get_name() <<" ";
-        //     temp = temp->getNext();
-        // }
-        // std::cout<<std::endl;
+        temp2 = nurse1.removeFromId(1);
+        std::cout << "after removeFromId :" << std::endl;
+        koalaNurse = temp2->getFromId(1);
+        if (koalaNurse == nullptr)
+		    std::cout << "ID1 was delete good nullptr" << std::endl;
+        else if (koalaNurse->getID() == 1)
+		    std::cout << "error id1 found" << std::endl;
+        else
+		    std::cout << "ERROR " << koalaNurse->getID() << " found instead of null" << std::endl;
+
+        if (temp2 == nullptr){
+            std::cout << "empty list" << std::endl;
+        }
+        while(temp2) {
+            std::cout << temp2->getNurse()->getID() <<" ,";
+            temp2 = temp2->getNext();
+        }
+
+        std::cout<<std::endl;
         // sickkoalaList1.dump();
     }
     return 0;

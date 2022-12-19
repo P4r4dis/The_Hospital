@@ -254,7 +254,7 @@ KoalaNurse         *KoalaNurseList::getFromId(int id)
 
 KoalaNurseList *KoalaNurseList::remove(KoalaNurseList *newElement)
 {
-    KoalaNurseList* prev = this;
+    KoalaNurseList* prev = nullptr;
     KoalaNurseList* current = this; //this
     
     while (current != nullptr)
@@ -263,14 +263,13 @@ KoalaNurseList *KoalaNurseList::remove(KoalaNurseList *newElement)
         {
             if(current == this)
             {
-                // this->_next;
-                delete current;
+                // delete current
                 current = this->_next;
             }
             else
             {
                 prev->_next = current->_next;
-                delete current;
+                // delete current;
                 current = prev->_next;
             }
         }
@@ -282,42 +281,30 @@ KoalaNurseList *KoalaNurseList::remove(KoalaNurseList *newElement)
     }
     // key not found in list
     if (current == nullptr)
-    {
-        return this; //this
-    }
+        return nullptr; //this
     return this; //this
 }
 
 KoalaNurseList *KoalaNurseList::removeFromId(int id)
 {
-    KoalaNurseList* prev = nullptr;
-    KoalaNurseList* current = this; //this
-    
-    while (current != nullptr)
-    {
-        if (current->_nurse->getID() == id)
-        {
-            if(current == this)
-            {
-                // current->setNext(nullptr);
-                delete current; //can be comment
-                current = this->_next;
-            }
-            else
-            {
-                prev->_next = current->_next;
-                delete current; // can be comment
-                current = prev->_next;
-            }
-        }
-        else
-        { 
-            prev = current;
-            current = current->_next;
-        }
-    }
-  // key not found in list
-    if (current == nullptr)
-        return this; // this
-    return this;// this
+    KoalaNurseList *current = this;
+	KoalaNurseList *previous = NULL;
+
+	while (current) {
+		if (current && current->_nurse && current->_nurse->getID() == id) {
+			if (previous) {
+				previous->_next = current->_next;
+				current->_next = NULL;
+				return this;
+			}
+			else {
+				previous = current->_next;
+				current->_next = NULL;
+				return previous;
+			}
+		}
+		previous = current;
+		current = current->_next;
+	}
+	return nullptr;
 }
