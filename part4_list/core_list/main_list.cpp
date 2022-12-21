@@ -241,10 +241,11 @@ int     main(int ac, char **av)
 		    std::cout << "error id2 found" << std::endl;
         else
 		    std::cout << "ERROR " << koalaNurse->getID() << " found instead of null" << std::endl;
+        KoalaNurseList* temp3;  
 
-        temp2 = nurse1.removeFromId(1);
+        temp3 = nurse1.removeFromId(nurse1.getNurse()->getID());
         std::cout << "after removeFromId :" << std::endl;
-        koalaNurse = temp2->getFromId(1);
+        koalaNurse = nurse1.getFromId(1);
         if (koalaNurse == nullptr)
 		    std::cout << "ID1 was delete good nullptr" << std::endl;
         else if (koalaNurse->getID() == 1)
@@ -252,16 +253,16 @@ int     main(int ac, char **av)
         else
 		    std::cout << "ERROR " << koalaNurse->getID() << " found instead of null" << std::endl;
 
-        if (temp2 == nullptr){
+        if (temp3 == nullptr){
             std::cout << "empty list" << std::endl;
         }
-        while(temp2) {
-            std::cout << temp2->getNurse()->getID() <<" ,";
-            temp2 = temp2->getNext();
+        while(temp3) {
+            std::cout << temp3->getNurse()->getID() <<" ,";
+            temp3 = temp3->getNext();
         }
 
         std::cout<<std::endl;
-        // sickkoalaList1.dump();
+        nurse1.dump();
     }
     return 0;
 }

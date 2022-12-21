@@ -60,17 +60,27 @@ void                SickKoalaList::append(SickKoalaList       *sickKoalaList)
 }
 
 SickKoala         *SickKoalaList::getFromName(std::string name){
-    SickKoalaList* current = this;
+    // SickKoalaList* current = this;
  
-    while (current != NULL)
+    // while (current != NULL)
+    // {
+    //     if (current->_content->get_name() == name)
+    //     {
+    //         return (current->_content);
+    //     }
+    //     current = current->_next;
+    // }
+    // return nullptr;
+
+    if (this->_content && this->_content->get_name() == name)
     {
-        if (current->_content->get_name() == name)
-        {
-            return (current->_content);
-        }
-        current = current->_next;
-    }
-    return nullptr;
+		return this->_content;
+	}
+	else if (this->_next)
+    {
+		return this->_next->getFromName(name);
+	}
+	return NULL;
 }
 
 SickKoalaList *SickKoalaList::remove(SickKoalaList *newElement)
@@ -238,17 +248,26 @@ void                KoalaNurseList::append(KoalaNurseList       *koalaNurseList)
 
 KoalaNurse         *KoalaNurseList::getFromId(int id)
 {
-    KoalaNurseList* current = this;
+    // KoalaNurseList* current = this;
  
-    while (current != NULL)
+    // while (current != NULL)
+    // {
+    //     if (current->_nurse->getID() == id)
+    //     {
+    //         return (current->_nurse);
+    //     }
+    //     current = current->_next;
+    // }
+    // return nullptr;
+    if (this->_nurse && this->_nurse->getID() == id)
     {
-        if (current->_nurse->getID() == id)
-        {
-            return (current->_nurse);
-        }
-        current = current->_next;
-    }
-    return nullptr;
+		return this->_nurse;
+	}
+	else if (this->_next)
+    {
+		return this->_next->getFromId(id);
+	}
+	return NULL;
 }
 
 
@@ -285,26 +304,66 @@ KoalaNurseList *KoalaNurseList::remove(KoalaNurseList *newElement)
     return this; //this
 }
 
+#include <list>
 KoalaNurseList *KoalaNurseList::removeFromId(int id)
 {
-    KoalaNurseList *current = this;
-	KoalaNurseList *previous = NULL;
+    KoalaNurseList* prev = this;
+    KoalaNurseList* current = this; //this
+    
+    while (current != nullptr)
+    {
+        if (current->_nurse->getID() == id)
+        {
+            if(current == this)
+            {
+                current->_nurse = nullptr;
+                current = this->_next;
+            }
+            else
+            {
+                prev->_next = current->_next;
+                current = prev->_next;
+            }
+        }
+        else
+        { 
+            prev = current;
+            current = current->_next;
+        }
+    }
+  // key not found in list
+    if (current == nullptr)
+        return nullptr;
+    return this;
+}
 
+void KoalaNurseList::dump()
+{
+    // KoalaNurseList* temp = this;  
+    
+    // std::cout<<"Nurses: " << std::flush;
+    // while(temp)
+    // {
+    //     std::cout << (temp == this ? "" : ", ");
+    //     std::cout << "id" << (temp->getNurse() ? std::to_string(temp->getNurse()->getID()) : "[nullptr]");
+    //     temp = temp->getNext();
+    // }
+    // std::cout<< "." << std::endl;
+	std::cout << "Nurses: " << std::flush;
+	KoalaNurseList *current = this;
 	while (current) {
-		if (current && current->_nurse && current->_nurse->getID() == id) {
-			if (previous) {
-				previous->_next = current->_next;
-				current->_next = NULL;
-				return this;
-			}
-			else {
-				previous = current->_next;
-				current->_next = NULL;
-				return previous;
-			}
+		if (current->_nurse) {
+			std::cout << "id" << current->_nurse->getID() << std::flush;
 		}
-		previous = current;
+		else {
+			std::cout << "[nullptr]" << std::flush;
+		}
+		if (current->_next) {
+			std::cout << ", " << std::flush;
+		}
+		else {
+			std::cout << ".\n"  << std::flush;
+		}
 		current = current->_next;
 	}
-	return nullptr;
 }
