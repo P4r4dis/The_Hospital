@@ -298,3 +298,146 @@ void    KoalaNurseList::dump()
 		current = current->_next;
 	}
 }
+
+
+
+KoalaDoctorList::KoalaDoctorList(KoalaDoctor     *doctor) : _doctor(doctor), _next(nullptr)
+{} 
+
+KoalaDoctorList::~KoalaDoctorList()
+{}
+
+KoalaDoctor *KoalaDoctorList::getDoctor(void){
+    return _doctor;
+}
+
+KoalaDoctorList    *KoalaDoctorList::getNext(void)
+{
+    return _next;
+}
+
+void KoalaDoctorList::setNext(KoalaDoctorList *next)
+{
+    _next = next;
+}
+
+bool                KoalaDoctorList::isEnd(void)
+{
+    if(_next == nullptr)
+        return true;
+    else
+        return false; 
+}
+
+void                KoalaDoctorList::append(KoalaDoctorList       *koalaDoctorList)
+{
+    KoalaDoctorList  *newNode;
+    KoalaDoctorList  *temp;
+    
+    newNode = new KoalaDoctorList(koalaDoctorList->_doctor);
+    temp = this;
+    newNode->_doctor = koalaDoctorList->_doctor;
+    if(newNode == NULL)
+        newNode = koalaDoctorList;
+    else
+    {
+        while(temp->_next != NULL)
+            temp = temp->_next;
+        temp->_next = newNode;
+        newNode->_prev = temp;
+    }
+}
+
+KoalaDoctor              *KoalaDoctorList::getFromName(std::string name)
+{
+    if (this->_doctor && this->_doctor->getName() == name)
+		return this->_doctor;
+	else if (this->_next)
+		return this->_next->getFromName(name);
+	return nullptr;
+}
+
+KoalaDoctorList          *KoalaDoctorList::remove(KoalaDoctorList *newElement)
+{
+    KoalaDoctorList      *prev;
+    KoalaDoctorList      *current;
+
+    prev = nullptr;
+    current = this;
+    while (current != nullptr)
+    {
+        if (current->_doctor == newElement->_doctor)
+        {
+            if(current == this)
+            {
+                current = this->_next;
+            }
+            else
+            {
+                prev->_next = current->_next;
+                current = prev->_next;
+            }
+        }
+        else
+        { 
+            prev = current;
+            current = current->_next;
+        }
+    }
+    if (current == nullptr)
+        return nullptr;
+    return this;
+}
+
+KoalaDoctorList          *KoalaDoctorList::removeFromName(std::string name)
+{
+    KoalaDoctorList      *prev;
+    KoalaDoctorList      *current;
+
+    prev = this;
+    current = this;
+    while (current != nullptr)
+    {
+        if (current->_doctor->getName() == name)
+        {
+            if(current == this)
+            {
+                current->_doctor = nullptr;
+                current = this->_next;
+            }
+            else
+            {
+                prev->_next = current->_next;
+                current = prev->_next;
+            }
+        }
+        else
+        { 
+            prev = current;
+            current = current->_next;
+        }
+    }
+    if (current == nullptr)
+        return nullptr;
+    return this;
+}
+
+void    KoalaDoctorList::dump()
+{
+	std::cout << "Doctors: " << std::flush;
+	KoalaDoctorList      *current;
+    
+    current = this;
+	while (current) 
+    {
+		if (current->_doctor)
+			std::cout << "id" << current->_doctor->getName() << std::flush;
+		else
+			std::cout << "[nullptr]" << std::flush;
+		if (current->_next)
+			std::cout << ", " << std::flush;
+		else
+			std::cout << ".\n"  << std::flush;
+		current = current->_next;
+	}
+}

@@ -6,6 +6,8 @@
 #include <fstream>
 #include "../../part1_patient/includes/my_patient_hospital.hpp"
 #include "../../part2_nurse/includes/my_nurse_hospital.hpp"
+#include "../../part3_doctor/includes/my_doctor_hospital.hpp"
+
 
 class SickKoalaList
 {
@@ -66,6 +68,35 @@ class KoalaNurseList
         KoalaNurseList  *getNext(void);
     //Setter
         void            setNext(KoalaNurseList      *next);
+};
+
+class KoalaDoctorList
+{
+    private:
+        KoalaDoctor          *_doctor;
+        KoalaDoctorList      *_next;
+        KoalaDoctorList      *_prev;
+
+    public:
+    //CTOR
+        KoalaDoctorList(KoalaDoctor     *doctor);
+    //CCTOR
+    //DTOR
+        ~KoalaDoctorList();
+    //Member Function
+        bool            isEnd(void);
+        void            append(KoalaDoctorList       *koalaNurseList);
+
+        KoalaDoctorList  *remove(KoalaDoctorList      *koalaNurseList);
+        KoalaDoctorList  *removeFromName(std::string    name);
+        void            dump(void);
+
+    //Getter
+        KoalaDoctor      *getDoctor(void);
+        KoalaDoctor      *getFromName(std::string name);
+        KoalaDoctorList  *getNext(void);
+    //Setter
+        void            setNext(KoalaDoctorList      *next);
 };
 
 #endif  // !__MY_LIST_HOSPITAL__
