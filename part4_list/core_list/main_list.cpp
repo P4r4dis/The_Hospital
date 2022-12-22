@@ -244,6 +244,8 @@ int     main(int ac, char **av)
         KoalaNurseList* temp3;  
 
         temp3 = nurse1.removeFromId(nurse1.getNurse()->getID());
+        // nurse1.removeFromId(nurse1.getNurse()->getID());
+
         std::cout << "after removeFromId :" << std::endl;
         koalaNurse = nurse1.getFromId(1);
         if (koalaNurse == nullptr)
@@ -263,6 +265,7 @@ int     main(int ac, char **av)
 
         std::cout<<std::endl;
         nurse1.dump();
+//////////////////////////////////////////////////////////////////////////////////////
     }
     return 0;
 }

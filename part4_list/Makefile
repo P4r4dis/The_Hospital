@@ -19,7 +19,7 @@ INC_PATH			= 	$(INC_LIST_PATH)
 
 NAME_LIST			=	my_list_hospital
 
-TEST_NAME_LIST 	= 	test_$(NAME_LIST)
+TEST_NAME_LIST 		= 	test_$(NAME_LIST)
 
 INCFLAGS			+=	-I $(INC_PATH)
 CPPFLAGS			+= -Wall -Wextra -Werror $(INCFLAGS)#-W -std=c++1z
