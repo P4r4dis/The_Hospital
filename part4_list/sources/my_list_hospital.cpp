@@ -431,7 +431,7 @@ void    KoalaDoctorList::dump()
 	while (current) 
     {
 		if (current->_doctor)
-			std::cout << "id" << current->_doctor->getName() << std::flush;
+			std::cout << "Dr." << current->_doctor->getName() << std::flush;
 		else
 			std::cout << "[nullptr]" << std::flush;
 		if (current->_next)

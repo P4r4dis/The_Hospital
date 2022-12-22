@@ -1115,94 +1115,70 @@ Test(KoalaDoctorList, test_KoalaDoctorList_isEnd) {
         }
 }
 
-// Test(SickKoalaList, test_isEnd_memberFunction) {
-//         SickKoala               cancer;
-//         SickKoalaList           sick1(&cancer);
+Test(KoalaDoctorList, test_KoalaDoctorList_isEnd_memberFunction) {
+        KoalaDoctor     cox("Cox");
+        KoalaDoctor     house("House");
+        KoalaDoctor     tired("Boudur-Oulot");
 
-//         cr_assert(not(zero(ptr,sick1.getContent())));
-//         cr_assert_eq(sick1.getContent(), &cancer);
-//         cr_assert(zero(ptr,sick1.getNext()));
-//         cr_assert_eq(sick1.getNext(), nullptr);
+        KoalaDoctorList doc1(&cox);
+        KoalaDoctorList doc2(&house);
+        KoalaDoctorList doc3(&tired);
 
-//         cr_assert(sick1.isEnd() == true);
-//         sick1.setNext(&sick1);
-//         cr_assert(sick1.isEnd() == false);
-// }
+        cr_assert(not(zero(ptr,doc1.getDoctor())));
+        cr_assert_eq(doc1.getDoctor(), &cox);
+        cr_assert(zero(ptr,doc1.getNext()));
+        cr_assert_eq(doc1.getNext(), nullptr);
 
-// Test(SickKoalaList, test_append, .signal=SIGPIPE, .init=redirect_all_stdout) { //avoid signal
+        cr_assert(doc1.isEnd() == true);
+        doc1.setNext(&doc1);
+        cr_assert(doc1.isEnd() == false);
+}
 
-//         cr_log_warn("Start Test APPEND : This test is not complete");
+Test(KoalaDoctorList, test_KoalaDoctorList_append) { //avoid signal
 
-//         SickKoala k1("Hibiki");
-//         cr_assert(not(zero(ptr,&k1)));
-//         cr_assert(not(zero(str,k1.get_name())));
-//         cr_assert_eq(k1.get_name(), "Hibiki");
+        cr_log_warn("Start Test APPEND : This test is not complete");
+        KoalaDoctor     cox("Cox");
+        cr_assert(not(zero(ptr,&cox)));
+        cr_assert(not(zero(str,cox.getName())));
+        cr_assert_eq(cox.getName(), "Cox");
 
-//         SickKoala k2("Satsuki");
-//         cr_assert(not(zero(ptr,&k2)));
-//         cr_assert(not(zero(str,k2.get_name())));
-//         cr_assert_eq(k2.get_name(), "Satsuki");
+        KoalaDoctor     house("House");
+        cr_assert(not(zero(ptr,&house)));
+        cr_assert(not(zero(str,house.getName())));
+        cr_assert_eq(house.getName(), "House");
 
-//         SickKoala k3("Hibana");
-//         cr_assert(not(zero(ptr,&k3)));
-//         cr_assert(not(zero(str,k3.get_name())));
-//         cr_assert_eq(k3.get_name(), "Hibana");
+        KoalaDoctor     tired("Boudur-Oulot");
+        cr_assert(not(zero(ptr,&tired)));
+        cr_assert(not(zero(str,tired.getName())));
+        cr_assert_eq(tired.getName(), "Boudur-Oulot");
 
-//         SickKoala k4("Sayori");
-//         cr_assert(not(zero(ptr,&k4)));
-//         cr_assert(not(zero(str,k4.get_name())));
-//         cr_assert_eq(k4.get_name(), "Sayori");
+        KoalaDoctorList doc1(&cox);
+        cr_assert(not(zero(ptr,&doc1)));
+        cr_assert(not(zero(ptr, doc1.getDoctor())));
+        cr_assert(zero(ptr, doc1.getNext()));
+        cr_assert_eq(doc1.getDoctor(), &cox);
 
-//         SickKoala k5("Hanaki");
-//         cr_assert(not(zero(ptr,&k5)));
-//         cr_assert(not(zero(str,k5.get_name())));
-//         cr_assert_eq(k5.get_name(), "Hanaki");
+        KoalaDoctorList doc2(&house);
+        cr_assert(not(zero(ptr,&doc2)));
+        cr_assert(not(zero(ptr, doc2.getDoctor())));
+        cr_assert(zero(ptr, doc2.getNext()));
+        cr_assert_eq(doc2.getDoctor(), &house);
 
-//         SickKoalaList sick1(&k1);
-//         cr_assert(not(zero(ptr,&sick1)));
-//         cr_assert(not(zero(ptr, sick1.getContent())));
-//         cr_assert(zero(ptr, sick1.getNext()));
-//         cr_assert_eq(sick1.getContent(), &k1);
+        KoalaDoctorList doc3(&tired);
+        cr_assert(not(zero(ptr,&doc3)));
+        cr_assert(not(zero(ptr, doc3.getDoctor())));
+        cr_assert(zero(ptr, doc3.getNext()));
+        cr_assert_eq(doc3.getDoctor(), &tired);
 
-//         SickKoalaList sick2(&k2);
-//         cr_assert(not(zero(ptr,&sick2)));
-//         cr_assert(not(zero(ptr, sick2.getContent())));
-//         cr_assert(zero(ptr, sick2.getNext()));
-//         cr_assert_eq(sick2.getContent(), &k2);
+        doc1.append(&doc2);
+        cr_assert(not(zero(ptr, doc1.getNext())));
 
-//         SickKoalaList sick3(&k3);
-//         cr_assert(not(zero(ptr,&sick3)));
-//         cr_assert(not(zero(ptr, sick3.getContent())));
-//         cr_assert(zero(ptr, sick3.getNext()));
-//         cr_assert_eq(sick3.getContent(), &k3);
+        doc1.append(&doc3);
+        cr_assert(not(zero(ptr, doc1.getNext())));
 
-//         SickKoalaList sick4(&k4);
-//         cr_assert(not(zero(ptr,&sick4)));
-//         cr_assert(not(zero(ptr, sick4.getContent())));
-//         cr_assert(zero(ptr, sick4.getNext()));
-//         cr_assert_eq(sick4.getContent(), &k4);
-
-//         SickKoalaList sick5(&k5);
-//         cr_assert(not(zero(ptr,&sick5)));
-//         cr_assert(not(zero(ptr, sick5.getContent())));
-//         cr_assert(zero(ptr, sick5.getNext()));
-//         cr_assert_eq(sick5.getContent(), &k5);
-
-//         sick1.append(&sick2);
-//         cr_assert(not(zero(ptr, sick1.getNext())));
-
-//         sick1.append(&sick3);
-//         cr_assert(not(zero(ptr, sick1.getNext())));
-
-//         sick1.append(&sick4);
-//         cr_assert(not(zero(ptr, sick1.getNext())));
-
-//         sick1.append(&sick5);
-//         cr_assert(not(zero(ptr, sick1.getNext())));
-
-//         sick1.dump();
-//         cr_assert_stdout_eq_str("Patients: Hibiki, Satsuki, Hibana, Sayori, Hanaki.\n");
-// }
+        // doc1.dump();
+        // cr_assert_stdout_eq_str("Doctors: Dr.Cox, Dr.House, Dr.Boudur-Oulot.\n");
+}
 
 // Test(SickKoalaList, test_getFromName, .signal=SIGPIPE, .init=redirect_all_stdout) 
 // {

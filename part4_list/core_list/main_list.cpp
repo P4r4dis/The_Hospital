@@ -264,14 +264,19 @@ int     main(int ac, char **av)
 
         KoalaDoctorList doc1(&cox);
         KoalaDoctorList doc2(&house);
-        KoalaDoctorList doc3(&tired);       
-        std::cout << "KoalaDoctorList getName " << doc1.getDoctor()->getName() << std::endl;
-        std::cout << "getNext " << doc1.getNext() << std::endl;
-        std::cout << std::boolalpha << "bool : " << 
-        doc1.isEnd() << std::endl;
-        doc1.setNext(&doc1);
-        std::cout << std::boolalpha << "bool : " << 
-        doc1.isEnd() << std::endl;
+        KoalaDoctorList doc3(&tired);
+
+        // std::cout << "KoalaDoctorList getName " << doc1.getDoctor()->getName() << std::endl;
+        // std::cout << "getNext " << doc1.getNext() << std::endl;
+        // std::cout << std::boolalpha << "bool : " << 
+        // doc1.isEnd() << std::endl;
+        // doc1.setNext(&doc1);
+        // std::cout << std::boolalpha << "bool : " << 
+        // doc1.isEnd() << std::endl;
+
+        doc1.append(&doc2);
+        doc1.append(&doc3);
+        // doc1.dump();
 
     }
     return 0;
