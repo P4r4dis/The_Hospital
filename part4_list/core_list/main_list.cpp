@@ -277,6 +277,25 @@ int     main(int ac, char **av)
         doc1.append(&doc2);
         doc1.append(&doc3);
         // doc1.dump();
+       KoalaDoctorList* temp_doc = &doc1;  
+
+        std::cout<<"Doctors: ";
+        while(temp_doc)
+        {
+            std::cout << (temp_doc == &doc1 ? "" : ", ");
+            std::cout << "Dr." << (temp_doc->getDoctor() ? temp_doc->getDoctor()->getName() : "[nullptr]");
+            temp_doc = temp_doc->getNext();
+        }
+        std::cout<< "." << std::endl;
+
+        KoalaDoctor *koalaDoctor = doc1.getFromName("House");
+        
+        if (koalaDoctor == nullptr)
+		    std::cout << "ERROR nullptr" << std::endl;
+        else if (koalaDoctor->getName() == "House")
+		    std::cout << "getFromName OK House found" << std::endl;
+        else
+		    std::cout << "ERROR " << koalaDoctor->getName() << " found instead of House" << std::endl;
 
     }
     return 0;
