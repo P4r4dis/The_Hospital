@@ -1087,28 +1087,33 @@ Test(KoalaDoctorList, test_KoalaDoctorList_ctor_init_params) {
         cr_assert_eq(doc3.getNext(), nullptr);
 }
 
-// Test(SickKoalaList, test_isEnd) {
-//         SickKoala               cancer;
-//         SickKoalaList           sick1(&cancer);
-//         bool                    return_value;
+Test(KoalaDoctorList, test_KoalaDoctorList_isEnd) {
+        KoalaDoctor     cox("Cox");
+        KoalaDoctor     house("House");
+        KoalaDoctor     tired("Boudur-Oulot");
 
-//         cr_assert(not(zero(ptr,sick1.getContent())));
-//         cr_assert_eq(sick1.getContent(), &cancer);
-//         cr_assert(zero(ptr,sick1.getNext()));
-//         cr_assert_eq(sick1.getNext(), nullptr);
+        KoalaDoctorList doc1(&cox);
+        KoalaDoctorList doc2(&house);
+        KoalaDoctorList doc3(&tired);
+        bool                    return_value;
 
-//         if(sick1.getNext() == nullptr)
-//         {
-//                 return_value = true;
-//                 cr_assert(return_value == true);
-//         }
-//         sick1.setNext(&sick1);
-//         if(sick1.getNext() != nullptr)
-//         {
-//                 return_value = false;
-//                 cr_assert(return_value == false);
-//         }
-// }
+        cr_assert(not(zero(ptr,doc1.getDoctor())));
+        cr_assert_eq(doc1.getDoctor(), &cox);
+        cr_assert(zero(ptr,doc1.getNext()));
+        cr_assert_eq(doc1.getNext(), nullptr);
+
+        if(doc1.getNext() == nullptr)
+        {
+                return_value = true;
+                cr_assert(return_value == true);
+        }
+        doc1.setNext(&doc1);
+        if(doc1.getNext() != nullptr)
+        {
+                return_value = false;
+                cr_assert(return_value == false);
+        }
+}
 
 // Test(SickKoalaList, test_isEnd_memberFunction) {
 //         SickKoala               cancer;

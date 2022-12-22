@@ -267,6 +267,11 @@ int     main(int ac, char **av)
         KoalaDoctorList doc3(&tired);       
         std::cout << "KoalaDoctorList getName " << doc1.getDoctor()->getName() << std::endl;
         std::cout << "getNext " << doc1.getNext() << std::endl;
+        std::cout << std::boolalpha << "bool : " << 
+        doc1.isEnd() << std::endl;
+        doc1.setNext(&doc1);
+        std::cout << std::boolalpha << "bool : " << 
+        doc1.isEnd() << std::endl;
 
     }
     return 0;
