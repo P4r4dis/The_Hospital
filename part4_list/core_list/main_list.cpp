@@ -299,6 +299,17 @@ int     main(int ac, char **av)
 
         doc1.remove(&doc2);
         doc1.dump();
+
+        doc1.removeFromName("Boudur-Oulot");
+        koalaDoctor = doc1.getFromName("Boudur-Oulot");
+        
+        if (koalaDoctor == nullptr)
+		    std::cout << "GOOD = ERROR nullptr" << std::endl;
+        else if (koalaDoctor->getName() == "Boudur-Oulot")
+		    std::cout << "getFromName OK Boudur-Oulot found" << std::endl;
+        else
+		    std::cout << "ERROR " << koalaDoctor->getName() << " found instead of Boudur-Oulot" << std::endl;
+        doc1.dump();    
     }
     return 0;
 }
