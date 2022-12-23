@@ -297,6 +297,8 @@ int     main(int ac, char **av)
         else
 		    std::cout << "ERROR " << koalaDoctor->getName() << " found instead of House" << std::endl;
 
+        doc1.remove(&doc2);
+        doc1.dump();
     }
     return 0;
 }
