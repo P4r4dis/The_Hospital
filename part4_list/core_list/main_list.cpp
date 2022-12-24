@@ -79,18 +79,18 @@ int     main(int ac, char **av)
         ///////////////////////////////////////////////////
         //                      NURSE                    //
         ///////////////////////////////////////////////////
-        // KoalaNurse      ratched(1);
-        // KoalaNurse      betty(2);
-        // ratched.giveDrug("Drug", &sickKoala);
-        // betty.readReport("SickKoala");
-        // std::cout << std::boolalpha << "bool : " << 
-        // betty.get_isWorking() << std::endl;
-        // betty.timeCheck();
-        // std::cout << std::boolalpha << "bool : " << 
-        // betty.get_isWorking() << std::endl;
-        // betty.timeCheck();
-        // std::cout << std::boolalpha << "bool : " << 
-        // betty.get_isWorking() << std::endl;
+        KoalaNurse      ratched(1);
+        KoalaNurse      betty(2);
+        ratched.giveDrug("Drug", &sickKoala);
+        betty.readReport("SickKoala");
+        std::cout << std::boolalpha << "bool : " << 
+        betty.get_isWorking() << std::endl;
+        betty.timeCheck();
+        std::cout << std::boolalpha << "bool : " << 
+        betty.get_isWorking() << std::endl;
+        betty.timeCheck();
+        std::cout << std::boolalpha << "bool : " << 
+        betty.get_isWorking() << std::endl;
         ////////////////////////////////////////////////////
         //DOCTOR
         ////////////////////////////////////////////////////
@@ -111,9 +111,9 @@ int     main(int ac, char **av)
         //////////////////////////////////////////////////////
         //SICKKOALALIST
         /////////////////////////////////////////////////////
-        // SickKoalaList   sickkoalaList(&cancer);
+        SickKoalaList   sickkoalaList(&cancer);
 
-        // std::cout << "getContent " << sickkoalaList.getContent() << std::endl;
+        // std::cout << "getPatient " << sickkoalaList.getPatient() << std::endl;
         // std::cout << "getNext " << sickkoalaList.getNext() << std::endl;
         // std::cout << std::boolalpha << "bool : " << 
         // sickkoalaList.isEnd() << std::endl;
@@ -121,65 +121,65 @@ int     main(int ac, char **av)
         // std::cout << std::boolalpha << "bool : " << 
         // sickkoalaList.isEnd() << std::endl;
 
-        // SickKoalaList   sickkoalaList1(&cancer);
-        // SickKoalaList   sickkoalaList2(&gangrene);
-        // SickKoalaList   sickkoalaList3(&measles);
-        // SickKoalaList   sickkoalaList4(&smallpox);
-        // SickKoalaList   sickkoalaList5(&fracture);
+        SickKoalaList   sickkoalaList1(&cancer);
+        SickKoalaList   sickkoalaList2(&gangrene);
+        SickKoalaList   sickkoalaList3(&measles);
+        SickKoalaList   sickkoalaList4(&smallpox);
+        SickKoalaList   sickkoalaList5(&fracture);
 
-        // sickkoalaList1.append(&sickkoalaList2);
-        // sickkoalaList1.append(&sickkoalaList3);
-        // sickkoalaList1.append(&sickkoalaList4);
-        // sickkoalaList1.append(&sickkoalaList5);
+        sickkoalaList1.append(&sickkoalaList2);
+        sickkoalaList1.append(&sickkoalaList3);
+        sickkoalaList1.append(&sickkoalaList4);
+        sickkoalaList1.append(&sickkoalaList5);
 
 
-        // SickKoalaList* temp = sickkoalaList1.getThis();
-        // std::cout<<"Patients : ";
-        // while(temp) {
-        //     std::cout << temp->getContent()->get_name() <<" ";
-        //     temp = temp->getNext();
-        // }
-        // std::cout<<std::endl;
+        SickKoalaList* temp = &sickkoalaList1;
+        std::cout<<"Patients : ";
+        while(temp) {
+            std::cout << temp->getPatient()->get_name() <<" ";
+            temp = temp->getNext();
+        }
+        std::cout<<std::endl;
 
-        // SickKoala *koala = sickkoalaList1.getFromName("Varia");
+        SickKoala *koala = sickkoalaList1.getFromName("Varia");
         
-        // if (koala == nullptr)
-		//     std::cout << "ERROR nullptr" << std::endl;
-        // else if (koala->get_name().compare("Varia") == 0)
-		//     std::cout << "OK Varia found" << std::endl;
-        // else
-		//     std::cout << "ERROR " << koala->get_name() << " found instead of Varia" << std::endl;
+        if (koala == nullptr)
+		    std::cout << "ERROR nullptr" << std::endl;
+        else if (koala->get_name().compare("Varia") == 0)
+		    std::cout << "OK Varia found" << std::endl;
+        else
+		    std::cout << "ERROR " << koala->get_name() << " found instead of Varia" << std::endl;
 
-        // temp = sickkoalaList1.remove(&sickkoalaList4);
-        // std::cout<<"Patients after remove : ";
-        // while(temp) {
-        //     std::cout << temp->getContent()->get_name() <<" ";
-        //     temp = temp->getNext();
-        // }
-        // std::cout<<std::endl;
+        temp = sickkoalaList1.remove(&sickkoalaList4);
+        std::cout<<"Patients after remove : ";
+        while(temp) {
+            std::cout << temp->getPatient()->get_name() <<" ";
+            temp = temp->getNext();
+        }
+        std::cout<<std::endl;
 
-        // temp = sickkoalaList1.removeFromName("RedFace");
-        // koala = sickkoalaList1.getFromName("RedFace");
-        // if (koala == nullptr)
-		//     std::cout << "ERROR nullptr" << std::endl;
-        // else if (koala->get_name().compare("RedFace") == 0)
-		//     std::cout << "OK RedFace found" << std::endl;
-        // else
-		//     std::cout << "ERROR " << koala->get_name() << " found instead of RedFace" << std::endl;
+        temp = sickkoalaList1.removeFromName("RedFace");
+        koala = sickkoalaList1.getFromName("RedFace");
+        if (koala == nullptr)
+		    std::cout << "ERROR nullptr" << std::endl;
+        else if (koala->get_name().compare("RedFace") == 0)
+		    std::cout << "OK RedFace found" << std::endl;
+        else
+		    std::cout << "ERROR " << koala->get_name() << " found instead of RedFace" << std::endl;
 
-        // std::cout<<"Patients after removeFromName : ";
-        // while(temp) {
-        //     std::cout << temp->getContent()->get_name() <<" ";
-        //     temp = temp->getNext();
-        // }
-        // std::cout<<std::endl;
-        // sickkoalaList1.dump();
+        std::cout<<"Patients after removeFromName : ";
+        while(temp) {
+            std::cout << temp->getPatient()->get_name() <<" ";
+            temp = temp->getNext();
+        }
+        std::cout<<std::endl;
+        sickkoalaList1.dump();
 
         //////////////////////////////////////////////////////
         //NURSEKOALALIST
         /////////////////////////////////////////////////////
-        // KoalaNurseList   koalaNurseList1(&ratched);
-        // KoalaNurseList   koalaNurseList2(&betty);
+        KoalaNurseList   nurse1(&ratched);
+        KoalaNurseList   nurse2(&betty);
 
         // std::cout << "KOALANURSELIST getNurse " << koalaNurseList1.getNurse()->getID() << std::endl;
         // std::cout << "getNext " << koalaNurseList1.getNext() << std::endl;
@@ -190,35 +190,32 @@ int     main(int ac, char **av)
         // koalaNurseList1.isEnd() << std::endl;
 
 
-
-        // KoalaNurseList   nurse1(&ratched);
-        // KoalaNurseList   nurse2(&betty);
-
-        // nurse1.append(&nurse2);
+        nurse1.append(&nurse2);
 
 
 
-        // KoalaNurseList* temp2 = &nurse1;  
+        KoalaNurseList* temp2 = &nurse1;  
 
-        // std::cout<<"Nurses: ";
-        // while(temp2)
-        // {
-        //     std::cout << (temp2 == &nurse1 ? "" : ", ");
-        //     std::cout << "id" << (temp2->getNurse() ? std::to_string(temp2->getNurse()->getID()) : "[nullptr]");
-        //     temp2 = temp2->getNext();
-        // }
-        // std::cout<< "." << std::endl;
+        std::cout<<"Nurses: ";
+        while(temp2)
+        {
+            std::cout << (temp2 == &nurse1 ? "" : ", ");
+            std::cout << "id" << (temp2->getNurse() ? std::to_string(temp2->getNurse()->getID()) : "[nullptr]");
+            temp2 = temp2->getNext();
+        }
+        std::cout<< "." << std::endl;
 
-        // KoalaNurse *koalaNurse = nurse1.getFromId(2);
+        KoalaNurse *koalaNurse = nurse1.getFromId(2);
         
-        // if (koalaNurse == nullptr)
-		//     std::cout << "ERROR nullptr" << std::endl;
-        // else if (koalaNurse->getID() == 2)
-		//     std::cout << "getFromId OK id2 found" << std::endl;
-        // else
-		//     std::cout << "ERROR " << koalaNurse->getID() << " found instead of id2" << std::endl;
+        if (koalaNurse == nullptr)
+		    std::cout << "ERROR nullptr" << std::endl;
+        else if (koalaNurse->getID() == 2)
+		    std::cout << "getFromId OK id2 found" << std::endl;
+        else
+		    std::cout << "ERROR " << koalaNurse->getID() << " found instead of id2" << std::endl;
 
-        // temp2 = nurse1.remove(&nurse2);
+        nurse1.remove(&nurse2);
+        nurse1.dump();
         // std::cout<<"Nurse after remove : ";
         // while(temp2)
         // {
@@ -228,36 +225,36 @@ int     main(int ac, char **av)
         // }
         // std::cout<<std::endl;
 
-        // koalaNurse = nurse1.getFromId(2);
-        // if (koalaNurse == nullptr)
-		//     std::cout << "ID2 was deleted good nullptr" << std::endl;
-        // else if (koalaNurse->getID() == 2)
-		//     std::cout << "error id2 found" << std::endl;
-        // else
-		//     std::cout << "ERROR " << koalaNurse->getID() << " found instead of null" << std::endl;
-        // KoalaNurseList* temp3;  
+        koalaNurse = nurse1.getFromId(2);
+        if (koalaNurse == nullptr)
+		    std::cout << "ID2 was deleted good nullptr" << std::endl;
+        else if (koalaNurse->getID() == 2)
+		    std::cout << "error id2 found" << std::endl;
+        else
+		    std::cout << "ERROR " << koalaNurse->getID() << " found instead of null" << std::endl;
+        KoalaNurseList* temp3;  
 
-        // temp3 = nurse1.removeFromId(nurse1.getNurse()->getID());
+        temp3 = nurse1.removeFromId(nurse1.getNurse()->getID());
 
-        // std::cout << "after removeFromId :" << std::endl;
-        // koalaNurse = nurse1.getFromId(1);
-        // if (koalaNurse == nullptr)
-		//     std::cout << "ID1 was delete good nullptr" << std::endl;
-        // else if (koalaNurse->getID() == 1)
-		//     std::cout << "error id1 found" << std::endl;
-        // else
-		//     std::cout << "ERROR " << koalaNurse->getID() << " found instead of null" << std::endl;
+        std::cout << "after removeFromId :" << std::endl;
+        koalaNurse = nurse1.getFromId(1);
+        if (koalaNurse == nullptr)
+		    std::cout << "ID1 was delete good nullptr" << std::endl;
+        else if (koalaNurse->getID() == 1)
+		    std::cout << "error id1 found" << std::endl;
+        else
+		    std::cout << "ERROR " << koalaNurse->getID() << " found instead of null" << std::endl;
 
-        // if (temp3 == nullptr){
-        //     std::cout << "empty list" << std::endl;
-        // }
-        // while(temp3) {
-        //     std::cout << temp3->getNurse()->getID() <<" ,";
-        //     temp3 = temp3->getNext();
-        // }
+        if (temp3 == nullptr){
+            std::cout << "empty list" << std::endl;
+        }
+        while(temp3) {
+            std::cout << temp3->getNurse()->getID() <<" ,";
+            temp3 = temp3->getNext();
+        }
 
-        // std::cout<<std::endl;
-        // nurse1.dump();
+        std::cout<<std::endl;
+        nurse1.dump();
 //////////////////////////////////////////////////////////////////////////////////////
         KoalaDoctor     house("House");
         KoalaDoctor     tired("Boudur-Oulot");
@@ -307,24 +304,19 @@ int     main(int ac, char **av)
         else
 		    std::cout << "ERROR " << koalaDoctor->getName() << " found instead of House" << std::endl;
 
-        doc1.removeFromName("Boudur-Oulot");
         // doc1.removeFromName("Cox");
-        doc1.remove(&doc1);
-
-
-
         doc1.dump();
 
-    //     doc1.removeFromName("Boudur-Oulot");
-    //     koalaDoctor = doc1.getFromName("Boudur-Oulot");
+        doc1.removeFromName("Boudur-Oulot");
+        koalaDoctor = doc1.getFromName("Boudur-Oulot");
         
-    //     if (koalaDoctor == nullptr)
-	// 	    std::cout << "GOOD = ERROR nullptr" << std::endl;
-    //     else if (koalaDoctor->getName() == "Boudur-Oulot")
-	// 	    std::cout << "getFromName OK Boudur-Oulot found" << std::endl;
-    //     else
-	// 	    std::cout << "ERROR " << koalaDoctor->getName() << " found instead of Boudur-Oulot" << std::endl;
-    //     doc1.dump();    
+        if (koalaDoctor == nullptr)
+		    std::cout << "GOOD = ERROR nullptr" << std::endl;
+        else if (koalaDoctor->getName() == "Boudur-Oulot")
+		    std::cout << "getFromName OK Boudur-Oulot found" << std::endl;
+        else
+		    std::cout << "ERROR " << koalaDoctor->getName() << " found instead of Boudur-Oulot" << std::endl;
+        doc1.dump();    
     }
     return 0;
 }

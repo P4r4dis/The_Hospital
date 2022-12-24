@@ -12,10 +12,8 @@
 class SickKoalaList
 {
     private:
-        SickKoala       *_content;
+        SickKoala       *_patient;
         SickKoalaList   *_next;
-        SickKoalaList   *_prev;
-        SickKoalaList   *_this = this;
 
     public:
     //CTOR
@@ -32,12 +30,11 @@ class SickKoalaList
 
     //Getter
         SickKoala       *getFromName(std::string        name);
-        SickKoala       *getContent(void);
+        SickKoala       *getPatient(void);
         SickKoalaList   *getNext(void);
-        SickKoalaList   *getThis(void);
     //Setter
         void            setNext(SickKoalaList           *next);
-        void            setContent(SickKoala            *content);
+        void            setPatient(SickKoala            *patient);
 };
 
 class KoalaNurseList
@@ -45,7 +42,6 @@ class KoalaNurseList
     private:
         KoalaNurse          *_nurse;
         KoalaNurseList      *_next;
-        KoalaNurseList      *_prev;
 
     public:
     //CTOR
@@ -75,7 +71,6 @@ class KoalaDoctorList
     private:
         KoalaDoctor          *_doctor;
         KoalaDoctorList      *_next;
-        KoalaDoctorList      *_prev;
 
     public:
     //CTOR

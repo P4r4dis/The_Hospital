@@ -1,7 +1,7 @@
 #include "../includes/my_list_hospital.hpp"
 //CTOR
-SickKoalaList::     SickKoalaList(SickKoala     *content) : 
-    _content(content), _next(nullptr) 
+SickKoalaList::     SickKoalaList(SickKoala     *patient) : 
+    _patient(patient), _next(nullptr) 
 {}
 //DTOR
 SickKoalaList::     ~SickKoalaList()
@@ -16,9 +16,9 @@ bool                SickKoalaList::isEnd(void)
         
 }
 ////ACCESSORS / GETTER
-SickKoala           *SickKoalaList::getContent(void)
+SickKoala           *SickKoalaList::getPatient(void)
 {
-    return _content;
+    return _patient;
 }
 
 SickKoalaList       *SickKoalaList::getNext(void)
@@ -26,115 +26,111 @@ SickKoalaList       *SickKoalaList::getNext(void)
     return _next;
 }
 
-SickKoalaList       *SickKoalaList::getThis(void)
-{
-    return _this;
-}
 ////MUTATORS / SETTER
 void                SickKoalaList::setNext(SickKoalaList *next)
 {
     this->_next = next;
 }
 
-void                SickKoalaList::setContent(SickKoala       *content)
+void                SickKoalaList::setPatient(SickKoala       *patient)
 {
-    this->_content = content;
+    this->_patient = patient;
 }
 
 void                SickKoalaList::append(SickKoalaList       *sickKoalaList)
 {
-    SickKoalaList* newNode = new SickKoalaList(sickKoalaList->_content);
-    SickKoalaList* temp = this;
+    // Check if the list is empty
+    if (this->_patient == nullptr)
+    {
+        this->_patient = sickKoalaList->_patient;
+        this->_next = sickKoalaList;
+    }
 
-    newNode->_content = sickKoalaList->_content;
-    if(newNode == NULL)
+    // Find the last node in the list
+    SickKoalaList *current = this;
+    while (current->_next != nullptr)
     {
-        newNode = sickKoalaList;
+        current = current->_next;
     }
-    else
-    {
-        while(temp->_next != NULL)
-            temp = temp->_next;
-        temp->_next = newNode;
-        newNode->_prev = temp;
-    }
+
+    // Append the new node to the end of the list
+    current->_next = sickKoalaList;
 }
 
 SickKoala         *SickKoalaList::getFromName(std::string name)
 {
-    if (this->_content && this->_content->get_name() == name)
-    {
-		return this->_content;
-	}
+    if (this->_patient && this->_patient->get_name() == name)
+		return this->_patient;
 	else if (this->_next)
-    {
 		return this->_next->getFromName(name);
-	}
 	return nullptr;
-
-
 }
 
 SickKoalaList           *SickKoalaList::remove(SickKoalaList *newElement)
 {
-    SickKoalaList       *prev;
-    SickKoalaList       *current;
+    if (this->_patient == nullptr)
+        return this;
 
-    prev = nullptr;
-    current = this;
-    while (current != nullptr)
+    // Check if the node to be removed is the first node in the list
+    if (this == newElement)
     {
-        if (current->_content == newElement->_content)
-        {
-            if(current == this)
-                current = this->_next;
-            else
-            {
-                prev->_next = current->_next;
-                current = prev->_next;
-            }
-        }
-        else
-        { 
-            prev = current;
-            current = current->_next;
-        }
+        SickKoalaList *newHead;
+        newHead = this->_next;
+        this->_patient = nullptr;
+        this->_next = nullptr;
+        return newHead;
     }
-    if (current == nullptr)
-        return nullptr;
-    return this;
+
+    // Iterate through the list and remove the matching node
+    SickKoalaList *current = this;
+    while (current->_next != nullptr)
+    {
+        if (current->_next == newElement)
+        {
+            current->_next = newElement->_next;
+            newElement->_patient = nullptr;
+            newElement->_next = nullptr;
+            break;
+        }
+        current = current->_next;
+    }
+    // Return a pointer to the first node of the list
+    return this;  
 }
 
 SickKoalaList *SickKoalaList::removeFromName(std::string name)
 {
-    SickKoalaList* prev;
-    SickKoalaList* current;
+    // Check if the list is empty
+    if (this->_patient == nullptr)
+        return this;
 
-    prev = this;
-    current = this;
-    while (current != nullptr)
+    // Check if the first node in the list has the matching name
+    if (this->_patient->get_name() == name)
     {
-        if (current->_content->get_name() == name)
-        {
-            if(current == this)
-            {
-                current->_content = nullptr;
-                current = this->_next;
-            }
-            else
-            {
-                prev->_next = current->_next;
-                current = prev->_next;
-            }
-        }
-        else
-        { 
-            prev = current;
-            current = current->_next;
-        }
+        SickKoalaList *newHead = this->_next;
+        this->_patient = nullptr;
+        this->_next = nullptr;
+        return newHead;
     }
-    if (current == nullptr)
-        return nullptr;
+
+    // Iterate through the list and remove the first node with the matching name
+    SickKoalaList     *current;
+    current = this;
+    
+    while (current->_next != nullptr)
+    {
+        if (current->_next->_patient->get_name() == name)
+        {
+            SickKoalaList *nodeToRemove = current->_next;
+            current->_next = nodeToRemove->_next;
+            nodeToRemove->_patient = nullptr;
+            nodeToRemove->_next = nullptr;
+            break;
+        }
+        current = current->_next;
+    }
+
+    // Return a pointer to the first node of the list
     return this;
 }
 
@@ -146,8 +142,8 @@ void SickKoalaList::dump()
 	std::cout << "Patients: " << std::flush;
 	while (current) 
     {
-		if (current->_content)
-			std::cout << current->_content->get_name() << std::flush;
+		if (current->_patient)
+			std::cout << current->_patient->get_name() << std::flush;
 		else
 			std::cout << "[nullptr]" << std::flush;
 		if (current->_next)
@@ -188,21 +184,20 @@ bool                KoalaNurseList::isEnd(void)
 
 void                KoalaNurseList::append(KoalaNurseList       *koalaNurseList)
 {
-    KoalaNurseList  *newNode;
-    KoalaNurseList  *temp;
-    
-    newNode = new KoalaNurseList(koalaNurseList->_nurse);
-    temp = this;
-    newNode->_nurse = koalaNurseList->_nurse;
-    if(newNode == NULL)
-        newNode = koalaNurseList;
-    else
+    // Check if the list is empty
+    if (this->_nurse == nullptr)
     {
-        while(temp->_next != NULL)
-            temp = temp->_next;
-        temp->_next = newNode;
-        newNode->_prev = temp;
+        this->_nurse = koalaNurseList->_nurse;
+        this->_next = koalaNurseList;
     }
+
+    // Find the last node in the list
+    KoalaNurseList *current = this;
+    while (current->_next != nullptr)
+        current = current->_next;
+
+    // Append the new node to the end of the list
+    current->_next = koalaNurseList;
 }
 
 KoalaNurse              *KoalaNurseList::getFromId(int id)
@@ -216,66 +211,69 @@ KoalaNurse              *KoalaNurseList::getFromId(int id)
 
 KoalaNurseList          *KoalaNurseList::remove(KoalaNurseList *newElement)
 {
-    KoalaNurseList      *prev;
-    KoalaNurseList      *current;
+    // Check if the list is empty
+    if (this->_nurse == nullptr)
+        return this;
 
-    prev = nullptr;
-    current = this;
-    while (current != nullptr)
+    // Check if the node to be removed is the first node in the list
+    if (this == newElement)
     {
-        if (current->_nurse == newElement->_nurse)
-        {
-            if(current == this)
-            {
-                current = this->_next;
-            }
-            else
-            {
-                prev->_next = current->_next;
-                current = prev->_next;
-            }
-        }
-        else
-        { 
-            prev = current;
-            current = current->_next;
-        }
+        KoalaNurseList *newHead;
+        newHead = this->_next;
+        this->_nurse = nullptr;
+        this->_next = nullptr;
+        return newHead;
     }
-    if (current == nullptr)
-        return nullptr;
-    return this;
+
+    // Iterate through the list and remove the matching node
+    KoalaNurseList *current = this;
+    while (current->_next != nullptr)
+    {
+        if (current->_next == newElement)
+        {
+            current->_next = newElement->_next;
+            newElement->_nurse = nullptr;
+            newElement->_next = nullptr;
+            break;
+        }
+        current = current->_next;
+    }
+    // Return a pointer to the first node of the list
+    return this;  
 }
 
 KoalaNurseList          *KoalaNurseList::removeFromId(int id)
 {
-    KoalaNurseList      *prev;
-    KoalaNurseList      *current;
+    // Check if the list is empty
+    if (this->_nurse == nullptr)
+        return this;
 
-    prev = this;
-    current = this;
-    while (current != nullptr)
+    // Check if the first node in the list has the matching name
+    if (this->_nurse->getID() == id)
     {
-        if (current->_nurse->getID() == id)
-        {
-            if(current == this)
-            {
-                current->_nurse = nullptr;
-                current = this->_next;
-            }
-            else
-            {
-                prev->_next = current->_next;
-                current = prev->_next;
-            }
-        }
-        else
-        { 
-            prev = current;
-            current = current->_next;
-        }
+        KoalaNurseList *newHead = this->_next;
+        this->_nurse = nullptr;
+        this->_next = nullptr;
+        return newHead;
     }
-    if (current == nullptr)
-        return nullptr;
+
+    // Iterate through the list and remove the first node with the matching name
+    KoalaNurseList     *current;
+    current = this;
+    
+    while (current->_next != nullptr)
+    {
+        if (current->_next->_nurse->getID() == id)
+        {
+            KoalaNurseList *nodeToRemove = current->_next;
+            current->_next = nodeToRemove->_next;
+            nodeToRemove->_nurse = nullptr;
+            nodeToRemove->_next = nullptr;
+            break;
+        }
+        current = current->_next;
+    }
+    // Return a pointer to the first node of the list
     return this;
 }
 
@@ -343,9 +341,7 @@ void                KoalaDoctorList::append(KoalaDoctorList       *koalaDoctorLi
     // // Find the last node in the list
     // KoalaDoctorList *current = this;
     // while (current->_next != nullptr)
-    // {
     //     current = current->_next;
-    // }
 
     // // Append the new node to the end of the list
     // current->_next = koalaDoctorList;
@@ -356,7 +352,6 @@ void                KoalaDoctorList::append(KoalaDoctorList       *koalaDoctorLi
     {
         this->_doctor = koalaDoctorList->_doctor;
         this->_next = koalaDoctorList;
-        // return;
     }
 
     // Append the new node to the end of the list using recursion
