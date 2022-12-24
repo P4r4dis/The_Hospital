@@ -45,17 +45,30 @@ NAME_LIST			=	my_list_hospital
 TEST_NAME_LIST 		= 	test_$(NAME_LIST)
 
 ###############################################
+PART5_PATH 			= 	./part5_hospital
+PART5_SRC_PATH		=	./part5_hospital/sources
+PART5_TST_PATH		=	./part5_hospital/tests
+PART5_INC_PATH		=	./part5_hospital/includes
+
+PART5_SRC			=	$(PART5_SRC_PATH)/my_hospital.cpp
+PART5_SRC_TEST		=	$(PART5_TST_PATH)/$(NAME)_test.cpp
+NAME_HOSPITAL		=	my_hospital
+TEST_NAME_HOSPITAL 	= 	test_$(NAME_HOSPITAL)
+
+###############################################
 CORE_PATH			=	./core
 SRCS_PATH			=	$(PART1_SRC_PATH) \
 						$(PART2_SRC_PATH) \
 						$(PART3_SRC_PATH) \
-						$(PART4_SRC_PATH) 
+						$(PART4_SRC_PATH) \
+						$(PART5_SRC_PATH)
 
 
 TST_PATH			=	$(PART1_TST_PATH) \
 						$(PART2_TST_PATH) \
 						$(PART3_TST_PATH) \
-						$(PART4_TST_PATH)
+						$(PART4_TST_PATH) \
+						$(PART5_SRC_PATH)
 
 NAME				=	my_hospital
 TEST_NAME 			= 	test_$(NAME)
@@ -70,14 +83,16 @@ CPPFLAGS			+= 	-Wall -Wextra -Werror $(INCFLAGS)#-W -std=c++1z
 SRCS 				= 	$(PART1_SRC) \
 						$(PART2_SRC) \
 						$(PART3_SRC) \
-						$(PART$_SRC) \
+						$(PART4_SRC) \
+						$(PART5_SRC) \
 						$(CORE_PATH)/main.cpp
 #$(PART2_SRC)
 
 SRC_TEST 			= 	$(PART1_SRC_TEST) \
 						$(PART2_SRC_TEST) \
 						$(PART3_SRC_TEST) \
-						$(PART4_SRC_TEST)
+						$(PART4_SRC_TEST) \
+						$(PART5_SRC_TEST)
 
 OBJS				=	$(SRCS:.cpp=.o)
 CLEAN				=	clean
@@ -96,6 +111,7 @@ clean				:
 						@$(MAKE) $(CLEAN) -C $(PART2_TST_PATH)
 						@$(MAKE) $(CLEAN) -C $(PART3_TST_PATH)
 						@$(MAKE) $(CLEAN) -C $(PART4_TST_PATH)
+						@$(MAKE) $(CLEAN) -C $(PART5_TST_PATH)
 
 
 fclean				:	clean
@@ -108,6 +124,8 @@ fclean				:	clean
 						@$(MAKE) $(FCLEAN) -C $(PART3_PATH)
 						@$(MAKE) $(FCLEAN) -C $(PART4_TST_PATH)
 						@$(MAKE) $(FCLEAN) -C $(PART4_PATH)
+						@$(MAKE) $(FCLEAN) -C $(PART5_TST_PATH)
+						@$(MAKE) $(FCLEAN) -C $(PART5_PATH)
 
 re					: 	fclean all
 
@@ -127,6 +145,10 @@ part4 				: 	fclean
 						@$(MAKE) -C $(PART4_PATH)
 						$(PART4_PATH)/$(NAME_LIST)
 
+part5 				: 	fclean
+						@$(MAKE) -C $(PART5_PATH)
+						$(PART5_PATH)/$(NAME_HOSPITAL)
+
 tests_run_part1		:	fclean
 						@$(MAKE) -C $(PART1_TST_PATH)
 						$(PART1_TST_PATH)/$(TEST_NAME_PATIENT)
@@ -143,11 +165,16 @@ tests_run_part4		:	fclean
 						@$(MAKE) -C $(PART4_TST_PATH)
 						$(PART4_TST_PATH)/$(TEST_NAME_LIST)
 
+tests_run_part5		:	fclean
+						@$(MAKE) -C $(PART5_TST_PATH)
+						$(PART5_TST_PATH)/$(TEST_NAME_HOSPITAL)
+
 tests_run			:	fclean
 						@$(MAKE) tests_run_part1
 						@$(MAKE) tests_run_part2
 						@$(MAKE) tests_run_part3
 						@$(MAKE) tests_run_part4
+						@$(MAKE) tests_run_part5
 
 
 
