@@ -1,4 +1,4 @@
-#include "../includes/my_hospital.hpp"
+// #include "../includes/my_hospital.hpp"
 #include "./tests_includes/test_my_hospital.hpp"
 // #include "../../part4_list/includes/my_list_hospital.hpp"
 

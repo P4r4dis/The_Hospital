@@ -7,22 +7,21 @@
 #include "../../part4_list/includes/my_list_hospital.hpp"
 
 
-// class Hospital {
-//     private:
+class Hospital
+{
+    private:
+    SickKoalaList       *_sickKoalaList;
+    KoalaNurseList      *_koalaNurseList;
+    KoalaDoctorList     *_koalaDoctorList;
 
-//     public:
-//         //CTOR
-//         // Hospital();
-//         // //CTOR CUSTOM
-//         // Hospital();
-//         // //DTOR
-//         // ~Hospital();
-//         //Member Function
+    public:
+    Hospital(void);
+    ~Hospital(void);
 
-//         //Getter
-        
-//     protected:
-// };
+    SickKoalaList       *getSickKoalaList(void);
+    KoalaNurseList      *getKoalaNurseList(void);
+    KoalaDoctorList     *getKoalaDoctorList(void);
+};
 
 
 #endif  // !__MY_HOSPITAL__
