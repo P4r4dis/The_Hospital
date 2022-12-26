@@ -68,7 +68,15 @@ class Hospital
         std::cout << "[HOSPITAL] Patient " << _sickKoalaList->getPatient()->get_name() << " just arrived!" << std::endl;
     }
 
-
+    void              addNurse(KoalaNurseList       *koalaNurseList)
+    {
+        if (_koalaNurseList && _koalaNurseList->getFromId(koalaNurseList->getNurse()->getID()))
+            _koalaNurseList->append(koalaNurseList);
+        else
+            _koalaNurseList = koalaNurseList;
+        std::cout << "[HOSPITAL] Nurse " << _koalaNurseList->getNurse()->getID() << " just arrived!" << std::endl;
+        _koalaNurseList->getNurse()->timeCheck();
+    }
     //         if (doc1.getDoctor() && doc1.getFromName(doc1.getDoctor()->getName()))
     //     {
     //             cr_log_warn("TEST");
