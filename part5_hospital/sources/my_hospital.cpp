@@ -37,11 +37,21 @@ void                Hospital::addDoctor(KoalaDoctorList       *koalaDoctorList)
     _koalaDoctorList->getDoctor()->timeCheck();
 }
 
-    void            Hospital::addSick(SickKoalaList       *sickKoalaList)
-    {
-        if (_sickKoalaList && _sickKoalaList->getFromName(sickKoalaList->getPatient()->get_name()))
-            _sickKoalaList->append(sickKoalaList);
-        else
-            _sickKoalaList = sickKoalaList;
-        std::cout << "[HOSPITAL] Patient " << _sickKoalaList->getPatient()->get_name() << " just arrived!" << std::endl;
-    }
+void                Hospital::addSick(SickKoalaList       *sickKoalaList)
+{
+    if (_sickKoalaList && _sickKoalaList->getFromName(sickKoalaList->getPatient()->get_name()))
+        _sickKoalaList->append(sickKoalaList);
+    else
+        _sickKoalaList = sickKoalaList;
+    std::cout << "[HOSPITAL] Patient " << _sickKoalaList->getPatient()->get_name() << " just arrived!" << std::endl;
+}
+
+void                Hospital::addNurse(KoalaNurseList       *koalaNurseList)
+{
+    if (_koalaNurseList && _koalaNurseList->getFromId(koalaNurseList->getNurse()->getID()))
+        _koalaNurseList->append(koalaNurseList);
+    else
+        _koalaNurseList = koalaNurseList;
+    std::cout << "[HOSPITAL] Nurse " << _koalaNurseList->getNurse()->getID() << " just arrived!" << std::endl;
+    _koalaNurseList->getNurse()->timeCheck();
+}
