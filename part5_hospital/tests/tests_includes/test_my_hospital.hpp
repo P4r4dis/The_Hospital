@@ -56,6 +56,18 @@ class Hospital
         _koalaDoctorList->getDoctor()->timeCheck();
     }
 
+        void              addSick(SickKoalaList       *sickKoalaList)
+    {
+        if (this->_sickKoalaList && this->_sickKoalaList->getFromName(sickKoalaList->getPatient()->get_name())) {
+
+            this->_sickKoalaList->append(sickKoalaList);
+        }
+        else {
+            this->_sickKoalaList = sickKoalaList;
+        }
+        std::cout << "[HOSPITAL] Patient " << _sickKoalaList->getPatient()->get_name() << " just arrived!" << std::endl;
+    }
+
 
     //         if (doc1.getDoctor() && doc1.getFromName(doc1.getDoctor()->getName()))
     //     {
