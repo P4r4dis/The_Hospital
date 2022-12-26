@@ -21,6 +21,8 @@ class Hospital
     SickKoalaList       *getSickKoalaList(void);
     KoalaNurseList      *getKoalaNurseList(void);
     KoalaDoctorList     *getKoalaDoctorList(void);
+
+    void                addDoctor(KoalaDoctorList   *KoalaDoctorList);
 };
 
 

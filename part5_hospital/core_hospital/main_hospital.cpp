@@ -101,6 +101,10 @@ int     main(void)
 
         Hospital                bellevue;
 
+        bellevue.addDoctor(&doc1);
+        bellevue.addDoctor(&doc2);
+        bellevue.addDoctor(&doc3);
+
         if (nurse1.isEnd() && sick1.isEnd() && doc1.isEnd())
                 std::cout << "Lists cleaned up." << std::endl;
         else
