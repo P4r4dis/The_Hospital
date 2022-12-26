@@ -105,6 +105,12 @@ int     main(void)
         bellevue.addDoctor(&doc2);
         bellevue.addDoctor(&doc3);
 
+        bellevue.addSick(&sick1);
+        bellevue.addSick(&sick2);
+        bellevue.addSick(&sick3);
+        bellevue.addSick(&sick4);
+        bellevue.addSick(&sick5);
+
         if (nurse1.isEnd() && sick1.isEnd() && doc1.isEnd())
                 std::cout << "Lists cleaned up." << std::endl;
         else
