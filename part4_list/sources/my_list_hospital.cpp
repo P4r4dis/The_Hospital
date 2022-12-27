@@ -286,7 +286,7 @@ void    KoalaNurseList::dump()
 	while (current) 
     {
 		if (current->_nurse)
-			std::cout << "id" << current->_nurse->getID() << std::flush;
+			std::cout << current->_nurse->getID() << std::flush;
 		else
 			std::cout << "[nullptr]" << std::flush;
 		if (current->_next)
@@ -330,7 +330,7 @@ bool                KoalaDoctorList::isEnd(void)
 void                KoalaDoctorList::append(KoalaDoctorList       *koalaDoctorList)
 {
 
-    // Check if the list is empty
+    // //Check if the list is empty
     // if (this->_doctor == nullptr)
     // {
     //     this->_doctor = koalaDoctorList->_doctor;
@@ -359,6 +359,8 @@ void                KoalaDoctorList::append(KoalaDoctorList       *koalaDoctorLi
         this->_next = koalaDoctorList;
     else
         this->_next->append(koalaDoctorList);
+
+
 }
 
 KoalaDoctor              *KoalaDoctorList::getFromName(std::string name)
@@ -448,7 +450,7 @@ void    KoalaDoctorList::dump()
 	while (current) 
     {
 		if (current->_doctor)
-			std::cout << "Dr." << current->_doctor->getName() << std::flush;
+			std::cout << current->_doctor->getName() << std::flush;
 		else
 			std::cout << "[nullptr]" << std::flush;
 		if (current->_next)

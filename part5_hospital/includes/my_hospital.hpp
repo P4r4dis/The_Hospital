@@ -25,6 +25,7 @@ class Hospital
     void                addDoctor(KoalaDoctorList   *koalaDoctorList);
     void                addSick(SickKoalaList       *sickKoalaList);
     void                addNurse(KoalaNurseList     *koalaNurseList);
+    void                dump();
 
 };
 
