@@ -21,23 +21,24 @@ void            KoalaNurse::giveDrug(std::string    Drug, SickKoala     *patient
 // }
 std::string     KoalaNurse::readReport(std::string  fileName)
 {
-    std::fstream    f_stream;
-    std::string     buffer;
-    const char      delimiter = '\0';
-    std::string     fileName_with_extention = fileName + ".report";
+        std::fstream    f_stream;
+        std::string     buffer;
+        const char      delimiter = '\0';
+        std::string     fileName_with_extention = fileName;
 
-    f_stream.open(fileName_with_extention.data(), std::ios::in);
-    if (f_stream.is_open()) {
+        f_stream.open(fileName_with_extention.data(), std::ios::in);
+        if (f_stream.is_open()) 
+        {
                 while (std::getline (f_stream, buffer, delimiter)) {
+                        int position = fileName.find(".report");
+                        std::string name = fileName.substr(0, position);
                         std::cout << "Nurse " << this->_id 
-                        << ": Kreog! Mr." << fileName 
+                        << ": Kreog! Mr." << name 
                         << " needs a " << buffer << "!" << std::endl;
                         f_stream.close();
-                        return "Nurse " + std::to_string(this->_id)
-                        + ": Kreog! Mr." + fileName + " needs a " + buffer + "!\n";
+                        return buffer;
                 }
         }
-        std::cout << "";
         f_stream.close();
         return "";
 }
