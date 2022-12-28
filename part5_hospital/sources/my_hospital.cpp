@@ -93,3 +93,18 @@ void                Hospital::heal()
     this->getKoalaNurseList()->getFromId(1)->giveDrug(this->getKoalaNurseList()->getFromId(1)->readReport("Falter.report"), this->getSickKoalaList()->getFromName("Falter"));
     _sickKoalaList = this->getSickKoalaList()->removeFromName("Falter");
 }
+
+void    Hospital::endWork()
+{
+    _koalaNurseList->getFromId(1)->timeCheck();
+    _koalaNurseList = _koalaNurseList->removeFromId(1);
+    _koalaNurseList->getFromId(2)->timeCheck();
+    _koalaNurseList = _koalaNurseList->removeFromId(2);
+
+    _koalaDoctorList->getFromName("Cox")->timeCheck();
+    _koalaDoctorList = _koalaDoctorList->removeFromName("Cox");
+    _koalaDoctorList->getFromName("House")->timeCheck();
+    _koalaDoctorList = _koalaDoctorList->removeFromName("House");
+    _koalaDoctorList->getFromName("Boudur-Oulot")->timeCheck();
+    _koalaDoctorList = _koalaDoctorList->removeFromName("Boudur-Oulot");
+}

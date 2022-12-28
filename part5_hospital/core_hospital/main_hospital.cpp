@@ -116,6 +116,7 @@ int     main(void)
 
         bellevue.dump();
         bellevue.heal();
+        bellevue.endWork();
         if (nurse1.isEnd() && sick1.isEnd() && doc1.isEnd())
                 std::cout << "Lists cleaned up." << std::endl;
         else

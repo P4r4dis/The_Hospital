@@ -27,6 +27,7 @@ class Hospital
     void                addNurse(KoalaNurseList     *koalaNurseList);
     void                dump();
     void                heal();
+    void                endWork();
 
 };
 
