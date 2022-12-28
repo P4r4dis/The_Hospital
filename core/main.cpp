@@ -1,112 +1,54 @@
-#include "../part1_patient/includes/my_patient_hospital.hpp"
-#include "../part2_nurse/includes/my_nurse_hospital.hpp"
-#include "../part3_doctor/includes/my_doctor_hospital.hpp"
-#include "../part4_list/includes/my_list_hospital.hpp"
+#include "../part5_hospital/includes/my_hospital.hpp"
 
-
-
-int     main(int ac, char **av)
+int     main(void)
 {
-    if (ac < 2 && av) {
-        std::cout << "CORE MAIN" << std::endl;
-        //THE PATIENT SICKKOALA
-        SickKoala   cancer("Ganepar");
-        std::cout << cancer.get_name() << std::endl;
-        cancer.poke();
-        std::cout << std::boolalpha << "return value : " << 
-        cancer.takeDrug("Mars") << std::endl;
-        std::cout << std::boolalpha << "return value : " << 
-        cancer.takeDrug("Buronzand") << std::endl;
-        std::cout << std::boolalpha << "return value : " << 
-        cancer.takeDrug("random") << std::endl;
-        cancer.overDrive("Kreog! How's it going?");
+        srandom (42) ;
 
-        SickKoala   gangrene("Scarface");
-        std::cout << gangrene.get_name() << std::endl;
-        gangrene.poke();
-        std::cout << std::boolalpha << "return value : " << 
-        gangrene.takeDrug("Mars") << std::endl;
-        std::cout << std::boolalpha << "return value : " << 
-        gangrene.takeDrug("Buronzand") << std::endl;
-        std::cout << std::boolalpha << "return value : " << 
-        gangrene.takeDrug("random") << std::endl;
-        gangrene.overDrive("Kreog! How's it going?");
+        KoalaDoctor             cox("Cox");
+        KoalaDoctor             house("House");
+        KoalaDoctor             tired("Boudur-Oulot");
 
-        SickKoala   measles("RedFace");
-        std::cout << measles.get_name() << std::endl;
-        measles.poke();
-        std::cout << std::boolalpha << "return value : " << 
-        measles.takeDrug("Mars") << std::endl;
-        std::cout << std::boolalpha << "return value : " << 
-        measles.takeDrug("Buronzand") << std::endl;
-        std::cout << std::boolalpha << "return value : " << 
-        measles.takeDrug("random") << std::endl;
-        measles.overDrive("Kreog! How's it going?");
+        KoalaDoctorList         doc1(&cox);
+        KoalaDoctorList         doc2(&house);
+        KoalaDoctorList         doc3(&tired);
 
-        SickKoala   smallpox("Varia");
-        std::cout << smallpox.get_name() << std::endl;
-        smallpox.poke();
-        std::cout << std::boolalpha << "return value : " << 
-        smallpox.takeDrug("Mars") << std::endl;
-        std::cout << std::boolalpha << "return value : " << 
-        smallpox.takeDrug("Buronzand") << std::endl;
-        std::cout << std::boolalpha << "return value : " << 
-        smallpox.takeDrug("random") << std::endl;
-        smallpox.overDrive("Kreog! How's it going?");
+        KoalaNurse              ratched(1);
+        KoalaNurse              betty(2);
 
-        SickKoala   fracture("Falter");
-        std::cout << fracture.get_name() << std::endl;
-        fracture.poke();
-        std::cout << std::boolalpha << "return value : " << 
-        fracture.takeDrug("Mars") << std::endl;
-        std::cout << std::boolalpha << "return value : " << 
-        fracture.takeDrug("Buronzand") << std::endl;
-        std::cout << std::boolalpha << "return value : " << 
-        fracture.takeDrug("random") << std::endl;
-        fracture.overDrive("Kreog! How's it going?");
+        KoalaNurseList          nurse1(&ratched);
+        KoalaNurseList          nurse2(&betty);
 
-        /////////////////////////////
-        SickKoala   sickKoala("SickKoala");
-        std::cout << sickKoala.get_name() << std::endl;
-        sickKoala.poke();
-        std::cout << std::boolalpha << "return value : " << 
-        sickKoala.takeDrug("Mars") << std::endl;
-        std::cout << std::boolalpha << "return value : " << 
-        sickKoala.takeDrug("Buronzand") << std::endl;
-        std::cout << std::boolalpha << "return value : " << 
-        sickKoala.takeDrug("random") << std::endl;
-        sickKoala.overDrive("Kreog! How's it going?");
-        ////////////////////////////////////////////////////
-        //NURSE
-        ////////////////////////////////////////////////////
-        KoalaNurse      ratched(1);
-        KoalaNurse      betty(2);
-        
-        ratched.giveDrug("Drug", &sickKoala);
-        betty.readReport("SickKoala");
-        std::cout << std::boolalpha << "bool : " << 
-        betty.get_isWorking() << std::endl;
-        betty.timeCheck();
-        std::cout << std::boolalpha << "bool : " << 
-        betty.get_isWorking() << std::endl;
-        betty.timeCheck();
-        std::cout << std::boolalpha << "bool : " << 
-        betty.get_isWorking() << std::endl;
-        ////////////////////////////////////////////////////
-        // DOCTOR
-        ////////////////////////////////////////////////////
-        KoalaDoctor     cox("Cox");
+        SickKoala               cancer("Ganepar");
+        SickKoala               gangrene("Scarface");
+        SickKoala               measles("RedFace");
+        SickKoala               smallpox("Varia");
+        SickKoala               fracture("Falter");
 
-        std::cout << cox.getName() << std::endl;
-        cox.diagnose(&sickKoala);
-        std::cout << std::boolalpha << "bool : " << 
-        cox.getIsWorking() << std::endl;
-        cox.timeCheck();
-        std::cout << std::boolalpha << "bool : " << 
-        cox.getIsWorking() << std::endl;
-        cox.timeCheck();
-        std::cout << std::boolalpha << "bool : " << 
-        cox.getIsWorking() << std::endl;
-    }
-    return 0;
+        SickKoalaList           sick1(&cancer);
+        SickKoalaList           sick2(&gangrene);
+        SickKoalaList           sick3(&measles);
+        SickKoalaList           sick4(&smallpox);
+        SickKoalaList           sick5(&fracture);
+
+        Hospital                bellevue;
+
+        bellevue.addDoctor(&doc1);
+        bellevue.addDoctor(&doc2);
+        bellevue.addDoctor(&doc3);
+
+        bellevue.addSick(&sick1);
+        bellevue.addSick(&sick2);
+        bellevue.addSick(&sick3);
+        bellevue.addSick(&sick4);
+        bellevue.addSick(&sick5);
+
+        bellevue.addNurse(&nurse1);
+        bellevue.addNurse(&nurse2);
+
+        bellevue.run();
+        if (nurse1.isEnd() && sick1.isEnd() && doc1.isEnd())
+                std::cout << "Lists cleaned up." << std::endl;
+        else
+                std::cerr << "You fail! Boo!" << std::endl;
+        return (0);
 }

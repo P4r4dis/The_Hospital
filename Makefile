@@ -70,12 +70,12 @@ TST_PATH			=	$(PART1_TST_PATH) \
 						$(PART4_TST_PATH) \
 						$(PART5_SRC_PATH)
 
-NAME				=	my_hospital
+NAME				=	a.out
 TEST_NAME 			= 	test_$(NAME)
 
 #INC_PATH 			= 	$(PART1_INC_PATH)
 #$(PART2_INC_PATH)
-INCFLAGS			+=	-I $(PART1_INC_PATH) -I $(PART2_INC_PATH) -I $(PART3_INC_PATH) -I $(PART4_INC_PATH)
+INCFLAGS			+=	-I $(PART1_INC_PATH) -I $(PART2_INC_PATH) -I $(PART3_INC_PATH) -I $(PART4_INC_PATH) -I $(PART5_INC_PATH)
 #$(INC_PATH)
 
 CPPFLAGS			+= 	-Wall -Wextra -Werror $(INCFLAGS)#-W -std=c++1z
@@ -101,7 +101,8 @@ FCLEAN				=	fclean
 all					:	$(NAME)
 
 $(NAME)				:	$(OBJS)
-						$(G++) $(OBJS) -o $(NAME) $(CPPFLAGS)
+						$(G++) $(OBJS) $(CPPFLAGS)
+#$(G++) $(OBJS) -o $(NAME) $(CPPFLAGS)
 
 RM					=	rm -rf
 
