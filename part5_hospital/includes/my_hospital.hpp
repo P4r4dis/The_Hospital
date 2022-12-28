@@ -28,6 +28,7 @@ class Hospital
     void                dump();
     void                heal();
     void                endWork();
+    void                run();
 
 };
 

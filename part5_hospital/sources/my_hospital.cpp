@@ -94,7 +94,7 @@ void                Hospital::heal()
     _sickKoalaList = this->getSickKoalaList()->removeFromName("Falter");
 }
 
-void    Hospital::endWork()
+void                Hospital::endWork()
 {
     _koalaNurseList->getFromId(1)->timeCheck();
     _koalaNurseList = _koalaNurseList->removeFromId(1);
@@ -107,4 +107,11 @@ void    Hospital::endWork()
     _koalaDoctorList = _koalaDoctorList->removeFromName("House");
     _koalaDoctorList->getFromName("Boudur-Oulot")->timeCheck();
     _koalaDoctorList = _koalaDoctorList->removeFromName("Boudur-Oulot");
+}
+
+void                Hospital::run()
+{
+    dump();
+    heal();
+    endWork();
 }
