@@ -458,12 +458,14 @@ This principle of using a Destructor for free ressources is called __RAII__.
 ## Installation
 [(Back to top)](#table-of-contents)
 
-* After downloaded the project and gone to the root path SimpleCatCommand repository you can use the __Makefile__ for compile the program or the units tests and generate a bynary:
-    * ```
+* After downloaded the project and gone to the root path The_Hospital repository you can use the __Makefile__ for compile the program or the units tests and generate a bynary:
+    *   ```
+        #Example
         make part1
         ```
     or for the unit_tests :
-    * ```
+    *   ```
+        #Example
         make tests_run_part1
         ```
 ## How To Use
