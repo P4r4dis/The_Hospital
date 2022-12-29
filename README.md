@@ -455,6 +455,117 @@ protected:__ .
 * A __Destructor is important because if a class contains a pointer to memory allocated, the Destructor could free the memory automatically__.
 This principle of using a Destructor for free ressources is called __RAII__.
 
+#### Getter and Setter (Accessors and Mutators)
+* In C++ __getters and setters__, a “setter” or “setter method” is a method whose primary purpose is to write to or change a class field. A “getter” or “getter method,” on the other hand, is a method whose sole purpose is to return the current data of a class field
+
+* In C++, __encapsulation__ is the process in which some __important information is kept private_ and can not be assessed by other members, which makes it impossible to change the values from outside the class. So, we need a special kind of function to retrieve those data and set values.
+
+* Object-oriented programming offers the getter and setter functions to meet our retrieving and setting values. __Getter and setter functions allow access to the private data in a safe mode__. As the setter function C++ is used along with the data validation, and checks whether the user enters a valid value or not.
+
+* In some cases, you can not use getter and setter functions. If you retrieve a member function but can not set the value, then it is read-only. The __getter function__ is also known as __“accessors”__ whereas the __setter function__ is known as the __“mutator”__ function.
+##### How to create Getter function :
+*   ```
+    Bottle::getInt()
+    {
+        return _int; //_int is a private variable init in class
+    }
+    ```
+##### How to create Setter function :
+*   ```
+    Bottle::setInt(int newInt)
+    {
+        _int = newInt;  //_int is a private variable init in class
+                        //_int takes a value of newInt;
+    }
+    ```
+#### The fstream Library
+* __The fstream library__ provides C++ programmers with three classes for working with files. These classes include:
+    * __ofstream__ This class represents an output stream. It’s used for creating files and writing information to files.
+    * __ifstream__ This class represents an input stream. It’s used for reading information from data files.
+    * __fstream__ This class generally represents a file stream. It comes with ofstream/ifstream capabilities. This means it’s capable of creating files, writing to files, reading from data files.
+
+fstream | fstream | fstream |
+------- | ------- | ------- |
+ofstream| ifstream| fstream |
+For creating files / writing information to files | For reading information from data file | For creating files, writing and reading from files |
+
+* We used __fstream__
+
+##### How open files
+[(Back to top)](#table-of-contents)
+
+* Before performing any operation on a file, you must first open it. If you need to write to the file, open it using __fstream__ or ofstream objects. If you only need to read from the file, open it using the ifstream object.
+
+* The three objects, that is, fstream, ofstream, and ifstream, have the open() function defined in them. The function takes this syntax:
+    * ```
+        #include <fstream>
+	    fstream my_file;
+	    my_file.open(file_name, mode);
+        ```
+        * The file_name parameter denotes the name of the file to open.
+        * The mode parameter is optional. It can take any of the following values:
+            * Value | Description |
+              ----- | ----------- |
+              std::fstream::app | The Append mode. The output sent to the file is appended to it. |
+              std::fstream::ate | It opens the file for the output then moves the read and write control to file’s end. |
+              std::fsteram::in | It opens the file for a read. |
+              std::fsteram::out | It opens the file for a write. |
+              std::fstream::trunc | If a file exists, the file elements should be truncated prior to its opening. |
+##### How to close files
+[(Back to top)](#table-of-contents)
+* Once a C++ program terminates, it automatically
+    * flushes the streams
+    * releases the allocated memory
+    * closes opened files.
+    * However, as a programmer, you should learn to close open files before the program terminates.
+
+* The fstream, ofstream, and ifstream objects have the close() function for closing files. The function takes this syntax:
+    * ```
+        #include <fstream>
+	    fstream my_file;
+	    my_file.close();
+        ```
+##### How to Write to Files
+* You can write to file right from your C++ program. You use stream insertion operator (<<) for this. The text to be written to the file should be enclosed within double-quotes.
+* ```
+    #include <iostream>
+    #include <fstream>
+    using namespace std;
+    int main() {
+        fstream my_file;
+        my_file.open("my_file.txt", ios::out);
+        if (!my_file) {
+            cout << "File not created!";
+        }
+        else {
+            cout << "File created successfully!";
+            my_file << "TEST";
+            my_file.close();
+        }
+        return 0;
+    }
+    ```
+##### How to read files
+[(Back to top)](#table-of-contents)
+
+* For our use case, there’s little point in processing every character separately — after all, we want to print every line from our shopping list to the screen one by one. This calls for getline(), another member function, which reads in the text until it encounters a line break.
+* Here’s how we would modify our code:
+    * ```
+        #include <fstream>
+
+	    fstream my_file;
+	    my_file.open(file_name, mode);
+
+        std::string my_line;
+        if (my_file.is_open()) {
+            while (my_file) {
+                std::getline (fstream, buffer, delimiter); //fstream = my_file, buffer = my_line, delimiter = '\0'
+                std::cout << myline << std::endl;
+            }
+        }
+        my_file.close();
+        ```
+
 ## Installation
 [(Back to top)](#table-of-contents)
 
